@@ -1,7 +1,7 @@
 # Métodos Cuantitativos 2 `R`
 
 
-Programa: [`[Programa]`](https://metodoscuantitativos.github.io/mc2/files/programa_2024.pdf) metodoscuantitativos.github.io
+Programa: [`[Programa]`](https://metodoscuantitativos.github.io/mc2/files/programa_2024.pdf) 
 
 Programación: [`[Programación]`](https://metodoscuantitativos.github.io/mc2/files/programacion_2024.pdf) 
 
