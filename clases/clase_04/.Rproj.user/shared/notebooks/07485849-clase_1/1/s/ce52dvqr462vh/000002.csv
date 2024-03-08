@@ -1,0 +1,14 @@
+"0","```r
+marx_engels <- read_csv('../data/marx_engels.csv')
+```"
+"1","Parsed with column specification:
+cols(
+  tipo = [31mcol_character()[39m,
+  autor = [31mcol_character()[39m,
+  titulo = [31mcol_character()[39m,
+  texto = [31mcol_character()[39m
+)
+"
+"0","```r
+marx_engels
+```"

@@ -1,0 +1,10 @@
+"0","```r
+stop_words <- read_csv('https://raw.githubusercontent.com/Alir3z4/stop-words/master/spanish.txt', col_names=FALSE) %>%
+        rename(word = X1) %>%
+        mutate(word = stringi::stri_trans_general(word, \"Latin-ASCII\"))
+```"
+"1","Parsed with column specification:
+cols(
+  X1 = [31mcol_character()[39m
+)
+"

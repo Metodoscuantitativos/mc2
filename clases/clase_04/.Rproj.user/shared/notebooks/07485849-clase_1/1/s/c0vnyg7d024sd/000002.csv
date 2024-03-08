@@ -1,0 +1,4 @@
+"0","```r
+marx_engels_tidy <- marx_engels %>%
+        unnest_tokens(word, texto)
+```"

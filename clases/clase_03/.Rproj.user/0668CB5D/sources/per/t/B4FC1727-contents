@@ -1,0 +1,77 @@
+---
+title: "Ejemplo 1"
+author: "Sebastián Massa Slimming"
+date: '2022-06-08'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(knitr)
+library(DT)
+library(kableExtra)
+
+```
+
+## Título 1
+
+La base de datos **`iris`** cuenta con `r nrow(iris)` filas y `r ncol(iris)` variables.
+
+A su vez, esta base de datos contiene **`r length(unique(iris$Species))`** especies distintas, que son básicamente **`r unique(iris$Species)[1:2]`** y **`r unique(iris$Species)[3]`**.
+
+## Título 2
+
+```{r}
+
+data <- iris
+str(data) 
+
+```
+
+## Título 3
+
+```{r, echo = FALSE}
+
+tabla <- data.frame(table(data$Species))
+names(tabla) <- c("Especies", "Frecuencia")
+tabla 
+knitr::kable(tabla, caption = "Tabla ejemplo título 3")
+
+```
+
+## Título 4
+
+```{r, echo = TRUE, warning= FALSE, message= FALSE}
+
+DT::datatable(iris,
+              class = "cell-border stripe",
+              extensions = "Buttons",
+              filter = "top",
+              caption = "Tabla título 4",
+              options = list(dom = "Bfrtip",
+                             buttons = c("excel",
+                                         "csv",
+                                         "copy",
+                                         "pdf")))
+
+```
+
+## Título 5
+
+```{r}
+
+knitr::kable(iris, "html") %>% 
+  kableExtra::kable_styling(bootstrap_options = "condensed",
+                            position = "center",
+                            full_width = FALSE,
+                            html_font = "helvetica") %>% 
+  kableExtra::column_spec(2, bold = TRUE, color = "purple") %>% 
+  kableExtra::add_header_above(c("Grupo 1" = 2, "Grupo 2" = 2, 
+                                 " " = 1))
+  
+```
+
+
+

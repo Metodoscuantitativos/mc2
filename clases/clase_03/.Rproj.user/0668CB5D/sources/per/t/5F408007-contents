@@ -1,0 +1,83 @@
+### PRUEBA 1 ###
+
+# Parte 1: R base ---------------------------------------------------------
+#0.1 Crear un VECTOR llamado EDAD que contenga las edades de los/as miembros/as de su familia 
+
+#0.2 Modificar el tercer elemento de EDAD, asignandole el valor 30
+
+#0.3 Crear 3 vectores (llamarlos NOMBRE, PARENTESCO, COMUNA_RESIDENCIA). con la misma cantidad de elementos que EDAD, pero con variables de tipo character (texto).
+# PARENTESCO: asigne los valores: Padre, Madre, Hijo, Hija
+
+#0.4 Crear un dataframe (llamarla: BASE_DATOS) que contenga los vectores creados previamente
+
+#0.5 Crear un objeto llamado OTRA_COSA que guarde el valor contenido de la segunda fila del dataframe BASE_DATOS
+
+#0.6 Crear un objeto llamado OTRA_COSA1 que guarde el valor contenido de la tercera columna del dataframe BASE_DATOS
+
+#0.7 Crear un objeto llamado OTRA_COSA2 que guarde el valor contenido de la segunda fila y tercera columna del dataframe BASE_DATOS
+
+
+
+# Parte 2: Abrir, guardar e indexar bases de datos ---------------------------------------
+#01. Cree una carpeta en el escritorio (eg. Prueba 1), cree un proyecto e importen la base de datos sobre los casos de covid 
+#detallando la ruta desde el punto de partida del proyecto y asignandola a base_covid
+#recuerden que dicha base es una muestra del 2% de los casos diarios
+
+base_covid <- readRDS(file = "base_covid_sample.RDS")
+
+#02. Supongan que sólo les interesa trabajar con las variables edad, clasificacion_resumen y  fallecido. 
+# para saber los nombres utilice función names ()
+# Utilice el método de acceso de los corchetes [] para crear un nuevo objeto que contenga 
+# todas las filas de la base, 
+# pero solo esas columnas
+#02.1 realicelo con el nombre de las variables (base_covid_r1)
+#02.2 realicelo con la posición de las variables (base_covid_r2)
+#02.3 observe si son iguales 
+
+names(base_covid)
+base_covid_r1 <- base_covid [, c("edad", "clasificacion_resumen", "fallecido")]
+base_covid_r2 <- base_covid [, c(3, 21, 15)]
+
+
+#03. Tome esa misma base (base_covid_r1) y con el método de acceso de corchetes [] conserve  los primeros 200 casos/filas
+#guardela en base_covid_r3
+
+base_covid_r3 <- base_covid_r1 [0:200,]
+
+
+#06. Borre todos los objetos del Environment
+
+
+# Parte 3: tidyverse: select, filter, mutate ---------------------------------------------------
+#acá
+
+
+#01. Importar la base de datos de casos COVID (base_covid_sample.RDS) y cargar tidyverse
+#asignela con el nombre base_covid 
+
+
+#02. Crear un objeto nuevo (base_covid2) y seleccionar entre 3 y 6 columnas de interés combinando la función select() con:
+# El nombre de las variables
+# La posición de las variables
+# Un patrón común en el nombre de las variables (starts_with() - ends_with() - contains())
+# para observar el nombre de las variables puede hacerlo con names ()
+# NO UTILICE LAS DEL EJERICIO EN CLASE!
+
+
+#03. Crear un objeto nuevo (base_covid3) que contenga unicamente a la población residente en CABA, Medoza y Córdoba
+#y sólo los mayores de 18
+
+
+#04. mediante la función table () observe si su filtro está bien realizado para residencia_provincia_nombre
+
+#0.5 mediante la función table () observe si su filtro está bien realizado para sexo
+
+#06. Crear una variable recodificando (base_covid4) la variable edad en 3 rangos etáreos.
+#recuerde que para recodificar se usa: mutate(variable_nueva = case_when(variable_vieja %in% c(desde:hasta) ~ "desde a hasta"
+# para poner el "~": presione AltGR y asterisco
+
+#07. compruebe lo realizado con una table() a edadr
+
+
+
+

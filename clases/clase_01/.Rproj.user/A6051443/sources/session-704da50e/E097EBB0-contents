@@ -1,0 +1,229 @@
+---
+title: "Clase 1"
+subtitle: "Métodos Cuantitativos II"
+author: "Sebastián Muñoz-Tapia"
+institute: "Antropología UAH"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+
+---
+
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_duo_accent(primary_color = "#035AA6", secondary_color = "#03A696")
+
+```
+
+# Cambio
+
+#	FORMALIDADES DEL CURSO
+
+## Elementos de horario de entrada y participación
+
+-	La participación de los estudiantes en clases será evaluada y se reconoce como gravitante para la incorporación de contenidos en del curso.
+-	ASISTENCIA:  
+  + mínimo 70% de actividades lectivas. En total son 30 clases considerando  separadamente los dos bloques (viernes 08:30 a 09:50 y viernes 10:00 a 12:20). Se requiere 21 de cada bloque, aceptando 7 inasistencias. 
+  + La lista por bloque se retirará a: 35 m. al comienzo del primer bloque (9:05) y 15 m. al comienzo del segundo bloque. Posterior a eso no se reconocerá la asistencia. 
+  
+  
+---
+
+##Flexibilidad (limitada)
+
+- Personas con **8,9 o 10** inasistencias podrán a optar a una prueba recuperativa si tienen un promedio mayor a **5,5** en evaluaciones individuales. La prueba será individual e incluye todos los contenidos del curso. Con nota superior a **4,0** podrán aprobar el curso en términos de asistencia. 
+-	En el caso específico de todos los trabajos, por **cada día de atraso** en una entrega se descontarán **0,25** puntos de la nota final.
+
+
+---
+class: inverse
+
+## Elementos de horario de entrada y participación
+
+-	Las clases tanto titulares como de ayudantías son fundamentales para el desarrollo del curso.
+-	Las tutorías se entienden como espacios para orientar y acompañar pedagógicamente el desarrollo de los diseños de investigación que se elaboran en el curso. En este sentido, podrán solicitar tutorías con el profesor o los ayudantes los grupos que se hayan inscrito en torno a un tema específico a trabajar durante el curso. Por su parte, para **ser atendidos en tutoría**, cada grupo debe **enviar por correo electrónico los puntos que desea tratar con 48 horas de anticipación**. De no contarse con un listado específico de temas – incluso a nivel de aproximación - a tratar, no se atenderá en tutoría.
+
+- Horario de atención estudiantes: **Miércoles desde 16:00**
+
+---
+
+## Elementos de horario de entrada y participación
+
+-	Cabe relevar que el rol de los ayudantes contempla la colaboración al profesor titular en la preparación de clases y materiales, apoyo en la corrección de certámenes, respuesta a consultas de los estudiantes y la realización de clases de ayudantías y/o tutorías que faciliten el desarrollo del curso.
+-	En la bibliografía obligatoria no se espera que las/los estudiantes lean los títulos completos sino fragmentos específicos de tales materiales (capítulos, partes de capítulos). Al iniciar el curso se entregará a cada estudiante una planificación detallada de las sesiones y sus materiales de estudio asociados; asimismo, se facilitará toda la bibliografía y materiales de estudio en formato digital
+
+---
+class: inverse
+
+## Clases online desde 15 de Mayo 
+- hacer prueba en TEAMS: 5 de mayo.
+- se espera que tengan cámaras prendidas.
+- ¿quién tiene problemas para uso de computador en casa? (podemos conversar después)
+
+
+---
+
+## ¿Qué hacer con las clases/evaluaciones si hay movilizaciones, paros, tomas, etcétera?
+
+- Clases: propuesta clase por medio la hacemos online, considerando asistencia. 
+- Evaluaciones: reprogramar? (problema de acumulación)
+- Recuperativas: ajustar un horario común. Si no coincide con otra materia, se cuenta asistencia.
+
+---
+
+class: center 
+
+# Foco del curso
+
+<img src="gif/giphy2.gif" width="900px"/> 
+
+
+---
+
+
+# Foco del curso
+
+- Uso de R
+- Limpieza, transformación y preparación de datos
+- Análisis y visualización de datos categóricos 
+- Análisis y visualización datos cuantitativos
+- Reflexión sobre lo que es hacer investigación cuantitativa
+- Desarrollo de un proyecto de investigación empírico 
+
+
+
+---
+
+class: inverse
+
+#Evaluaciones 
+
+.pull-left[
+- *Avance 1*: Entrega del formulario corregido	Entrega del formulario corregido considerando sugerencias y observaciones de compañerxs, para posterior aplicación	/ Grupal/ **5%**
+
+- *Evaluación Individual 1*: Prueba presencial individual: aspectos básicos de programación en R y tidyverse	/Individual/ **20%**
+
+- *Presentación de textos*: Discusión sobre análisis de datos:	Grupal/	2 fechas/ **10%**
+]
+
+.pull-rigth[
+
+
+- *Avance 2*:  Presupuesto en Excel;Procesamiento (limpieza, transformaciones y recodificaciones); análisis (distribución de frecuencias, tablas de contingencia)	/Grupal/ **10%**
+
+- *Evaluación Individual 2*:	Prueba presencial individual manipulación de bases y estadística descriptiva	Individual/ **20%**
+
+- *Asistencia, participación en clases y talleres*: Individual/ **15%**
+- *Trabajo Final*: Incorpora trabajo de campo realizado, presupuesto, procesamientos estadísticos más relevantes y gráficos. Se exponen resultados / Grupal/ **20%**
+]
+
+
+---
+## Textos a presentar
+
+- Becker, H. (2018). Datos, pruebas e ideas. Por qué los científicos sociales deberían tomárselos más en serio y aprender de sus errores. Siglo XXI (19-40; 63-87)
+- Best, J. (2004). Uso y abuso de las estadísticas. La distorsión en la percepción de los problemas sociales y políticos. Cuatro Vientos. (1-62)
+- D’Ignazio, C., & Klein, L. (2020). Data feminism. En Information, Communication & Society (Vol. 24, Número 13). The MIT Press. https://doi.org/10.1080/1369118x.2020.1836249 (1-48)
+- Sevilla Moroder, J. (2005). Gramática de las gráficas. Pistas para mejorar las representaciones de datos. Universidad Pública de Navarra (11-50)
+- Sosa-Escudero, W. (2019). Big data. Breve manual para conocer la ciencia de datos que ya invadió nuestras vidas. Siglo XXI. (11-45)
+; 67-87)
+
+---
+## Investigación empírica
+- Continuar desarrollo de investigación anterior
+- (Ojalá conservar los grupos) Si alguien quiere cambiar, converselo con sus sus compañeros. Diganme la próxima clase. 
+- ¿Qué se hará?: 
+  + Corregir el cuestionario, Aplicar el cuestionario, Bajar la base de datos, Corregirla/Limpiarla, Analizarla y visualizarla, Escribir un texto y Presentar en formato artículo investigación (mitad del trabajo ya hecho!) 
+
+- **Próxima clase**: re-leer cuestionarios de otros grupos y plantear críticas constructivas a los cuestionarios
+- Grupo de Coordinadores
+
+
+---
+## Ideas
+
+- Buscar ayudantes mujeres o diversidades
+- 2 promedios más altos "referencia" en CV
+- Posibilidad de articular trabajo como articulo académico si sale bien.
+- Si existe alguna duda/propuesta sobre la programación la podemos conversar.
+
+![Nola](gif/nolan.jpg)
+
+
+---
+
+
+class: center, inverse
+
+<img src="gif/giphy3.gif" width="900px"/> 
+
+---
+
+
+## Premisas
+
+.pull-left[
+- Todas las preguntas son válidas, no hay preguntas tontas, aunque puedas ser graciosas
+- R puede ser complejo, no tenga miedo a equivocarse y no se frustre. 
+- Aprenda a interpretar los códigos en lenguaje cotidiano.
+- Utilice las ayudantías y tutorías. 
+- Puede utilizar:
+  + https://chat.openai.com/ 
+  + https://rtutor.ai/
+  + su duda entre comillas más *stackoverflow* en Google]
+  
+<div class="center">
+  <img src="gif/giphy5.gif" width="410px"/>
+</div>
+
+
+
+
+---
+class:center, inverse
+
+## Favor llenar el siguiente formulario
+
+https://forms.gle/HwDMWgCbZB7V6Nqo9
+
+<img src="gif/qr form.png" width="500px"/> 
+
+
+---
+
+# Próxima clase
+- llenar el formulario quienes no vinieron
+- entregar sugerencias a compañerxs respecto a las preguntas del cuestionario
+- ver documental Aaron Swartz, quien quiera ganarse unos puntos investigar sobre Alexandra Elbakyan
+- ajustar una ayudantía, día y horario a conveniencia de ustedes: instalar programa y revisar si funciona
+- mandenme previamente la selección de los textos!
+
+
+<div class="center">
+  <img src="gif/aaronyalexandra.jpg" width="450px"/>
+</div>
+
+
+---
+class: inverse, center, middle
+
+# Programación
+
+https://docs.google.com/spreadsheets/d/1UNjfA3-LmE_9TaWPQgjz6LLCw46OnG0buSY9aW-AOGk/edit#gid=0
+
+
+---
+
+class: inverse, center
+
+
+<img src="gif/giphy1.gif" width="500px"/> 
+
+## Dudas?

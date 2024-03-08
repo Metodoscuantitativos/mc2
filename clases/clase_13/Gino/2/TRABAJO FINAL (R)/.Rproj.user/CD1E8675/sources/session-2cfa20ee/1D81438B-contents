@@ -1,0 +1,291 @@
+
+#### GRUPO: CONSUMO DE ALCOHOL EN ESTUDIANTES DE ANTROPOLOGÍA ####
+
+## 1. INSTALACIONES ####
+
+# instalación paquetes
+
+install.packages("tidyverse")
+
+install.packages("pacman")
+
+pacman::p_load(tidyverse, openxlsx, readxl,readr,janitor, forcats, writexl, DataExplorer,
+               knitr, gt, summarytools, ggthemes, hrbrthemes, stringr, tidyselect, kableExtra)
+
+
+# instalación base de datos
+
+base_antropo <- read.xlsx(xlsxFile = "base/EncuestaAntropologia_2023.xlsx")
+
+
+# instalación libro de códigos
+
+libro_antropo <- read.csv(file = "base/Encuesta antropología 2023.csv")
+
+
+
+## 2. LIMPIEZA Y TRANSFORMACIÓN DE DATOS ####
+
+names(base_antropo)
+names(libro_antropo)
+
+# renombrar variables
+
+base_antropo <- base_antropo %>% dplyr::rename(nobeber_limitante = al01,
+                               alcohol_fueraclases = al02,
+                               alcohol_compartir = al03,
+                               presion_social = al04,
+                               alcohol_facilita_interacciones = al05,
+                               compañero_alcohol = al06,
+                               año2022_consumo_mensual = al07,
+                               salud_mental = al08,
+                               desempenio_academico = al09,
+                               erasmo = al10)
+
+
+DataExplorer::create_report(base_antropo)
+
+# limpieza variables
+
+unique(base_antropo$ciudad_actual)
+
+base_antropo <- base_antropo %>%
+  mutate(ciudad_actual = ifelse (ciudad_actual %in% c("Santiago·","Metropolitana·","Santiago centro","santiago·","Santiagl", 
+                                                      yes="Santiago", no=ciudad_actual)
+                                 
+
+                                 
+## 3. TABLAS DE FRECUENCIA PARA VARIABLES SOCIODEMOGRÁFICAS ####
+
+# variable de género
+
+base_antropo %>% 
+  freq(genero, prop = TRUE, order = "freq", report.nas =  FALSE)%>% 
+  tb() %>%
+  kable(col.names = c("Género", "Frecuencia", "%", "% Acumulado"),
+        caption = "Distribución de frecuencias de Género", 
+        digits = c(0, 0, 2, 2))%>%  
+  kable_classic(full_width = F, html_font = "Times New Roman")
+
+
+# variable de edad
+
+base_antropo %>% 
+  freq(edad, prop = TRUE, order = "freq", report.nas =  FALSE)%>% 
+  tb() %>%
+  kable(col.names = c("Edad", "Frecuencia", "%", "% Acumulado"),
+        caption = "Distribución de frecuencia de edades", 
+        digits = c(0, 0, 2, 2))%>%  
+  kable_classic(full_width = F, html_font = "Times New Roman")
+
+
+# variable de ciudad actual
+
+!!! arreglar arriba primero
+
+
+
+## 4. TABLAS DE FRECUENCIA PARA VARIABLES DEL GRUPO ####
+
+# tabla 01
+
+base_antropo %>% 
+  freq(nobeber_limitante, prop = TRUE, order = "freq", report.nas =  FALSE)%>% 
+  tb() %>%
+  kable(col.names = c("Consumo", "Frecuencia", "%", "% Acumulado"),
+        caption = "Consumir alcohol  limita interacciones sociales", 
+        digits = c(0, 0, 2, 2))%>%  
+  kable_classic(full_width = F, html_font = "Times New Roman")
+
+# tabla 02
+
+base_antropo %>% 
+  freq(alcohol_fueraclases, prop = TRUE, order = "freq", report.nas =  FALSE)%>% 
+  tb() %>%
+  kable(col.names = c("Se incorpora", "Frecuencia", "%", "% Acumulado"),
+        caption = "Distribución de frecuencias de consumo fuera del espacio universitario", 
+        digits = c(0, 0, 2, 2))%>%  
+  kable_classic(full_width = F, html_font = "Times New Roman")
+
+# tabla 03
+
+base_antropo %>% 
+  freq(alcohol_compartir, prop = TRUE, order = "freq", report.nas =  FALSE)%>% 
+  tb() %>%
+  kable(col.names = c("Del 1 al 5", "Frecuencia", "%", "% Acumulado"),
+        caption = "Del 1 al 5, ¿estás de  acuerdo con que el beber después de clases ayuda al compartir entre compañerxs? (siendo 1 muy en desacuerdo y 5 muy de acuerdo)", 
+        digits = c(0, 0, 2, 2))%>%  
+  kable_classic(full_width = F, html_font = "Times New Roman")
+
+# tabla 04
+
+base_antropo %>% 
+  freq(presion_social, prop = TRUE, order = "freq", report.nas =  FALSE)%>% 
+  tb() %>%
+  kable(col.names = c("Te sientes", "Frecuencia", "%", "% Acumulado"),
+        caption = "Presión al consumo de alcohol al compartir con amistades de universidad después de clases", 
+        digits = c(0, 0, 2, 2))%>%  
+  kable_classic(full_width = F, html_font = "Times New Roman")
+
+# tabla 05
+
+base_antropo %>% 
+  freq(alcohol_facilita_interacciones, prop = TRUE, order = "freq", report.nas =  FALSE)%>% 
+  tb() %>%
+  kable(col.names = c("Facilita la relación", "Frecuencia", "%", "% Acumulado"),
+        caption = "Alcohol como facilitador  para relacionarse con compañerxs fuera del horario de clases", 
+        digits = c(0, 0, 2, 2))%>%  
+  kable_classic(full_width = F, html_font = "Times New Roman")
+
+# tabla 06
+
+base_antropo %>% 
+  freq(compañero_alcohol, prop = TRUE, order = "freq", report.nas =  FALSE)%>% 
+  tb() %>%
+  kable(col.names = c("Conoce a alguien que beba alcohol para relacionarse fuera de la universidad", "Frecuencia", "%", "% Acumulado"),
+        caption = "Conocimiento de alguien que recurra al alcohol para socializar fuera del horario de clases", 
+        digits = c(0, 0, 2, 2))%>%  
+  kable_classic(full_width = F, html_font = "Times New Roman")
+
+# tabla 07
+
+base_antropo %>% 
+  freq(año2022_consumo_mensual, prop = TRUE, order = "freq", report.nas =  FALSE)%>% 
+  tb() %>%
+  kable(col.names = c("Cantidad de veces", "Frecuencia", "%", "% Acumulado"),
+        caption = "Consumo fuera de clases en el último semestre de 2022", 
+        digits = c(0, 0, 2, 2))%>%  
+  kable_classic(full_width = F, html_font = "Times New Roman")
+
+# tabla 08
+
+base_antropo %>% 
+  freq(salud_mental, prop = TRUE, order = "freq", report.nas =  FALSE)%>% 
+  tb() %>%
+  kable(col.names = c("Afecta la salud mental", "Frecuencia", "%", "% Acumulado"),
+        caption = "Consumo de alcohol en contexto universitario y salud mental", 
+        digits = c(0, 0, 2, 2))%>%    
+  kable_classic(full_width = F, html_font = "Times New Roman")
+
+# tabla 09
+
+base_antropo %>% 
+  freq(desempenio_academico, prop = TRUE, order = "freq", report.nas =  FALSE)%>% 
+  tb() %>%
+  kable(col.names = c("Afecta el desempeño académico", "Frecuencia", "%", "% Acumulado"),
+        caption = "Consumo de alcohol constante durante el contexto universitario afecta el desempeño académico", 
+        digits = c(0, 0, 2, 2))%>%  
+  kable_classic(full_width = F, html_font = "Times New Roman")
+
+# tabla 10
+
+base_antropo %>% 
+  freq(erasmo, prop = TRUE, order = "freq", report.nas =  FALSE)%>% 
+  tb() %>%
+  kable(col.names = c("Del 1 al 5", "Frecuencia", "%", "% Acumulado"),
+        caption = "Erasmo Escala como un espacio de consumo de alcohol, ¿está bien? Del 1 al 5 (siendo 1 muy en desacuerdo y 5 muy de acuerdo)", 
+        digits = c(0, 0, 2, 2))%>%  
+  kable_classic(full_width = F, html_font = "Times New Roman")
+
+
+
+## 5. GRÁFICOS DE BARRA VERTICALES PARA VARIABLES DESTACADAS ####
+
+# 5.1 variable: alcohol_facilita_interacciones
+
+unique(base_antropo$alcohol_facilita_interacciones)
+
+dfalcohol_facilita_interacciones <- base_antropo %>% 
+  freq(alcohol_facilita_interacciones, prop = TRUE, order = "freq", report.nas = FALSE) %>%
+  tb()
+
+# gráfico
+
+ggplot(dfalcohol_facilita_interacciones, aes(x =fct_reorder(alcohol_facilita_interacciones, pct), y = pct, fill= alcohol_facilita_interacciones)) +
+  geom_col() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  xlab("") + ylab("") +
+  labs(title = "No beber alcohol limita la relación entre compañerxs", 
+       caption = "fuente: Encuesta Estudiantes Antropología 2023")+
+  theme_ipsum()+
+  scale_fill_viridis_d(option = "C", guide = "none")
+
+# 5.2 variable: salud_mental
+
+unique(base_antropo$salud_mental)
+
+dfsalud_mental <- base_antropo %>% 
+  freq(salud_mental, prop = TRUE, order = "freq", report.nas = FALSE) %>%
+  tb()
+
+# gráfico
+
+ggplot(dfsalud_mental, aes(x =fct_reorder(salud_mental, pct), y = pct, fill= salud_mental)) +
+  geom_col() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  xlab("") + ylab("") +
+  labs(title = "Alcohol afecta la salud mental", 
+       caption = "fuente: Encuesta Estudiantes Antropología 2023")+
+  theme_ipsum()+
+  scale_fill_viridis_d(option = "C", guide = "none")
+
+# 5.3 variable: desempenio_academico
+
+unique(base_antropo$desempenio_academico)
+
+dfdesempenio_academico <- base_antropo %>% 
+  freq(desempenio_academico, prop = TRUE, order = "freq", report.nas = FALSE) %>%
+  tb()
+
+# gráfico
+
+ggplot(dfdesempenio_academico, aes(x =fct_reorder(desempenio_academico, pct), y = pct, fill= desempenio_academico)) +
+  geom_col() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  xlab("") + ylab("") +
+  labs(title = "Alcohol afecta el desempeño académico", 
+       caption = "fuente: Encuesta Estudiantes Antropología 2023")+
+  theme_ipsum()+
+  scale_fill_viridis_d(option = "C", guide = "none")
+
+
+
+## 6. GRÁFICOS DE TORTA PARA VARIABLES DESTACADAS ####
+
+# variable: salud_mental
+# gráfico
+
+ggplot(dfsalud_mental, aes(x = "", y = pct, fill = salud_mental)) +
+  geom_bar(stat = "identity") + 
+  coord_polar(theta = "y") + 
+  labs(title = "Alcohol influye en la salud mental de estudiantes de Antropología UAH", 
+       caption = "fuente: Encuesta de Estudiantes UAH 2023",
+       fill = "salud_mental") +
+  theme_ipsum() +
+  scale_fill_viridis_d( guide = "legend", limits = dfsalud_mental$salud_mental)
+
+# variable: desempenio_academico
+# gráfico
+
+ggplot(dfdesempenio_academico, aes(x = "", y = pct, fill = desempenio_academico)) +
+  geom_bar(stat = "identity") + 
+  coord_polar(theta = "y") + 
+  labs(title = "Alcohol influye en la salud mental de estudiantes de Antropología UAH", 
+       caption = "fuente: Encuesta de Estudiantes UAH 2023",
+       fill = "desempenio_academico") +
+  theme_ipsum() +
+  scale_fill_viridis_d( guide = "legend", limits = dfdesempenio_academico$desempenio_academico)
+
+
+
+## 7. TABLAS DE CONTINGENCIA ####
+
+## 8. GRÁFICOS DE BARRA HORIZONTALES PARA TABLAS DE CONTINGENCIA ####
+
+## 9. ÍNDICE ADITIVO ####
+
+## 10. CRUCE DE ÍNDICE ADITIVO CON DOS VARIABLES ####
+
+
+                                 
+                                 

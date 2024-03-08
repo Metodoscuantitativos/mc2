@@ -1,0 +1,4 @@
+"0","```r
+marx_engels_tidy %>%
+        count(word, sort=TRUE)
+```"

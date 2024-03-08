@@ -1,0 +1,6 @@
+"0","```r
+library(tidytext)
+
+marx_df %>%
+  unnest_tokens(word, text)
+```"

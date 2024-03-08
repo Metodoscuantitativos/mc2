@@ -1,0 +1,471 @@
+
+
+# Carga de paquetes y base ------------------------------------------------
+pacman::p_load(tidyverse, openxlsx, readxl,readr,janitor, forcats, writexl, DataExplorer,
+               knitr, gt, summarytools, ggthemes, hrbrthemes, stringr, tidyselect, kableExtra)
+
+base <- read.xlsx(xlsxFile = "base/EncuestaAntropologia_2023.xlsx")
+libro <- read.csv(file = "base/Encuesta antropología 2023.csv")
+
+
+
+#Corrección ciudades ----------------------------------------------------------------
+
+base <- base %>%
+  mutate(ciudad_actual = stringi::stri_trans_general(ciudad_actual, "Latin-ASCII"),
+         ciudad_actual = gsub("\\s+", "_", ciudad_actual))
+#Santiago
+
+base <- base %>%
+  mutate(ciudad_actual = ifelse(ciudad_actual %in% c("Santiago_", "Santiago", "Metropolitana_", "Santiago_centro", "Santiagl", "santiago_"), yes="Santiago", 
+                                no=ciudad_actual))
+#Paine
+
+base <- base %>%
+  mutate(ciudad_actual = ifelse(ciudad_actual == "Paine_", yes="Paine", 
+                                no=ciudad_actual))
+#Valparaiso
+
+base <- base %>%
+  mutate(ciudad_actual = ifelse(ciudad_actual == "Valparaiso_", yes="Valparaiso", 
+                                no=ciudad_actual))
+
+# Creación de variable de pre-pandemia y post-pandemia --------------------
+
+base <- base %>% 
+  mutate(pandemia_o_no_pandemia =
+           case_when(anio_de_ingreso <= 2019 ~ "pre-pandemia",
+                     anio_de_ingreso >= 2020 ~ "post-pandemia"))
+
+
+# Creación de variable educacion padres -----------------------------------
+      #Recodificación educación madre
+unique(base$educacion_madre)
+
+base <- base %>% 
+  mutate(r_educacion_madre = case_when(
+    educacion_madre %in% c("Ed. Universitaria (Completa o incompleta)", "Posgrado (Magister, Doctorado)", 
+                           "Ed. Técnico superior (completa o incompleta)") ~ "Educacion superior",
+    educacion_madre %in% c("Ed. Media incompleta", "Ed. Básica incompleta", "Ed. Básica completa") ~ "Sin educacion media completa",
+    educacion_madre == "Ed. Media completa" ~ "Educacion media completa"
+  ))
+      #Recodificacion educación padre
+unique(base$educacion_padre)
+
+base <- base %>% 
+  mutate(r_educacion_padre = case_when(
+    educacion_padre %in% c("Ed. Universitaria (Completa o incompleta)", "Posgrado (Magister, Doctorado)", 
+                           "Ed. Técnico superior (completa o incompleta)") ~ "Educacion superior",
+    educacion_padre %in% c("Ed. Media incompleta", "Ed. Básica incompleta", "Ed. Básica completa") ~ "Sin educacion media completa",
+    educacion_madre == "Ed. Media completa" ~ "Educacion media completa"
+  ))
+
+       #creacion nueva variable con las variables recodificadas
+unique(base$r_educacion_padre)
+unique(base$r_educacion_madre)
+
+base <- base %>%
+  mutate(educacion_padres = case_when(
+    r_educacion_madre == "Educacion superior" &
+      r_educacion_padre == "Educacion superior" ~ "Ambos padres con educación superior",
+    r_educacion_madre == "Educacion superior" |
+      r_educacion_padre == "Educacion superior" ~ "Solo un padre con educación superior",
+    r_educacion_madre == "Educacion media completa" &
+      r_educacion_padre == "Educacion media completa" ~ "Ambos padres con ed. media completa",
+    r_educacion_madre == "Educacion media completa" &
+      r_educacion_padre == "Sin educacion media completa" ~ "Solo un padre con ed. media completa",
+    r_educacion_madre == "Sin educacion media completa" &
+      r_educacion_padre == "Sin educacion media completa" ~ "Ambos padres sin ed. media completa",
+    TRUE ~ "NA"
+  ))
+
+base <- base %>%
+  mutate(r_educacion_padres = case_when(
+    educacion_padres %in% c("Ambos padres con educación superior", "Solo un padre con educación superior") ~ "Padre(s) con ed. superior",
+    educacion_padres %in% c("Ambos padres sin ed. media completa", "Ambos padres con ed. media completa", "Solo un padre con ed. media completa") ~ "Padres con o sin ed. media"
+  ))
+
+        #recodificacion variable clase social
+unique(base$clase_social)
+
+base <- base %>%
+  mutate(r1_clase_social = case_when(
+    clase_social == "Al grupo de clase social media" ~ "Clase social media",
+    clase_social == "Al grupo de clase social media alta" ~ "Clase social media alta",
+    clase_social == "Al grupo de clase social media baja" ~ "Clase social media baja",
+    clase_social == "Al grupo de clase social baja" ~ "Clase social baja",
+    clase_social == "Al grupo de clase social alta" ~ "Clase social alta"
+  ))
+
+base <- base %>%
+  mutate(r2_clase_social = case_when(
+    clase_social == "Al grupo de clase social media" ~ "Clase social media",
+    clase_social %in% c("Al grupo de clase social media baja", "Al grupo de clase social baja") ~ "Clase social baja",
+    clase_social %in% c("Al grupo de clase social media alta", "Al grupo de clase social alta") ~ "Clase social alta"
+  ))
+
+
+
+# Gráfico por clase social y educación de padres----------------------------------
+
+    #factorizar ambas variables para que sea más ordenado
+unique(base$educacion_padres)
+base$educacion_padres <- factor(base$educacion_padres, levels = c("Ambos padres con educación superior",
+                                                                  "Solo un padre con educación superior",
+                                                                  "Ambos padres con ed. media completa",
+                                                                  "Solo un padre con ed. media completa",
+                                                                  "Ambos padres sin ed. media completa",
+                                                                  "NA"))
+
+unique(base$r1_clase_social)
+base$r1_clase_social <- factor(base$r1_clase_social, levels = c("Clase social alta",
+                                                              "Clase social media alta",
+                                                              "Clase social media",
+                                                              "Clase social media baja",
+                                                              "Clase social baja"))
+
+base$r2_clase_social <- factor(base$r2_clase_social, levels = c("Clase social alta",
+                                                              "Clase social media",
+                                                              "Clase social baja"))
+                                                              
+      # Definir una paleta de colores 
+colores_1 <- c("#4e79a7", "#e15759", "#76b7b2", "#59a14f", "#f28e2b")
+
+      # Gráfico con todas las clases
+ggplot(data = subset(base, educacion_padres != "NA"), aes(x = educacion_padres, fill = r1_clase_social)) +
+  geom_bar(stat = "count") +
+  labs(
+    title = "Relación clase social - estudio de padres",
+    subtitle = "Estudiantes Antropología UAH",
+    caption = "Fuente: Encuesta Antropología 2023",
+    x = "", y = "Frecuencia",
+    fill = "Clase social"
+  ) +
+  scale_fill_manual(values = colores_1) +  
+  theme_ipsum() +
+  theme(axis.text.x = element_text(angle = 50, hjust = 1))
+
+# Gráfico con en 3 categorias en clase social
+ggplot(data = subset(base, educacion_padres != "NA"), aes(x = educacion_padres, fill = r2_clase_social)) +
+  geom_bar(stat = "count") +
+  labs(
+    title = "Relación clase social - estudio de padres",
+    subtitle = "Estudiantes Antropología UAH",
+    caption = "Fuente: Encuesta Antropología 2023",
+    x = "", y = "Frecuencia",
+    fill = "Clase social"
+  ) +
+  scale_fill_manual(values = colores_1) +  
+  theme_ipsum() +
+  theme(axis.text.x = element_text(angle = 50, hjust = 1))
+
+ggplot(data = subset(base, r_educacion_padres != "NA"), aes(x = r_educacion_padres, fill = r2_clase_social)) +
+  geom_bar(stat = "count") +
+  labs(
+    title = "Relación clase social - estudio de padres",
+    subtitle = "Estudiantes Antropología UAH",
+    caption = "Fuente: Encuesta Antropología 2023",
+    x = "", y = "Frecuencia",
+    fill = "Clase social"
+  ) +
+  scale_fill_manual(values = colores_1) +  
+  theme_ipsum() +
+  theme(axis.text.x = element_text(angle = 50, hjust = 1))
+
+# Gráfico de torta sobre género por año ---------------------------------------------------------------
+
+#2017
+
+tabla2017 <- base %>% 
+  filter(anio_de_ingreso == "2017 o antes") %>%
+  freq(genero, prop = TRUE, order = "freq", report.nas =  FALSE)%>% 
+  tb() 
+
+
+ggplot(data = subset(tabla2017, genero != "Prefiero no responder"), aes(x = "", y = pct, fill = genero)) +
+  geom_bar(stat = "identity") + 
+  coord_polar(theta = "y") + # esto permite hacer gráfico de torta
+  labs(title = "Género: Ingreso 2017 o antes",
+       subtitle = "Estudiantes Antropología UAH",
+       caption = "fuente: Encuesta de Estudiantes UAH 2023",
+       fill = "Género",
+       x = "", y = "") +
+  theme_ipsum() 
+
+##### 2018
+
+tabla2018 <- base %>% 
+  filter(anio_de_ingreso == "2018") %>%
+  freq(genero, prop = TRUE, order = "freq", report.nas =  FALSE)%>% 
+  tb() 
+
+
+ggplot(data = subset(tabla2018, genero != "Prefiero no responder"), aes(x = "", y = pct, fill = genero)) +
+  geom_bar(stat = "identity") + 
+  coord_polar(theta = "y") + # esto permite hacer gráfico de torta
+  labs(title = "Género: Ingreso 2018",
+       subtitle = "Estudiantes Antropología UAH",
+       caption = "fuente: Encuesta de Estudiantes UAH 2023",
+       fill = "Género",
+       x = "", y = "") +
+  theme_ipsum() 
+
+ggplot(tabla2018, aes(x = "", y = pct, fill = genero)) +
+  geom_bar(stat = "identity") + 
+  coord_polar(theta = "y") + # esto permite hacer gráfico de torta
+  labs(title = "Género: Ingreso 2018",
+       subtitle = "Estudiantes Antropología UAH",
+       caption = "fuente: Encuesta de Estudiantes UAH 2023",
+       fill = "Género",
+       x = "", y = "") +
+  theme_ipsum() 
+
+
+##### 2019
+
+tabla2019 <- base %>% 
+  filter(anio_de_ingreso == "2019") %>%
+  freq(genero, prop = TRUE, order = "freq", report.nas =  FALSE)%>% 
+  tb() 
+
+
+ggplot(data = subset(tabla2019, genero != "Prefiero no responder"), aes(x = "", y = pct, fill = genero)) +
+  geom_bar(stat = "identity") + 
+  coord_polar(theta = "y") + # esto permite hacer gráfico de torta
+  labs(title = "Género: Ingreso 2019",
+       subtitle = "Estudiantes Antropología UAH",
+       caption = "fuente: Encuesta de Estudiantes UAH 2023",
+       fill = "Género",
+       x = "", y = "") +
+  theme_ipsum() 
+
+ggplot(tabla2019, aes(x = "", y = pct, fill = genero)) +
+  geom_bar(stat = "identity") + 
+  coord_polar(theta = "y") + # esto permite hacer gráfico de torta
+  labs(title = "Género: Ingreso 2019",
+       subtitle = "Estudiantes Antropología UAH",
+       caption = "fuente: Encuesta de Estudiantes UAH 2023",
+       fill = "Género",
+       x = "", y = "") +
+  theme_ipsum() 
+
+##### 2020
+
+tabla2020 <- base %>% 
+  filter(anio_de_ingreso == "2020") %>%
+  freq(genero, prop = TRUE, order = "freq", report.nas =  FALSE)%>% 
+  tb() 
+
+ggplot(data = subset(tabla2020, genero != "Prefiero no responder"), aes(x = "", y = pct, fill = genero)) +
+  geom_bar(stat = "identity") + 
+  coord_polar(theta = "y") + # esto permite hacer gráfico de torta
+  labs(title = "Género: Ingreso 2020",
+       subtitle = "Estudiantes Antropología UAH",
+       caption = "fuente: Encuesta de Estudiantes UAH 2023",
+       fill = "Género",
+       x = "", y = "") +
+  theme_ipsum() 
+
+ggplot(tabla2020, aes(x = "", y = pct, fill = genero)) +
+  geom_bar(stat = "identity") + 
+  coord_polar(theta = "y") + # esto permite hacer gráfico de torta
+  labs(title = "Género: Ingreso 2020",
+       subtitle = "Estudiantes Antropología UAH",
+       caption = "fuente: Encuesta de Estudiantes UAH 2023",
+       fill = "Género",
+       x = "", y = "") +
+  theme_ipsum() 
+
+##### 2021
+
+tabla2021 <- base %>% 
+  filter(anio_de_ingreso == "2021") %>%
+  freq(genero, prop = TRUE, order = "freq", report.nas =  FALSE)%>% 
+  tb() 
+
+
+ggplot(tabla2021, aes(x = "", y = pct, fill = genero)) +
+  geom_bar(stat = "identity") + 
+  coord_polar(theta = "y") + # esto permite hacer gráfico de torta
+  labs(title = "Género: Ingreso 2021",
+       subtitle = "Estudiantes Antropología UAH",
+       caption = "fuente: Encuesta de Estudiantes UAH 2023",
+       fill = "Género",
+       x = "", y = "") +
+  theme_ipsum() 
+
+##### 2022
+
+tabla2022 <- base %>% 
+  filter(anio_de_ingreso == "2022") %>%
+  freq(genero, prop = TRUE, order = "freq", report.nas =  FALSE)%>% 
+  tb() 
+
+
+ggplot(data = subset(tabla2022, genero != "Prefiero no responder"), aes(x = "", y = pct, fill = genero)) +
+  geom_bar(stat = "identity") + 
+  coord_polar(theta = "y") + # esto permite hacer gráfico de torta
+  labs(title = "Género: Ingreso 2022",
+       subtitle = "Estudiantes Antropología UAH",
+       caption = "fuente: Encuesta de Estudiantes UAH 2023",
+       fill = "Género",
+       x = "", y = "") +
+  theme_ipsum() 
+
+ggplot(tabla2022, aes(x = "", y = pct, fill = genero)) +
+  geom_bar(stat = "identity") + 
+  coord_polar(theta = "y") + # esto permite hacer gráfico de torta
+  labs(title = "Género: Ingreso 2022",
+       subtitle = "Estudiantes Antropología UAH",
+       caption = "fuente: Encuesta de Estudiantes UAH 2023",
+       fill = "Género",
+       x = "", y = "") +
+  theme_ipsum() 
+
+
+
+##### 2023
+
+tabla2023 <- base %>% 
+  filter(anio_de_ingreso == "2023") %>%
+  freq(genero, prop = TRUE, order = "freq", report.nas =  FALSE)%>% 
+  tb() 
+
+ggplot(data = subset(tabla2023, genero != "Prefiero no responder"), aes(x = "", y = pct, fill = genero)) +
+  geom_bar(stat = "identity") + 
+  coord_polar(theta = "y") + # esto permite hacer gráfico de torta
+  labs(title = "Género: Ingreso 2023",
+       subtitle = "Estudiantes Antropología UAH",
+       caption = "fuente: Encuesta de Estudiantes UAH 2023",
+       fill = "Género",
+       x = "", y = "") +
+  theme_ipsum() 
+
+ggplot(tabla2023, aes(x = "", y = pct, fill = genero)) +
+  geom_bar(stat = "identity") + 
+  coord_polar(theta = "y") + # esto permite hacer gráfico de torta
+  labs(title = "Género: Ingreso 2023",
+       subtitle = "Estudiantes Antropología UAH",
+       caption = "fuente: Encuesta de Estudiantes UAH 2023",
+       fill = "Género",
+       x = "", y = "") +
+  theme_ipsum() 
+
+
+# Tabla resumen género por año ------------------------------------------
+
+tc_generoxingreso <- 
+  base %>%
+  select(genero, anio_de_ingreso) %>%
+  droplevels() %>%
+  table(.) %>% 
+  addmargins(.,2) %>% #primero addmargins
+  prop.table(.,2) %>% #segundo prop.table
+  round(4)*100 
+
+tc_generoxingreso %>% 
+  kable(., caption="Tabla de contingencia para genero y año de ingreso") %>%  
+  kable_styling(full_width = F, 
+                html_font = "Cambria",
+                position= "c",
+                font_size = 15,
+                bootstrap_options = c("hover", "striped"),
+                fixed_thead = T) %>% 
+  row_spec(0, bold = T, color = "black", background = "#B6E3C6") %>% 
+  column_spec(1, italic = T, color= "black", background = "#B5D0E8")
+
+# tabla y gráfico de barras ingreso ---------------------------------------
+
+unique(base$anio_de_ingreso)
+
+#factorización
+f_anio_de_ingreso <- factor(base$anio_de_ingreso, levels = c("2017 o antes",
+                                                             "2018",
+                                                             "2019",
+                                                             "2020",
+                                                             "2021",
+                                                             "2022",
+                                                             "2023"))
+
+#tabla de frecuencias
+freq(f_anio_de_ingreso, prop = TRUE, report.nas =  FALSE)%>% 
+  tb() %>% 
+  kable(col.names = c("Año de ingreso", "Frecuencia", "%", "% Acumulado"),
+        caption = "Distribución de frecuencias de año de ingreso", 
+        digits = c(0, 0, 1, 1))%>%  #decimales por columna
+  kable_classic(full_width = F, html_font = "Cambria")
+
+
+#Gráfico
+  #colores
+colores <- c("#4e79a7", "#f28e2b", "#e15759", "#76b7b2", "#59a14f", "#edc948", "#b07aa1")
+
+ggplot(base, aes(x = anio_de_ingreso)) +
+  geom_bar(stat = "count", fill = colores) +
+  labs(
+    title = "Respuestas por generación",
+    subtitle = "Estudiantes Antropología UAH",
+    caption = "Fuente: Encuesta Antropología 2023",
+    x = "Generación", y = "Frecuencia",
+    fill = "¿Utiliza el tiempo libre para la lectura?"
+  ) +
+  scale_fill_manual(values = colores) +
+  theme_ipsum()
+
+# educacion y comuna ------------------------------------------------------------
+
+unique(base$comuna_actual)
+
+#Recodificacion de comuna actual según IPS 2022 (ÍNDICE DE PRIORIDAD SOCIAL)
+base <- base %>% 
+  mutate(r_comuna_actual = case_when(
+    comuna_actual %in% c("maria_pinto", "cerronavia") ~ "Alta prioridad social",
+    comuna_actual %in% c("san_bernardo", "san_joaquin", "paine", "recoleta", "melipilla", "la_granja", "quintanormal", "tiltil", "curacavi", 
+                         "estacion_central", "lo_prado","renca", "pedro_aguirre_cerda") ~ "Media alta prioridad social",
+    comuna_actual %in% c("la_florida", "buin", "lampa", "puente_alto", "penalolen", "penaflor", "pudahuel") ~ "Media baja prioridad social",
+    comuna_actual %in% c("colina", "maipu", "huechuraba", "san_miguel", "macul", "quilicura", "santiago" ) ~ "Baja prioridad social",
+    comuna_actual %in% c("providencia", "nunoa", "lo_barnechea", "las_condes", "la_reina") ~ "Sin prioridad social"))
+
+#Recodificación de educacion
+
+base <- base %>% 
+  mutate(educacion = ifelse(educacion == "Particular subvencionado", "Fundación (ex particular-subvencionado)",
+                            ifelse(educacion == "público pero no en chile", "Público", 
+                                   ifelse(educacion == "Fundación, particular privado y público ", "NA", educacion))))
+ 
+#factorización de educacion
+unique(base$educacion)
+base$educacion <- factor(base$educacion, levels = c("Particular privado",
+                                               "Fundación (ex particular-subvencionado)",
+                                               "Público"))
+
+#factorización de r_comuna_actual
+unique(base$r_comuna_actual)
+base$r_comuna_actual<- factor(base$r_comuna_actual, levels = c("Alta prioridad social",
+                                                         "Media alta prioridad social",
+                                                         "Media baja prioridad social",
+                                                         "Baja prioridad social",
+                                                         "Sin prioridad social"))
+
+colores_3 <- c("#FFB6C1", "#B0E0E6", "#F0E68C")
+
+
+
+ggplot(data = subset(base, r_comuna_actual != "NA" & educacion != "NA"), aes(x = r_comuna_actual, fill = educacion)) +
+  geom_bar(stat = "count") +
+  labs(
+    title = "Relación Prioridad Social y Tipo Establecimiento",
+    subtitle = "Estudiantes Antropología UAH",
+    caption = "Fuente: Encuesta Antropología 2023,
+    Indice de prioridad social por comuna 2022",
+    x = "", y = "Frecuencia",
+    fill = "Tipo de establecimiento educativo"
+  ) +
+  scale_fill_manual(values = colores_3) +
+  theme_ipsum() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+
+
+
+

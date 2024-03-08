@@ -1,0 +1,5 @@
+#Trabajo final: C. COFRÉ, P. CORNEJO, E. GONZÁLEZ, M. GORTEAU,  O. PEÑA.
+
+#Paquetes y base de datos
+
+install.packages("pacman")

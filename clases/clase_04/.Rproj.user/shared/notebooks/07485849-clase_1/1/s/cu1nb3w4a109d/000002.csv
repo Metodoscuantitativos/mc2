@@ -1,0 +1,7 @@
+"0","```r
+marx_engels_tidy <- marx_engels_tidy %>%
+        mutate(tipo = case_when(
+                str_detect(titulo, 'Carta') ~ 'cartas',
+                TRUE ~ tipo
+        )) 
+```"

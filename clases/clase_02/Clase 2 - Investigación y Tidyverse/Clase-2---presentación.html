@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Clase 2: tidyverse</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Sebastián Muñoz-Tapia" />
+    <meta name="date" content="2023-03-15" />
+    <script src="libs/header-attrs-2.16/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Clase 2: tidyverse
+]
+.subtitle[
+## Métodos Cuantitativos II
+]
+.author[
+### Sebastián Muñoz-Tapia
+]
+.institute[
+### Antropología UAH
+]
+.date[
+### 2023-03-15
+]
+
+---
+
+
+
+
+
+
+
+#	FORMALIDADES DEL CURSO
+
+## Elementos de horario de entrada y participación
+
+-	ASISTENCIA:  
+  + mínimo 70% de actividades lectivas. En total son 26 clases considerando  separadamente los dos bloques (viernes 08:30 a 09:50 y viernes 10:00 a 11:20). Se requiere 18 de cada bloque, aceptando 8 inasistencias. 
+  + La lista por bloque se retirará a: 35 m. al comienzo del primer bloque (9:05) y 15 m. al comienzo del segundo bloque. Posterior a eso no se reconocerá la asistencia. 
+  
+  
+  
+---
+
+##Flexibilidad (limitada)
+
+- Personas con **9 o 10** inasistencias podrán a optar a una prueba recuperativa si tienen un promedio mayor a **5,5** en evaluaciones individuales. La prueba será individual e incluye todos los contenidos del curso. Con nota superior a **4,0** podrán aprobar el curso en términos de asistencia. 
+-	En el caso específico de todos los trabajos, por **cada día de atraso** en una entrega se descontarán **0,25** puntos de la nota final.
+- Horario de atención estudiantes/ 48 Horas antes: **Miércoles desde 16:00**
+
+---
+
+class: inverse
+
+## Clases online desde 15 de Mayo 
+- hacer prueba en TEAMS: 24 de Marzo
+
+
+
+---
+
+class: inverse
+
+#Evaluaciones 
+
+.pull-left[
+- *Avance 1*: Entrega del formulario corregido	Entrega del formulario corregido considerando sugerencias y observaciones de compañerxs, para posterior aplicación	/ Grupal/ **5%**
+
+- *Evaluación Individual 1*: Prueba presencial individual: aspectos básicos de programación en R y tidyverse	/Individual/ **20%**
+
+- *Presentación de textos*: Discusión sobre análisis de datos:	Grupal/	2 fechas/ **10%**
+]
+
+.pull-rigth[
+
+
+- *Avance 2*:  Presupuesto en Excel;Procesamiento (limpieza, transformaciones y recodificaciones); análisis (distribución de frecuencias, tablas de contingencia)	/Grupal/ **10%**
+
+- *Evaluación Individual 2*:	Prueba presencial individual manipulación de bases y estadística descriptiva	Individual/ **20%**
+
+- *Asistencia, participación en clases y talleres*: Individual/ **15%**
+- *Trabajo Final*: Incorpora trabajo de campo realizado, presupuesto, procesamientos estadísticos más relevantes y gráficos. Se exponen resultados / Grupal/ **20%**
+]
+
+
+---
+## Textos a presentar
+
+- Becker, H. (2018). Datos, pruebas e ideas. Por qué los científicos sociales deberían tomárselos más en serio y aprender de sus errores. Siglo XXI (19-40; 63-87)
+- Best, J. (2004). Uso y abuso de las estadísticas. La distorsión en la percepción de los problemas sociales y políticos. Cuatro Vientos. (1-62)
+- D’Ignazio, C., &amp; Klein, L. (2020). Data feminism. En Information, Communication &amp; Society (Vol. 24, Número 13). The MIT Press. https://doi.org/10.1080/1369118x.2020.1836249 (1-48)
+- Sevilla Moroder, J. (2005). Gramática de las gráficas. Pistas para mejorar las representaciones de datos. Universidad Pública de Navarra (11-50)
+- Sosa-Escudero, W. (2019). Big data. Breve manual para conocer la ciencia de datos que ya invadió nuestras vidas. Siglo XXI. (11-45)
+; 67-87)
+
+
+---
+## vector, data.frame, matrix
+![v](img/Sintesis 2.png)
+
+---
+
+class: center, middle
+
+## dentro de un data frame
+
+![tidyverse](img/dataframe 2.png)
+
+
+---
+
+class: center, middle 
+
+## tidyverse
+
+![tidyverse](img/tidyverse.png)
+
+---
+class: center, middle
+
+##el pipe %&gt;% 
+.pull-left[
+&lt;img src="img/ceci n'est pas une pipe.jfif" width="300px"/&gt;
+
+]
+
+.pull-right[
+&lt;img src="img/procesos_tidy.png" width="3000px"/&gt; ]
+
+
+
+---
+
+
+class: center
+
+##dplyr
+
+![tidyverse](img/dplyr.png)
+
+
+
+
+---
+class:center, middle
+## select ()
+
+![tidyverse](img/select.png)
+![tidyverse](img/select2.png)
+
+
+
+---
+
+class:center, middle
+## filter ()
+
+&lt;img src="img/filter.png" width="700px"/&gt;
+&lt;img src="img/filter2.png" width="500px"/&gt;
+
+
+---
+class: inverse, center, middle
+
+## Operadores 
+![tidyverse](img/Resumen_s1.png)
+
+- %in%: lo que está dentro de...
+
+---
+
+class:center
+
+## Mutate
+&lt;img src="img/mutate.png" width="600px"/&gt; 
+
+![mutate](img/mutate2.webp)
+
+---
+
+class: center, middle
+
+## Group_by + summarize 
+&lt;img src="img/group_by.png" width="490px"/&gt; 
+
+
+---
+
+class: center
+
+## Resumen
+
+
+&lt;img src="img/resumen_tidy.png" width="500px"/&gt; 
+
+
+
+---
+## Entonces...
+
+.pull-left[
+- Si en mi en la base de datos de mi encuesta, quisiera: 
+  + trabajar sólo con las mujeres ¿qué función utilizaría?
+  + trabajar sólo con las variables que me interesan por ser el foco de mi grupo (e.g. solo las de "política" o "lectura")
+  + hacer una tabla de la media y la mediana de la edad por sexo.
+  + recodificar los ingresos en 3 grupos: altos, medios, bajos]
+
+.pull-right[
+
+&lt;img src="img/travolta.gif" width="900px"/&gt; 
+
+]
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

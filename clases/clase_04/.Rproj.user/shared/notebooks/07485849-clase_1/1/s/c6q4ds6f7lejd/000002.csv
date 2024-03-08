@@ -1,0 +1,16 @@
+"0","```r
+freqs <- marx_engels_tidy %>%
+        mutate(word = str_extract(word, \"[a-z']+\")) %>%
+        group_by(tipo, word) %>%
+        summarise(n = n()) %>%
+        mutate(
+                total = sum(n),
+                prop = n/total*100) %>%
+        select(tipo, word, prop) %>%
+        pivot_wider(names_from = tipo, values_from = prop)
+```"
+"1","`summarise()` has grouped output by 'tipo'. You can override using the `.groups` argument.
+"
+"0","```r
+freqs
+```"

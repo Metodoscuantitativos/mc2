@@ -1,0 +1,28 @@
+{
+    "id": "F2418F1E",
+    "path": null,
+    "project_path": null,
+    "type": "object_explorer",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1677275202924.0,
+    "source_on_save": false,
+    "relative_order": 5,
+    "properties": {
+        "id": "3949d9707a994e90aad166be5040e4cb",
+        "name": "mi.lista_mal",
+        "title": "mi.lista_mal",
+        "language": "R",
+        "source_window_id": "",
+        "Source": "Source"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1675969191,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1677275202924,
+    "read_only": false,
+    "read_only_alternatives": []
+}

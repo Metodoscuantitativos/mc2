@@ -1,0 +1,7 @@
+base %>% 
+  freq(tabla3, prop = TRUE, order = "freq", report.nas =  FALSE)%>% 
+  tb() %>%
+  kable(col.names = c("Tiempo libre", "Frecuencia", "%", "% Acumulado"),
+        caption = "Distribución de tiempo libre", 
+        digits = c(0, 0, 2, 2))%>%  
+  kable_classic(full_width = F, html_font = "Cambria")

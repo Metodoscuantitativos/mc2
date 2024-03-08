@@ -1,0 +1,6 @@
+"0","```r
+marx_engels_tidy <- marx_engels_tidy %>%
+  anti_join(stop_words)
+```"
+"1","Joining, by = \"word\"
+"

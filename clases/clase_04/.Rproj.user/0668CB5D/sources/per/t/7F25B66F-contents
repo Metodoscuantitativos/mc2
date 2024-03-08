@@ -1,0 +1,453 @@
+#---------------------- 3.CLASE 3: Abrir y guardar Bases  ---------------
+
+
+# 1. Importación de archivos: read_() -------------------------------------
+
+#paquetes específicos por tipo de archivo####
+#Tipo de archivo 	Paquete 	Extension 	Funciones
+#Texto Plano 	    readr 	   .csv     read_csv()
+#Texto Plano      readr 	   .txt  	  read_txt()
+#Texto Plano 	    readr 	   .tsv    	read_tsv()
+#[comma separates values: separados por comas; txt: separado por lo que sea]
+
+#Extension de R 	RBase 	  .RDS    	readRDS()
+#Extension de R 	RBase    	.RDATA 	  open()
+
+#Otros Softwares 	haven    	.dta    	read_dta()
+#Otros Softwares 	haven   	.sav    	read_spss()
+#Excel 	          openxlsx 	.xlsx   	read.xlsx()
+#Excel 	          readxl 	   .xls 	  read_excel() 
+
+# cada tipo de archivo tiene parámetros distinto para las funciones.
+
+#ej: archivos de texto plano:
+#primer parámtro: es el archivo, en general file =
+#encabezado (header): tiene nombre de variables/columnas o se inicia inmediatamente?
+#delimitador (sep): como se separan las variables en un archivo ("," ";") (gral ","?
+#separador: (dec); de decimal ("." ",")
+#quotes: hay variables "character" entre comilladas en la base de datos?
+#parametro ruta; primera fila (tiene nombre de variable); como se separan los valores; cómo se interpretan los "character". 
+#muchos de estos parámetros están específicados por default. 
+
+# OJO: cuándo se lea una base de datos siempre asignarlo a un objeto
+#se almacena así a nuestro entorno de trabajo
+# para que no se imprima en el r (la muestre)
+
+#listado de archivos en carpeta del proyecto 
+list.files()
+
+
+#listado de archivos/carpeta en carpeta anterior, muestra archivos y carpetas
+list.files("../")
+
+#ir entrado a otras carpetas mediante tab.
+list.files("../ /")
+
+
+#abrir base de datos
+base.covid <- readRDS (file = ".../donde_está_según_mi_proyecto")
+
+
+#Copien la carpeta Fuentes dentro de la carpeta del proyecto que crearon previamente.
+#Con el proyecto y script previos abiertos en RStudio, 
+#importen correctamente a su ambiente de trabajo el archivo "Covid19VacunasAgrupadas.csv"
+#qué tipo de archivo es? con qué paquete lo abro?
+
+ 
+library (readr) # es la librería a utilizar 
+library (tidyverse) # esa librería está dentro de tidyverse, si se ejecuta sólo tidyverse debería funcionar
+
+
+#1.1 read.csv()####
+#utilice la función read.csv (file="buscar_el_archivo.csv")
+#asignela a una base en el ambiente llamada c19
+
+ c19 <- read.csv(file ="Fuentes/Bases adicionales/Covid19VacunasAgrupadas.csv")
+
+#forma de operar:
+# a) estoy situado en mi projecto, 
+# b) apreto comillas""
+# c) para buscar el archivo que quiereo, puedo retroceder (../) hacia carpetas anteriores o buscar
+# d) realizar la búsqueda con tecla tab, evita equivocaciones en la escritura. 
+
+
+#Luego de abrir la base: ¿Cuántas filas (casos) y columnas (variables) tiene?
+#utilice la función dim ()
+
+dim(c19)
+# tengo 96 casos (filas) y 5 columnas (variables)
+
+
+### ojo: cuándo se tiene una gran base de datos se pueden exportar pocos casos para ir probando. 
+
+
+#1.2 read_excel(): para archivos excel ####
+# está dentro de tidyverse
+# a veces hay que instalar Rtools
+# install.packages("Rtools")
+# si no se puede hacerlo por acá: https://cran.r-project.org/bin/windows/Rtools/index.html
+library(readxl)
+remove(list = ls()) #para que sirve?
+help(readxl)
+
+
+#Utilicen la función read_excel para importar base "Adquisiciones y vuelos covid.xlsx" en fuentes
+# base_nueva <- read_excel(path = "")
+# asignela a como nombre a base.adquisiciones0
+
+base.adquisiciones0 <- read_excel(path = "Fuentes/Bases adicionales/Adquisiciones y vuelos covid.xlsx")
+
+# ¿Cómo se ve la base al abrirla?
+# ¿Cómo se ve en el archivo excel?
+# Verán pestaña "Adquisiciones" y pestaña "Vuelos"
+# Verán que en Adquisiciones la base se inicia desde la fila 4
+# parámetro sheet = tiene que ver con las pestañas
+# parámetro skip = tiene que ver con cuantas filas nos saltamos para considerar la base de datos 
+
+
+
+#observar los argumentos, pestaña número 1
+base.adquisiciones1 <- read_excel(path = "Fuentes/Bases adicionales/Adquisiciones y vuelos covid.xlsx", 
+                                  sheet = 1)
+dim(base.adquisiciones1)
+
+#observar los argumentos, pestaña número 2
+base.adquisiciones2 <- read_excel(path = "Fuentes/Bases adicionales/Adquisiciones y vuelos covid.xlsx", 
+                                  sheet = 2) 
+
+dim(base.adquisiciones2)
+
+# ¿Qué indica dim()?
+
+#nos queremos saltar las primeras 3 filas que son títulos
+base.adquisiciones3 <- read_excel(path = "Fuentes/Bases adicionales/Adquisiciones y vuelos covid.xlsx", 
+                                  sheet = 1, skip = 3)
+
+#Práctica####
+#y cómo lo hago en el caso de vuelos? cuántas me tendría que saltar?
+# abra base Adquisiciones y vuelos covid.xlsx 
+# seleccione  la pestaña 2 
+# saltese mediante skip = la cantidad de filas para sólo observar la base de datos.
+# asignela como base.adquisiciones4
+
+base.adquisiciones4 <- read_excel(path = "Fuentes/Bases adicionales/Adquisiciones y vuelos covid.xlsx", 
+                                  sheet = 2, skip = 2) 
+
+
+#limpio entorno de trabajo
+remove(list = ls())
+
+#1.2.1 read.xlsx(): xlsx ####
+#esta es otra función que hace lo mismo, pero tiene otros parámetros
+
+
+library(openxlsx)
+
+#lo tienen instalado en el computador?
+#si no lo tienen cómo se baja de internet?
+
+#estructura
+#base_nueva <- read.xlsx(xlsxFile = "ruta_desde_el_proyecto")
+
+
+?read.xlsx
+
+#1. abrir archivo Adquisiciones y vuelos covid.xlsx
+# asignelo como base.adquisiciones0
+
+base.adquisiciones0 <- 
+  read.xlsx(xlsxFile = "Fuentes/Bases adicionales/Adquisiciones y vuelos covid.xlsx")
+
+#chequeo base: la veo
+#las tres primeras filas son información innecesaria, partiré desde la 4.
+
+
+#2. abrir arhivo, en pestaña 1 y que empiece en fila 4 (hay información no relevante antes)
+#la función startRow = ; indica desde que fila empezar
+
+base.adquisiciones1 <- read.xlsx(xlsxFile = "Fuentes/Bases adicionales/Adquisiciones y vuelos covid.xlsx", 
+                                 sheet = 1, startRow = 4) 
+#chequeo base: la veo
+#ahí si me aparece bien lo que quiero 
+
+
+#3. abrir achivo, pestaña 1, leer desde 4 fila y sólo una cierta cantidad de columnas.
+# posibilidad de seleccionar columnas específicas
+# me quiero saltar la primera columna y seleccionar hasta la 10. 
+dim(base.adquisiciones1)
+
+base.adquisiciones2 <- read.xlsx(xlsxFile = "Fuentes/Bases adicionales/Adquisiciones y vuelos covid.xlsx", 
+                                 sheet = 1, startRow = 4, cols = 2:10) 
+
+
+#Práctica####
+#4. abrir achivo, pestaña 2, leer desde 3 fila.
+# asignelo como vuelos
+
+
+vuelos <- read.xlsx(xlsxFile = "Fuentes/Bases adicionales/Adquisiciones y vuelos covid.xlsx", 
+                    sheet = 2, startRow = 3)
+
+
+
+# 2. Exploración Inicial de base ---------------------------------------------
+
+# summary()#### 
+# Muestra medidas de resumen de las variables: 
+# distintos momentos de la distribución para variables numéricas o de fecha
+# un conteo de casos para variables de tipo character.
+?summary
+
+#estructura
+summary(baseaobservar)
+
+
+summary(base.adquisiciones1)
+
+# unique()#### 
+#Permite ver los valores únicos (categorías) que toma cierta variable en mi base de datos.
+#útil para variables categóricas
+#primero observo las columnas
+names(base.adquisiciones1)
+
+#estructura
+unique(base$variable)
+
+#por ejemplo quiero ver las categorías de ESTADO.DE.PROCESO 
+unique(base.adquisiciones1$ESTADO.DE.PROCESO)
+
+#Práctica### 
+#pueden ver la categoría de otravariable?
+
+
+# table()#### 
+#hacer tabulados univariados o bivariados.
+
+#estructura
+table(base$variable)
+
+#ejemplo
+table(base.adquisiciones1$ESTADO.DE.PROCESO)
+
+#prop.table (table (base)): permite calcular proprciones de la tabla
+
+prop.table(table(base.adquisiciones1$ESTADO.DE.PROCES))
+prop.table(table(base.adquisiciones1$ESTADO.DE.PROCES))*100
+
+# glimpse()#### 
+#nos muestra en formato más amigable un listado de las variables de la base: 
+#indicando la clase de variable en cuestión
+#muestra los primeros valores de cada una de ellas
+
+#estructura
+glimpse(base)
+
+#ejemplo
+glimpse(base.adquisiciones1)
+
+
+# sample_n()####: 
+# Nos permite seleccionar una muestra al azar de n casos de nuestra base. 
+#Puede ser útil para una primera mirada de la base que trascienda a los primeros casos, 
+# o bien para procedimienos de muestreo.
+
+?sample_n
+
+#estructura
+base_sample <- sample_n(tbl = base, size = cantidad_de_casos)
+
+#ejemplo: extraigo una muestra aleatoria simple de 30 casos
+base_sample <- sample_n(tbl = base.adquisiciones1, size = 30)
+
+#Práctica####
+#extraiga una muestra de 50
+
+
+
+#Práctica ####
+# Lleven a la carpeta del proyecto la base de datos "base_covid_sample.RDS" 
+# que está en la carpeta Fuentes.
+# Importen la base de datos al ambiente de trabajo 
+# (Ver función adecuada para importar archivos .RDS: readRDS.
+
+
+base_práctica <- readRDS("Fuentes/base_covid_sample.RDS")
+
+#Práctica ####
+# Apliquen la función summary(nombre_base_datos) y glimpse (nombre_base_datos). 
+summary(base_práctica)
+glimpse(base_práctica)
+
+#Práctica ####
+# Observen el resultado en consola. ¿Algo les llama atención de la información arrojada?
+
+#Práctica ####
+# Ejecuten table(nombre_base_datos$sexo):
+# observen el total de casos de la base por sexo
+table(base_práctica$sexo)
+
+
+prop.table(table(base_práctica$sexo))*100
+
+#Práctica ####
+#saquen una muestra de 1500 casos
+base_práctica_sample <- sample_n(tbl = base_práctica, size = 1500)
+
+
+##comparo resultado de población y muestra seleccionada al azar
+prop.table(table(base_práctica$sexo))*100
+prop.table(table(base_práctica_sample$sexo))*100
+
+
+# ¿Qué valores puedo encontrar en la variable clasificacion_resumen?
+unique(base_práctica$clasificacion_resumen)
+#permite ver cómo codifica cada variable.
+
+#Práctica ####
+#observe la categoría de otras variables. 
+
+#Elaboración de un tabulado bivariado entre las variables sexo y clasificacion_resumen
+#estructura: table(base$variable1, base$variable2)
+table(base_práctica$sexo, 
+      base_práctica$clasificacion_resumen)
+
+#Práctica ####
+#Puede generar otro tabulado bivariado?
+
+
+
+# 3. Exportar archivos: write_ () -----------------------------------------
+# cada paquete que presenta funciones para importar bases de datos, 
+# tiene como complemento una función para exportar (guardar en el disco de nuestra PC) 
+# un objeto con la misma extensión.
+
+
+#levanto bases
+#distitos tipos de archivos
+
+base_prueba <- read.csv("Fuentes/Bases adicionales/Covid19VacunasAgrupadas.csv")
+
+base_prueba2 <- read.xlsx("Fuentes/Bases adicionales/Adquisiciones y vuelos covid.xlsx", 
+                          startRow = 4)
+#realizo otra base
+base_prueba3 <- data.frame (x = c(1,2,3),
+                            y = c("uno","dos","tres"))
+#estructura write.csv:
+write.csv(x= objeto_base_de_datos_en_ambiente, file = "arhivo_de_exportacion.csv")
+
+#observo base en excel
+
+
+#write.csv (default separa ",")####
+write.csv(x= base_prueba3, file = "arhivo_de_exportacion0.csv")
+#observo como queda
+
+#write.csv2 (default separa ";")####
+write.csv2(x= base_prueba3, file = "arhivo_de_exportacion1.csv")
+#observo como queda
+
+
+#write.xlsx() ####
+#estructura
+write.xlsx(x = objeto_resultados,file = "Resultados/cuadro1.xlsx")
+
+#ejemplo
+write.xlsx(x = base.adquisiciones1,file = "cuadro1.xlsx")
+
+#saveRDS() ####
+#estructura
+saveRDS(object = objeto_resultados,file = "Resultados/base_nueva.RDS")
+
+saveRDS(object = base.adquisiciones1,file = "cuadro1.RDS")
+
+
+
+# 4. Abrir bases de STATA y SPSS: haven ------------------------------------------
+
+install.packages("haven")
+library(haven)
+
+#abrir archivo UDP_2015 (formato stata) - comando read.dta de paquete haven
+UDP_stata <- read_dta("Fuentes/UDP_2015.dta") 
+
+#abrir archivo UDP_2015 (formato SPSS) - comando read_spss de paquete haven
+UDP_spss <- read_spss("Fuentes/UDP_2015.sav")
+
+
+
+#Caracter?sticas y estructura base de datos
+class(UDP_spss)
+
+#cantidad de casos y variables 
+dim(UDP_spss)
+
+#nombre de variables
+names(UDP_spss) # Por qué es útil?
+
+#con un cuadernos de códigos es posible observar:
+#enunciado de pregunta
+#categorias de respuesta
+
+
+
+#Crear nueva base con sólo algunas variables de la base original.
+#uso de select (base, variables1, variable2,..., variablen)
+#Sexo_Entrevistado: sexo observado
+#P54: Edad
+#P72: Escala de ingresos
+#P64: autoposicionamiento en estratificaci?n. 1 grupo m?s bajo, 10 grupo m?s alto
+#Regi?n de residencia
+
+#Se indica la base de datos y luego cada variable a seleccionar.
+#select (primerobase, luego variables)####
+
+UDP <- select(UDP_spss,Sexo_Entrevistado, P54, P72, P64, Región)
+
+#Comando rename de dplyr permite modificar nombres de columnas
+
+UDP <- rename(UDP, sexo=Sexo_Entrevistado, edad=P54, ingreso = P72, autoposicionamiento=P64,
+              region=Región)
+
+#También podemos modificar nombres inmediatamente al hacer la selección
+
+UDP <- select(UDP_spss,sexo=Sexo_Entrevistado, edad=P54, ingreso = P72, autoposicionamiento=P64,
+              region=Región)
+
+
+#Práctica ####
+#vaya al CEP, baje y abra la última encuesta en formato stata
+base_cep <-read_dta("Fuentes/encuesta_cep_especial_feb-jul2022/base_87.dta") 
+
+#observe las variables
+names(base_cep)
+
+  
+
+#Práctica Casa####
+#seleccione una muestra de 60 casos de estudiantes de antropología
+#calcule el error para un nivel de cofianza de 90%
+#guarde los resultados en una base nueva
+
+
+marco_muestral <- read.xlsx(xlsxFile = "Fuentes/Estudiantes Antropología UAH mod.xlsx", sheet = 2, startRow = 2)
+
+
+estudiantes_sample <- sample_n(tbl = marco_muestral, size = 60)
+
+write.xlsx(x = estudiantes_sample , file ="estudiantes_sample.xlsx")
+
+colnames(marco_muestral)
+
+tabla_ejemplo <-prop.table(table(marco_muestral$Año.Admisión))*100
+tabla_ejemplo <- as.data.frame (tabla_ejemplo) 
+colnames(tabla_ejemplo)
+
+ggplot(tabla_ejemplo, aes(x=Var1, y=Freq, fill=Var1))  +
+  geom_col () + 
+  theme_linedraw()+
+  labs (title = "Estudiantes por generación", 
+        x = "Año", 
+        y = "%")+
+  guides (fill= "none") +
+  theme (plot.title = element_text(hjust = 0.5))
+

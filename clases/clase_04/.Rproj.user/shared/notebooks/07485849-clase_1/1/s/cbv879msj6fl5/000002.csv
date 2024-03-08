@@ -1,0 +1,10 @@
+"0","```r
+marx_engels_tidy %>%
+        count(word, sort=TRUE) %>%
+        filter(n > 600) %>%
+        mutate(word = reorder(word, n)) %>%
+        ggplot(aes(n, word)) +
+                geom_col() +
+                labs(y = NULL)
+
+```"

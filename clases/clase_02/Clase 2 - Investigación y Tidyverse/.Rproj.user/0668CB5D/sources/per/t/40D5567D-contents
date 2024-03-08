@@ -1,0 +1,211 @@
+---
+title: "Clase 2: tidyverse"
+subtitle: "Métodos Cuantitativos II"
+author: "Sebastián Muñoz-Tapia"
+institute: "Antropología UAH"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+
+---
+
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+
+pacman::p_load(xaringan,xaringanthemer )
+style_duo_accent(primary_color = "#035AA6", secondary_color = "#03A696")
+
+```
+
+
+
+#	FORMALIDADES DEL CURSO
+
+## Elementos de horario de entrada y participación
+
+-	ASISTENCIA:  
+  + mínimo 70% de actividades lectivas. En total son 26 clases considerando  separadamente los dos bloques (viernes 08:30 a 09:50 y viernes 10:00 a 11:20). Se requiere 18 de cada bloque, aceptando 8 inasistencias. 
+  + La lista por bloque se retirará a: 35 m. al comienzo del primer bloque (9:05) y 15 m. al comienzo del segundo bloque. Posterior a eso no se reconocerá la asistencia. 
+  
+  
+  
+---
+
+##Flexibilidad (limitada)
+
+- Personas con **9 o 10** inasistencias podrán a optar a una prueba recuperativa si tienen un promedio mayor a **5,5** en evaluaciones individuales. La prueba será individual e incluye todos los contenidos del curso. Con nota superior a **4,0** podrán aprobar el curso en términos de asistencia. 
+-	En el caso específico de todos los trabajos, por **cada día de atraso** en una entrega se descontarán **0,25** puntos de la nota final.
+- Horario de atención estudiantes/ 48 Horas antes: **Miércoles desde 16:00**
+
+---
+
+class: inverse
+
+## Clases online desde 15 de Mayo 
+- hacer prueba en TEAMS: 24 de Marzo
+
+
+
+---
+
+class: inverse
+
+#Evaluaciones 
+
+.pull-left[
+- *Avance 1*: Entrega del formulario corregido	Entrega del formulario corregido considerando sugerencias y observaciones de compañerxs, para posterior aplicación	/ Grupal/ **5%**
+
+- *Evaluación Individual 1*: Prueba presencial individual: aspectos básicos de programación en R y tidyverse	/Individual/ **20%**
+
+- *Presentación de textos*: Discusión sobre análisis de datos:	Grupal/	2 fechas/ **10%**
+]
+
+.pull-rigth[
+
+
+- *Avance 2*:  Presupuesto en Excel;Procesamiento (limpieza, transformaciones y recodificaciones); análisis (distribución de frecuencias, tablas de contingencia)	/Grupal/ **10%**
+
+- *Evaluación Individual 2*:	Prueba presencial individual manipulación de bases y estadística descriptiva	Individual/ **20%**
+
+- *Asistencia, participación en clases y talleres*: Individual/ **15%**
+- *Trabajo Final*: Incorpora trabajo de campo realizado, presupuesto, procesamientos estadísticos más relevantes y gráficos. Se exponen resultados / Grupal/ **20%**
+]
+
+
+---
+## Textos a presentar
+
+- Becker, H. (2018). Datos, pruebas e ideas. Por qué los científicos sociales deberían tomárselos más en serio y aprender de sus errores. Siglo XXI (19-40; 63-87)
+- Best, J. (2004). Uso y abuso de las estadísticas. La distorsión en la percepción de los problemas sociales y políticos. Cuatro Vientos. (1-62)
+- D’Ignazio, C., & Klein, L. (2020). Data feminism. En Information, Communication & Society (Vol. 24, Número 13). The MIT Press. https://doi.org/10.1080/1369118x.2020.1836249 (1-48)
+- Sevilla Moroder, J. (2005). Gramática de las gráficas. Pistas para mejorar las representaciones de datos. Universidad Pública de Navarra (11-50)
+- Sosa-Escudero, W. (2019). Big data. Breve manual para conocer la ciencia de datos que ya invadió nuestras vidas. Siglo XXI. (11-45)
+; 67-87)
+
+
+---
+## vector, data.frame, matrix
+![v](img/Sintesis 2.png)
+
+---
+
+class: center, middle
+
+## dentro de un data frame
+
+![tidyverse](img/dataframe 2.png)
+
+
+---
+
+class: center, middle 
+
+## tidyverse
+
+![tidyverse](img/tidyverse.png)
+
+---
+class: center, middle
+
+##el pipe %>% 
+.pull-left[
+<img src="img/ceci n'est pas une pipe.jfif" width="300px"/>
+
+]
+
+.pull-right[
+<img src="img/procesos_tidy.png" width="3000px"/> ]
+
+
+
+---
+
+
+class: center
+
+##dplyr
+
+![tidyverse](img/dplyr.png)
+
+
+
+
+---
+class:center, middle
+## select ()
+
+![tidyverse](img/select.png)
+![tidyverse](img/select2.png)
+
+
+
+---
+
+class:center, middle
+## filter ()
+
+<img src="img/filter.png" width="700px"/>
+<img src="img/filter2.png" width="500px"/>
+
+
+---
+class: inverse, center, middle
+
+## Operadores 
+![tidyverse](img/Resumen_s1.png)
+
+- %in%: lo que está dentro de...
+
+---
+
+class:center
+
+## Mutate
+<img src="img/mutate.png" width="600px"/> 
+
+![mutate](img/mutate2.webp)
+
+---
+
+class: center, middle
+
+## Group_by + summarize 
+<img src="img/group_by.png" width="490px"/> 
+
+
+---
+
+class: center
+
+## Resumen
+
+
+<img src="img/resumen_tidy.png" width="500px"/> 
+
+
+
+---
+## Entonces...
+
+.pull-left[
+- Si en mi en la base de datos de mi encuesta, quisiera: 
+  + trabajar sólo con las mujeres ¿qué función utilizaría?
+  + trabajar sólo con las variables que me interesan por ser el foco de mi grupo (e.g. solo las de "política" o "lectura")
+  + hacer una tabla de la media y la mediana de la edad por sexo.
+  + recodificar los ingresos en 3 grupos: altos, medios, bajos]
+
+.pull-right[
+
+<img src="img/travolta.gif" width="900px"/> 
+
+]
+
+
+
+
