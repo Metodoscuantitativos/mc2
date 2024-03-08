@@ -3,7 +3,7 @@
     "path": "C:/Users/sebastian/Desktop/PRODUCCION/00. ACCIÓN PROXIMA/03. CUANTI/Curso Cuanti 2/Curso UAH/2024/mc2/clases/clase_01/Clase_1.R",
     "project_path": "Clase_1.R",
     "type": "r_source",
-    "hash": "0",
+    "hash": "1073723090",
     "contents": "",
     "dirty": false,
     "created": 1709904896715.0,
@@ -12,16 +12,16 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "21,41",
-        "scrollLine": "21",
+        "cursorPosition": "277,0",
+        "scrollLine": "254",
         "docOutlineVisible": "1"
     },
-    "folds": "26|25|51|0|\n52|32|59|0|\n60|25|70|0|\n71|34|112|0|\n155|24|187|0|\n188|18|247|0|\n248|29|263|0|\n264|18|324|0|\n325|17|332|0|\n",
-    "lastKnownWriteTime": 1709909599,
+    "folds": "26|25|51|0|\n52|32|59|0|\n60|25|70|0|\n71|34|112|0|\n",
+    "lastKnownWriteTime": 1709939755,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1709909599181,
+    "last_content_update": 1709939755849,
     "read_only": false,
     "read_only_alternatives": []
 }

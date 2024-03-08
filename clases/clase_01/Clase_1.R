@@ -128,6 +128,8 @@ seq (from= -100, to=100, by=10)
 1:10 # cuando es lineal, de 1 
 
 rep(c(-1,0,1), times=5)
+rep (c(1,2,3), times=100)
+
 #repetir
 #algo
 #una cierta cantidad de veces
@@ -137,6 +139,7 @@ rep (pares, times=10)
 
 anios <- seq(from=2010, to=2022, by=1)
 anios
+
 
 # ex: haga una secuencia de su año de nacimiento hasta ahora
 # pongale: anios_sunombre
@@ -153,17 +156,22 @@ rep (c(2,4,6), each =3)
 
 
 
-# VI. Funciones Básicas ---------------------------------------------------
+# VI. Otras funciones Básicas ---------------------------------------------------
 
 sample(x= 20:50, size =56, replace = TRUE)
 edades <- sample(x= 20:50, size =56, replace = TRUE)
+
+#x=20:50: Este argumento define el conjunto de datos o vector del cual se extraerán las muestras. 
+#size=56: Este argumento especifica el tamaño de la muestra a generar
+#replace=TRUE, significa que un elemento puede ser seleccionado más de una vez en la muestra
+
 
 #esto es un vector: 
 #int, num: cuanti
 #tiene 56 elementos
 
 #1. algunas funciones
-
+edades
 min(edades)
 max(edades)
 which.min(edades) #donde está el menor elemento, posición
@@ -176,8 +184,8 @@ edades
 edades [5]
 
 mean(edades)
-var(edades) # varianza
-sqrt(var(edades)) #desvio estandar
+var(edades) # varianza: dispersión de los datos respecto a su media.
+sqrt(var(edades)) #desvio estandar: dispersión de los datos respecto a su media, comparable directamete con datos. 
 sd (edades) # es lo mismo que arriba
 class(edades) # tipo de objeto
 length(edades) # largo de objeto
@@ -190,26 +198,12 @@ unique(edades) # categoría de objetos
 
 edades
 edades [5] # rescatar posición 5
-edades [edades <25] # de edades rescata los menores de 25
-
 
 # de esto, ¿qué rescatará [3]?
 
 #2. Rescatar más objetos
 
 edades [c(2, 10, 30)]
-
-#ejercicio aprobación gobierno
-
-aprobacion_gobierno <- c(20, 18, 38, 36, 38)
-
-
-aprobacion_gobierno [4] #del penúltimo mes
-aprobacion_gobierno [5] #del último mes
-
-(aprobacion_gobierno [5] - aprobacion_gobierno [4])/ aprobacion_gobierno [4] *100
-
-#indexar es rescatar/utilizar un elementos por su posición
 
 
 #cantidad de evaluaciones docentes en una universidad
@@ -246,87 +240,45 @@ sede_1[2]
 
 
 
-# VIII. Entrelazar funciones ----------------------------------------------
+# VIII.Data frames ---------------------------------------------------------
+# Definir las variables
+edad <- c(22, 18, 25, 20, 21)
+tipo_colegio <- c("privado", "publico", "publico", "privado", "publico")
+tendencia_politica <- c("izquierda", "derecha", "centro", "izquierda", "centro")
+genero <- c("mujer", "hombre", "mujer", "mujer", "hombre")
 
+# Generar el data.frame
+data.frame(edad, tipo_colegio, tendencia_politica, genero)
 
-#¿Cómo combino estas funciones?
-#¿Cómo voy entrelazando funciones?
-sede_1[which.max(sede_1)]
+# Para guardar la base de datos
+estudiantes_antropologia <- data.frame(edad, tipo_colegio, tendencia_politica, genero)
 
+# Explorar la base de datos
+str(estudiantes_antropologia) # Estructura
+nrow(estudiantes_antropologia) # Número de filas
+ncol(estudiantes_antropologia) # Número de columnas
+View(estudiantes_antropologia) # Abrir la base de datos
 
-#¿Cuándo hay más de 75 casos
-sede_1  > 75
-which(sede_1 > 75) 
+# Llamar a una variable de la base
+estudiantes_antropologia$edad
+estudiantes_antropologia$tipo_colegio[1]
 
-#¿Qué días hay más de 75 casos?
-names(sede_1)[sede_1 >75]
+# Buscar en la base de datos [fila, columna]
+estudiantes_antropologia[1,] # Rescato todo lo de la fila 1
+estudiantes_antropologia[,2] # Rescato todo lo de la columna 2
+estudiantes_antropologia[, c(2,3)] # Rescato columnas 2 y 3
+estudiantes_antropologia[, "edad"] # Rescato columna edad
+estudiantes_antropologia$genero == "mujer" # Donde el género es mujer
 
+# Uso de %in% para filtrar
+estudiantes_antropologia$tendencia_politica %in% c("izquierda", "centro")
 
-# IX. Data frames ---------------------------------------------------------
-# base de datos: Ingresos del estado en junio y juniol 
-
-concepto <- c("Ingresos", "Ingreso Tributario Neto", "Cobre Bruto", "Rentas de propiedad")
-concepto
-
-#de qué tipo es la variable?
-
-junio <-  c(371, 275, 466, 256, 733)
-julio <-  c(414, 329, 272, 370, 786) 
-
-
-#1. Generar data frame
-data.frame(concepto, junio, julio)
-#¿Por qué el error?
-
-concepto <- c("Ingresos", "Ingreso Tributario Neto", "Cobre Bruto", "Rentas de propiedad", "Impuesto Global Complementario")
-concepto
-
-
-#Realizo nuevamente
-data.frame(concepto, junio, julio)
-
-#para guardarla
-ingresos_gobierno_central <- data.frame(concepto, junio, julio)
-
-#¿Cómo aparece en el ambiente de trabajo?
-
-#abra la base de datos
-
-#2. Comandos para explorar bases de datos
-
-str (ingresos_gobierno_central) #la estructura de la base
-# 5 filas
-# 3 columnas
-# tipos de variables
-# valores
-
-nrow(ingresos_gobierno_central) # número de filas
-ncol(ingresos_gobierno_central) #número de columnas
-View(ingresos_gobierno_central) #para abrir la base
-
-#Llamar a una variable de la base: $
-ingresos_gobierno_central$concepto
-ingresos_gobierno_central$concepto [1]
-
-#buscar en base de datos [fila, columna]
-ingresos_gobierno_central [1,] # rescato todo lo de la fila 1
-ingresos_gobierno_central [,2] # rescato todo lo de la columna 2
-ingresos_gobierno_central [, c(2,3)] # rescato columnas 2 y 3
-ingresos_gobierno_central [, "junio"] # rescato columna junio
-ingresos_gobierno_central$concepto == "Ingresos" #donde se nombran ingresos
-
-# %in%: dentro de, inscrito en, se encuentra en
-ingresos_gobierno_central$concepto %in% c("Ingresos", "Cobre", "Rentas de la propiedad")
-#funciona como mecanismo de filtrar
-
-
-#Resumen
 
 
 # Bases de datos ----------------------------------------------------------
 
 #.1 Construir una base de datos que contenga datos de 10 personas, considerando:
 #género, edad, ingresos, nombre, puntaje en la PAES
-#para las variables cuantitativas obtenga la media, la mediana 
-#considerando el puntaje en la PAES realice las mismas medidas.
+#para las variables cuantitativas obtenga la media
+#seleccione el caso que sacó mejor puntaje mediante indexación
 
