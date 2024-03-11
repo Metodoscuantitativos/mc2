@@ -15,10 +15,10 @@
         "totalObservations": "5",
         "displayedObservations": "5",
         "variables": "4",
-        "cacheKey": "E914AB66",
+        "cacheKey": "460F0364",
         "object": "estudiantes_antropologia",
         "environment": "",
-        "contentUrl": "grid_resource/gridviewer.html?env=&obj=estudiantes_antropologia&cache_key=E914AB66&max_display_columns=50",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=estudiantes_antropologia&cache_key=460F0364&max_display_columns=50",
         "preview": "0",
         "source_window_id": "",
         "Source": "Source"
