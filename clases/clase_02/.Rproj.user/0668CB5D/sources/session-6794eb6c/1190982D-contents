@@ -129,21 +129,25 @@ o2 <-  oscars %>% select(!starts_with("birth"))%>%
 names(data) #r base
 data %>% names() #forma tidyverse
 
-data %>% filter (Year ==2007) # doble igual
-data %>% dplyr::filter (Year==2007)  # con::
+# observo los años de mi base data
+unique(data$Year)
+class(data$Year)
 
-#mayor o igual a 2009
-data %>% filter (Year >=2009) 
+data %>% filter (Year ==2012) # doble igual
+data %>% dplyr::filter (Year==2018)  # con::
+
+#mayor o igual a 2016
+data %>% filter (Year >= 2016) %>% view()
 
 #presupuesto mayor que 210
 data %>% filter (Budget >=210) 
 
 #filtrar por variables categóricas
-data %>% filter (Genre== "Drama") # ojo que las categóricas van con comillas
+data %>% filter (Genre== "Drama") %>% view() # ojo que las categóricas van con comillas
 
 
 #filtrar por dos tipos de variables
-data %>% filter (Genre=="Action" & Year==2013)
+data %>% filter (Genre=="Action" & Year==2013) %>% view()
 
 #filtrar por una y otra (| al lado del 1 en pc)
 data %>% filter (Genre== "Comedy"| Genre == "Drama")
@@ -245,7 +249,7 @@ oscars %>% group_by(name) %>%
   arrange(desc(n))
 
 
-# Agrupar por pelicula y contabilizar las que tengan más de dos oscar
+# Agrupar por película y contabilizar las que tengan más de dos oscar
 # Ojo, base de datos sólo de ganadorxs mejor actor/actriz 
 
 
