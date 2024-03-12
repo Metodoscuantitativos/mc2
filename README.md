@@ -1,4 +1,4 @@
-# Métodos Cuantitativos 2 `R`
+![Banner](files/Banner.png)
 
 Bienvenidxs al curso de Métodos Cuantitativos II de la carrera de Antropología en la Universidad Alberto Hurtado. 
 
@@ -22,7 +22,6 @@ Programa: [`[Programa]`](https://ginowrs.github.io/mc2/files/programa_2024.pdf)
 
 Programación: [`[Programación]`](https://ginowrs.github.io/mc2/files/programacion_2024.pdf) 
 
-![Banner](files/Banner.png)
 
 ![useR](files/curso_mc2.png)
 
