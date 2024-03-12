@@ -1,11 +1,27 @@
-# Métodos Cuantitativos II `R`
+# Métodos Cuantitativos 2 `R`
 
-Bienvenidxs al curso de Métodos Cuantitativos II de la carrera de Antropología en la Universidad Alberto Hurtado. Sebastián Muñoz [`sebastianmunozt@gmail.com`] y Gino Ocampo [`ginowrs@gmail.com`] son los profesores a cargo.
+Bienvenidxs al curso de Métodos Cuantitativos II de la carrera de Antropología en la Universidad Alberto Hurtado. 
 
-Programa: [`[Programa]`](https://metodoscuantitativos.github.io/mc2/files/programa_2024.pdf) 
 
-Programación: [`[Programación]`](https://metodoscuantitativos.github.io/mc2/files/programacion_2024.pdf) 
+### Equipo Académico
 
+| Profesores               |email  | 
+|-----------------------|-------|
+| Sebastián Muñoz       |  sebastianmunozt@gmail.com|
+| Gino Ocampo           |  ginowrs@gmail.com|
+|-----------------------|-------|
+| Ayudantes             | email |
+|-----------------------|------|
+| Matías Álvarez       | maalvarr@alumnos.uahurtado.cl|
+| Francesca Rocco     | franroco21@gmail.com|
+
+A continuación, podrán descargar el programa y programación del curso.
+
+Programa: [`[Programa]`](https://ginowrs.github.io/mc2/files/programa_2024.pdf) 
+
+Programación: [`[Programación]`](https://ginowrs.github.io/mc2/files/programacion_2024.pdf) 
+
+![Banner](files/Banner.png)
 
 ![useR](files/curso_mc2.png)
 
@@ -18,7 +34,7 @@ Nota: Todas las clases son presenciales, a continuación pueden ver las presenta
 | Fecha             | Contenido                                                      | Material                                                                                                                                                  |
 |-------------------|---------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
 | vier mar 15       | Introducción a R base y Rstudio                               | [`[Clase1]`](https://metodoscuantitativos.github.io/mc2/clases/clase_01/clase_1#1)   [`[.R]`](clases/clase_1/clase_1.R)                                    |
-| vier mar 22        | Cuestionarios y `tidyverse`                             |  [`[Clase2]`](https://metodoscuantitativos.github.io/mc2/clases/clase_02/clase_2#1)                                      |
+| vier mar 22        | Cuestionarios y `tidyverse`                             |  [`[Clase2]`](https://metodoscuantitativos.github.io/mc2/clases/clase_02/Clase_2#1)                                      |
 | vier abril 5         | Introducción muestreo y Excel                                 | [`[clases]`](https://metodoscuantitativos.github.io/mc2/clases/clase_02/clase_2#1) [`[.Rmd]`](clases/class_2/class_2.Rmd)                                                                                                                                                         |
 | vier abril 12         | Data Wrangling                                 |  [`[.R]`](clases/class_2/class_2.R)                                                                                                                                                         |
 | vier abril 19        | **Evaluación individual I**: nivelación en R                                                      | [`[workflow.zip]`](clases/class_4/workflow.zip)                                                                                                                                                       |
@@ -32,8 +48,6 @@ Nota: Todas las clases son presenciales, a continuación pueden ver las presenta
 | vier jun 28        | Pruebas recuperativas           |          [`[clases]`](https://mebucca.github.io/dar_soc4001/clases/class_9/class_9#1) [`[.Rmd]`](clases/class_9/class_9.Rmd)                                                                                                                                                |
 | vier jul 05        | Tiempo para preparación y dudas           |   [`[.R]`](clases/class_9/class_9.R)                                                                                                                                                        |
 | vier jul 12        | **Entrega Grupal Final** presentación de investigación en clases y entrega de trabajo                                   | [`[clases]`](https://mebucca.github.io/dar_soc4001/clases/class_10/class_10#1) [`[.Rmd]`](clases/class_10/class_10.Rmd)                                                                                                                                                         |
-
-
 
 ---
 ## Cápsulas
