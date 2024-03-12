@@ -35,14 +35,14 @@ Programación: [`[Programación]`](https://metodoscuantitativos.github.io/mc2/fi
 
 
 ---
-## Calendario
+## Calendario Clases
 
 Nota: Todas las clases son presenciales, a continuación pueden ver las presentaciones de las clases.
 
 
-| Fecha             | Contenido                                                      | Material                                                                                                                                                  |
-|-------------------|---------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| vier mar 15       | Introducción a R base y Rstudio                               | [`[Clase1]`](https://metodoscuantitativos.github.io/mc2/clases/clase_01/clase_1#1) [`[.R]`](clases/clase_01/clase_1.R) [`[Capsulas]`](https://www.youtube.com/playlist?list=PLtMKbC0NRgrE6LO02NvL4G9LdypG3P4lA)                                     |
+| Fecha             | Contenido                                                     | Material                                                     |
+|-------------------|---------------------------------------------------------------|--------------------------------------------------------------|
+| vier mar 15       | Introducción a R base y Rstudio                               | [`[Clase1]`](https://metodoscuantitativos.github.io/mc2/clases/clase_01/clase_1#1) [`[.R]`] (clases/clase_01/clase_1.R) [`[Capsulas]`](https://www.youtube.com/playlist?list=PLtMKbC0NRgrE6LO02NvL4G9LdypG3P4lA)                                     |
 | vier mar 22        | Cuestionarios y `tidyverse`                             |  [`[Clase2]`](https://metodoscuantitativos.github.io/mc2/clases/clase_02/Clase_2#1) [`[.R]`](clases/clase_02/clase_2.R)                                       |
 | vier abril 5         | Introducción muestreo y Excel                                 | [`[clases]`](https://metodoscuantitativos.github.io/mc2/clases/clase_03/clase_3#1) [`[.Rmd]`](clases/class_2/class_2.Rmd)                                                                                                                                                         |
 | vier abril 12         | Data Wrangling                                 |  [`[.R]`](clases/class_2/class_2.R)                                                                                                                                                         |
@@ -57,8 +57,13 @@ Nota: Todas las clases son presenciales, a continuación pueden ver las presenta
 | vier jun 28        | Pruebas recuperativas           |          [`[clases]`](https://mebucca.github.io/dar_soc4001/clases/class_9/class_9#1) [`[.Rmd]`](clases/class_9/class_9.Rmd)                                                                                                                                                |
 | vier jul 05        | Tiempo para preparación y dudas           |   [`[.R]`](clases/class_9/class_9.R)                                                                                                                                                        |
 | vier jul 12        | **Entrega Grupal Final** presentación de investigación en clases y entrega de trabajo                                   | [`[clases]`](https://mebucca.github.io/dar_soc4001/clases/class_10/class_10#1) [`[.Rmd]`](clases/class_10/class_10.Rmd)                                                                                                                                                         |
+---
 
+## Calendario Ayudantías
 
+| Fecha             | Contenido                                                      | Tareas   |
+|-------------------|----------------------------------------------------------------|------------|
+| a definir         | Instalación de R y elementos básicos                           | [`[.R]`] (clases/clase_01/clase_1.R)    |
 
 ---
 ## Evaluaciones 

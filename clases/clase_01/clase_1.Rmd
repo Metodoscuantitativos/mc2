@@ -25,7 +25,7 @@ style_duo_accent(primary_color = "#035AA6", secondary_color = "#03A696")
 
 # Bienvenidos/as
 
-- ¿Por qué está imágen? 
+- ¿Por qué está imagen? 
 
 
 <img src="gif/img2.png" width="450px"/> 
