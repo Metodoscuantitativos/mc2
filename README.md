@@ -1,10 +1,10 @@
 ![Banner](files/Banner.png)
-
 ### Bienvenidxs al curso de Métodos Cuantitativos II de la carrera de Antropología en la Universidad Alberto Hurtado.
 
-<p align="center">
-The most exciting phrase to hear in science, the one that heralds new discoveries, is not `Eureka!` but `That's funny…`” “`That's funny…`” is the sound of something catching in your brain. Isaac Asimov
-</p>
+
+
+The most exciting phrase to hear in science, the one that heralds new discoveries, is not `Eureka!` but `That's funny…`” “`That's funny…`” is the sound of something catching in your brain.
+
 
 ### Equipo Académico
 
