@@ -3,7 +3,7 @@
     "path": "C:/Users/sebastian/Desktop/PRODUCCION/00. ACCIÓN PROXIMA/03. CUANTI/Curso Cuanti 2/Curso UAH/2024/mc2/README.md",
     "project_path": null,
     "type": "markdown",
-    "hash": "3503340030",
+    "hash": "1819728540",
     "contents": "",
     "dirty": false,
     "created": 1710252189936.0,
@@ -11,14 +11,16 @@
     "relative_order": 2,
     "properties": {
         "source_window_id": "",
-        "Source": "Source"
+        "Source": "Source",
+        "cursorPosition": "45,155",
+        "scrollLine": "34"
     },
     "folds": "",
-    "lastKnownWriteTime": 1710251608,
+    "lastKnownWriteTime": 1710253063,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1710251608,
+    "last_content_update": 1710253063386,
     "read_only": false,
     "read_only_alternatives": []
 }
