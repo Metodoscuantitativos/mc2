@@ -1,10 +1,10 @@
 ![Banner](files/Banner.png)
-<p align="center">
+
 ### Bienvenidxs al curso de Métodos Cuantitativos II de la carrera de Antropología en la Universidad Alberto Hurtado.
+
+<p align="center">
+The most exciting phrase to hear in science, the one that heralds new discoveries, is not `Eureka!` but `That's funny…`” “`That's funny…`” is the sound of something catching in your brain. Isaac Asimov
 </p>
-
-
-
 
 ### Equipo Académico
 
@@ -57,7 +57,6 @@ Nota: Todas las clases son presenciales, a continuación pueden ver las presenta
 
 - Descargar e instalar `R`: [`[Cápsula]`](https://posit.co/download/rstudio-desktop/): 
 
-
 ---
 ## Evaluaciones 
 
@@ -68,7 +67,6 @@ Nota: Todas las clases son presenciales, a continuación pueden ver las presenta
 | Avance 2       | Procesamiento y análisis básico    | Mayo 10    |  [`[Avance 2]`](https://mebucca.github.io/dar_soc4001/homework/t_3#1)         | 
 | Evaluación individual II       | Procesamiento y análisis de datos categóricos  | Junio 14  |  [`[Evaluación individual II ]`](https://mebucca.github.io/dar_soc4001/homework/t_4_answer#1)       |
 | Entrega grupal final     |  Presentación de investigación en clases y entrega de trabajo | Julio 12  |           [`[T5]`](https://mebucca.github.io/dar_soc4001/homework/t_5#1)  | 
-
 
 
 
