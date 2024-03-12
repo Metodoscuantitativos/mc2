@@ -43,27 +43,21 @@ Nota: Todas las clases son presenciales, a continuación pueden ver las presenta
 | Fecha             | Contenido                                                     | Material                                                     |
 |-------------------|---------------------------------------------------------------|--------------------------------------------------------------|
 | vier mar 15       | Introducción a R base y Rstudio                               | [`[Clase1]`](https://metodoscuantitativos.github.io/mc2/clases/clase_01/clase_1#1) [`[.R]`](clases/clase_01/clase_1.R) [`[Capsulas]`](https://www.youtube.com/playlist?list=PLtMKbC0NRgrE6LO02NvL4G9LdypG3P4lA)|
-
 | vier mar 22        | Cuestionarios y `tidyverse`                             |  [`[Clase2]`](https://metodoscuantitativos.github.io/mc2/clases/clase_02/clase_2#1) [`[.R]`](clases/clase_02/clase_2.R)                                       
 [`[Capsulas]`](https://www.youtube.com/playlist?list=PLtMKbC0NRgrE6LO02NvL4G9LdypG3P4lA) |
-
-| vier abril 5         | Introducción muestreo y Excel                                 |                                                                                                                                                        |
-
-| vier abril 12         | Data Wrangling                                 |                                                                                                                                                          |
-
-| vier abril 19        | **Evaluación individual I**: nivelación en R                                                      | 
-|
-
-| vier abril 26       | Análisis de datos categóricos                                                    |                                                                                                                                                                |
-| vier mayo 03        | Ejercicios en clase en R: procesamiento y análisis de datos categóricos            |                                                                                                                                                       |
-| vier mayo 10        | Visualización de datos categóricos en `ggplot`            |                                                                                                                                                              |
-| vier mayo 17       |  Análisis de datos cuantitativos           |                                                                                                                                                                              |
-| vier mayo 31         | Prueba de hipótesis: T de Student y ANOVA            |                                                                                                                                                             |
-| vier jun 07        | Correlación y regresión |                                                                                                                                         |
-| vier jun 14        | **Evaluación individual II**: Procesamiento y análisis de datos categóricos |                                                                                                                                                              |
-| vier jun 28        | Pruebas recuperativas           |                                                                                                                                                          |
-| vier jul 05        | Tiempo para preparación y dudas           |   [`[.R]`](clases/class_9/class_9.R)                                                                                                                                                        |
-| vier jul 12        | **Entrega Grupal Final** presentación de investigación en clases y entrega de trabajo                                   |                                                                                                                                                         |
+| vier abril 5         | Introducción muestreo y Excel                                 |      Pendiente      |                                                  
+| vier abril 12        | Data Wrangling                                 |  Pendiente                       |
+| vier abril 19        | **Evaluación individual I**: nivelación en R    | Pendiente |
+| vier abril 26       | Análisis de datos categóricos                   |   Pendiente  |
+| vier mayo 03        | Ejercicios en clase en R: procesamiento y análisis de datos categóricos   |  Pendiente  |
+| vier mayo 10        | Visualización de datos categóricos en `ggplot`  |   Pendiente |
+| vier mayo 17       |  Análisis de datos cuantitativos           |   Pendiente|
+| vier mayo 31         | Prueba de hipótesis: T de Student y ANOVA  | Pendiente |
+| vier jun 07        | Correlación y regresión |  Pendiente |
+| vier jun 14        | **Evaluación individual II**: Procesamiento y análisis de datos categóricos |  Pendiente|
+| vier jun 28        | Pruebas recuperativas| Pendiente |
+| vier jul 05        | Tiempo para preparación y dudas  |   Pendiente       |
+| vier jul 12        | **Entrega Grupal Final** presentación de investigación en clases y entrega de trabajo |  Pendiente |
 ---
 
 ## Calendario Ayudantías
