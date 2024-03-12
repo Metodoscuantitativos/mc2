@@ -42,24 +42,34 @@ Nota: Todas las clases son presenciales, a continuación pueden ver las presenta
 
 | Fecha             | Contenido                                                     | Material                                                     |
 |-------------------|---------------------------------------------------------------|--------------------------------------------------------------|
-| vier mar 15       | Introducción a R base y Rstudio                               | [`[Clase1]`](https://metodoscuantitativos.github.io/mc2/clases/clase_01/clase_1#1) [`[.R]`](clases/clase_01/clase_1.R) [`[Capsulas]`](https://www.youtube.com/playlist?list=PLtMKbC0NRgrE6LO02NvL4G9LdypG3P4lA)                                     |
-| vier mar 22        | Cuestionarios y `tidyverse`                             |  [`[Clase2]`](https://metodoscuantitativos.github.io/mc2/clases/clase_02/clase_2#1) [`[.R]`](clases/clase_02/clase_2.R)                                       |
-| vier abril 5         | Introducción muestreo y Excel                                 | [`[clases]`](https://metodoscuantitativos.github.io/mc2/clases/clase_03/clase_3#1) [`[.Rmd]`](clases/class_2/class_2.Rmd)                                                                                                                                                         |
-| vier abril 12         | Data Wrangling                                 |  [`[.R]`](clases/class_2/class_2.R)                                                                                                                                                         |
-| vier abril 19        | **Evaluación individual I**: nivelación en R                                                      | [`[workflow.zip]`](clases/class_4/workflow.zip)                                                                                                                                                       |
-| vier abril 26       | Análisis de datos categóricos                                                    |  [`[workflow_ta.zip]`](clases/class_4/workflow_ta.zip)                                                                                                                                                              |
-| vier mayo 03        | Ejercicios en clase en R: procesamiento y análisis de datos categóricos            |  [`[clases]`](https://mebucca.github.io/dar_soc4001/clases/class_5/class_5#1) [`[.Rmd]`](clases/class_5/class_5.Rmd)                                                                                                                                                        |
-| vier mayo 10        | Visualización de datos categóricos en `ggplot`            |  [`[.R]`](clases/class_5/class_5.R)                                                                                                                                                              |
-| vier mayo 17       |  Análisis de datos cuantitativos           |     [`[clases]`](https://mebucca.github.io/dar_soc4001/clases/class_6/class_6#1) [`[.Rmd]`](clases/class_6/class_6.Rmd)                                                                                                                                                                                                        |
-| vier mayo 31         | Prueba de hipótesis: T de Student y ANOVA            |   [`[.R]`](clases/class_6/class_6.R)                                                                                                                                                          |
-| vier jun 07        | Correlación y regresión |          [`[clases]`](https://mebucca.github.io/dar_soc4001/clases/class_7/class_7#1) [`[.Rmd]`](clases/class_7/class_7.Rmd)                                                                                                                                                 |
-| vier jun 14        | **Evaluación individual II**: Procesamiento y análisis de datos categóricos |            [`[.R]`](clases/class_7/class_7.R)                                                                                                                                                  |
-| vier jun 28        | Pruebas recuperativas           |          [`[clases]`](https://mebucca.github.io/dar_soc4001/clases/class_9/class_9#1) [`[.Rmd]`](clases/class_9/class_9.Rmd)                                                                                                                                                |
+| vier mar 15       | Introducción a R base y Rstudio                               | [`[Clase1]`](https://metodoscuantitativos.github.io/mc2/clases/clase_01/clase_1#1) [`[.R]`](clases/clase_01/clase_1.R) [`[Capsulas]`](https://www.youtube.com/playlist?list=PLtMKbC0NRgrE6LO02NvL4G9LdypG3P4lA)|
+
+| vier mar 22        | Cuestionarios y `tidyverse`                             |  [`[Clase2]`](https://metodoscuantitativos.github.io/mc2/clases/clase_02/clase_2#1) [`[.R]`](clases/clase_02/clase_2.R)                                       
+[`[Capsulas]`](https://www.youtube.com/playlist?list=PLtMKbC0NRgrE6LO02NvL4G9LdypG3P4lA) |
+
+| vier abril 5         | Introducción muestreo y Excel                                 |                                                                                                                                                        |
+
+| vier abril 12         | Data Wrangling                                 |                                                                                                                                                          |
+
+| vier abril 19        | **Evaluación individual I**: nivelación en R                                                      | 
+|
+
+| vier abril 26       | Análisis de datos categóricos                                                    |                                                                                                                                                                |
+| vier mayo 03        | Ejercicios en clase en R: procesamiento y análisis de datos categóricos            |                                                                                                                                                       |
+| vier mayo 10        | Visualización de datos categóricos en `ggplot`            |                                                                                                                                                              |
+| vier mayo 17       |  Análisis de datos cuantitativos           |                                                                                                                                                                              |
+| vier mayo 31         | Prueba de hipótesis: T de Student y ANOVA            |                                                                                                                                                             |
+| vier jun 07        | Correlación y regresión |                                                                                                                                         |
+| vier jun 14        | **Evaluación individual II**: Procesamiento y análisis de datos categóricos |                                                                                                                                                              |
+| vier jun 28        | Pruebas recuperativas           |                                                                                                                                                          |
 | vier jul 05        | Tiempo para preparación y dudas           |   [`[.R]`](clases/class_9/class_9.R)                                                                                                                                                        |
-| vier jul 12        | **Entrega Grupal Final** presentación de investigación en clases y entrega de trabajo                                   | [`[clases]`](https://mebucca.github.io/dar_soc4001/clases/class_10/class_10#1) [`[.Rmd]`](clases/class_10/class_10.Rmd)                                                                                                                                                         |
+| vier jul 12        | **Entrega Grupal Final** presentación de investigación en clases y entrega de trabajo                                   |                                                                                                                                                         |
 ---
 
 ## Calendario Ayudantías
+Nota: En general las ayundantías son online, a excepción de algunas con Matías
+
+
 
 | Fecha             | Contenido                                                      | Tareas                                              |
 |-------------------|----------------------------------------------------------------|-----------------------------------------------------|
