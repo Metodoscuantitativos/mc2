@@ -87,8 +87,6 @@ Nota: En general las ayundantías son online, a excepción de algunas con Matía
 ---
 ## Grupos de trabajo
 
-Claro, aquí tienes la tabla con todas las celdas vacías:
-
 
 | Nombre                 | Apellido(s)          | Grupo     |
 |------------------------|----------------------|-----------|
