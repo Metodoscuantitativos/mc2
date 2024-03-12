@@ -42,7 +42,7 @@ Nota: Todas las clases son presenciales, a continuación pueden ver las presenta
 
 | Fecha             | Contenido                                                     | Material                                                     |
 |-------------------|---------------------------------------------------------------|--------------------------------------------------------------|
-| vier mar 15       | Introducción a R base y Rstudio                               | [`[Clase1]`](https://metodoscuantitativos.github.io/mc2/clases/clase_01/clase_1#1) [`[.R]`] (clases/clase_01/clase_1.R) [`[Capsulas]`](https://www.youtube.com/playlist?list=PLtMKbC0NRgrE6LO02NvL4G9LdypG3P4lA)                                     |
+| vier mar 15       | Introducción a R base y Rstudio                               | [`[Clase1]`](https://metodoscuantitativos.github.io/mc2/clases/clase_01/clase_1#1) [`[.R]`](clases/clase_01/clase_1.R) [`[Capsulas]`](https://www.youtube.com/playlist?list=PLtMKbC0NRgrE6LO02NvL4G9LdypG3P4lA)                                     |
 | vier mar 22        | Cuestionarios y `tidyverse`                             |  [`[Clase2]`](https://metodoscuantitativos.github.io/mc2/clases/clase_02/Clase_2#1) [`[.R]`](clases/clase_02/clase_2.R)                                       |
 | vier abril 5         | Introducción muestreo y Excel                                 | [`[clases]`](https://metodoscuantitativos.github.io/mc2/clases/clase_03/clase_3#1) [`[.Rmd]`](clases/class_2/class_2.Rmd)                                                                                                                                                         |
 | vier abril 12         | Data Wrangling                                 |  [`[.R]`](clases/class_2/class_2.R)                                                                                                                                                         |
@@ -63,7 +63,7 @@ Nota: Todas las clases son presenciales, a continuación pueden ver las presenta
 
 | Fecha             | Contenido                                                      | Tareas                                              |
 |-------------------|----------------------------------------------------------------|-----------------------------------------------------|
-| a definir         | Instalación de R y elementos básicos                           | [`[.R]`] (ayudantias/ayudantia_01/ayudantia_01.R)   |
+| a definir         | Instalación de R y elementos básicos                           | [`[.R]`](ayudantias/ayudantia_01/ayudantia_01.R)   |
 
 
 
