@@ -13,10 +13,6 @@ library(tidyverse)
 #install.packages("pacman")
 pacman::p_load(tidyverse,Lock5Data, openintro) #tidyverse y bases de datos de cine
 
-
-
-
-
 # II. tidyverse -----------------------------------------------------------
 #Lenguaje de programación de la "nueva escuela"
 #Versus r base
@@ -36,17 +32,11 @@ data <-  Lock5Data::HollywoodMovies
 oscars <- openintro::oscars
 
 #observar variables
-names(data)
-names(oscars)
+names(data) #nombre de variables de base de datos data
+names(oscars) #nombre de variables de base de datos oscars
 
 #observar categorías (unicas de variables)
 unique(data$Genre)
-
-
-#Otra posibilidad, cuando ya está cargada la librería
-data <-  HollywoodMovies
-oscars <- oscars
-
 
 
 #01. Select####
@@ -61,13 +51,13 @@ data %>%
 data %>% select(Movie, LeadStudio, Genre)
 
 #¿Por qué se usan los dos puntos?
-#Cada paquete puede incluir subpaquetes
-#los doble dos puntos (::) llaman a esos subpaquetes
-
+#Cada paquete puede incluir funciones específicas
+#los doble dos puntos (::) llaman a esas funciones
+#a veces las funciones pueden coincidir y R puede que se pierda
 
 #asingar
 data_select <- data %>% select(Movie, LeadStudio, Genre)
-
+# acá estoy guardando en data_select la selección que realicé 
 
 
 #otras selecciones
