@@ -63,7 +63,7 @@ Nota: Todas las clases son presenciales, a continuación pueden ver las presenta
 
 | Fecha             | Contenido                                                      | Tareas                                              |
 |-------------------|----------------------------------------------------------------|-----------------------------------------------------|
-| a definir         | Instalación de R y elementos básicos                           | [`[.R]`](ayudantias/ayudantia_01/ayudantia_01.R)   |
+| a definir         | Instalación de R y elementos básicos                           | [`[.R]`](ayudantias/ayudantia_01/ayudantia_01.R)    |
 
 
 
