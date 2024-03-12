@@ -5,26 +5,21 @@
 
 
 
-<center>
 
-### Equipo Académico
+###                               Equipo Académico
 
-| Profesores         | email                       | 
-|--------------------|-----------------------------|
-| Sebastián Muñoz    | sebastianmunozt@gmail.com  |
-| Gino Ocampo        | ginowrs@gmail.com          |
+                     | Profesores         | email                       | 
+                     |--------------------|-----------------------------|
+                     | Sebastián Muñoz    | sebastianmunozt@gmail.com  |
+                     | Gino Ocampo        | ginowrs@gmail.com          |
 
-| Ayudantes          | email                       |
-|--------------------|-----------------------------|
-| Matías Álvarez     | maalvarr@alumnos.uahurtado.cl |
-| Francesca Rocco    | franroco21@gmail.com       |
+                     | Ayudantes          | email                       |
+                     |--------------------|-----------------------------|
+                     | Matías Álvarez     | maalvarr@alumnos.uahurtado.cl |
+                     | Francesca Rocco    | franroco21@gmail.com       |
 
-</center>
 
-| Ayudantes             | email |
-|-----------------------|------|
-| Matías Álvarez       | maalvarr@alumnos.uahurtado.cl|
-| Francesca Rocco     | franroco21@gmail.com|
+
 
 A continuación, podrán descargar el programa y programación del curso.
 
