@@ -10,7 +10,7 @@ The most exciting phrase to hear in science, the one that heralds new discoverie
 
 | Profesores         | email                       | 
 |--------------------|-----------------------------|
-| Sebastián Muñoz    | sebastianmunozt@gmail.com  |
+| Sebastián Muñoz    | semunoz@uahurtado.cl  |
 | Gino Ocampo        | ginowrs@gmail.com          |
 
 | Ayudantes          | email                       |
@@ -21,12 +21,18 @@ The most exciting phrase to hear in science, the one that heralds new discoverie
 
 A continuación, podrán descargar el programa y programación del curso.
 
-Programa: [`[Programa]`](https://ginowrs.github.io/mc2/files/programa_2024.pdf) 
+Programa: [`[Programa]`](https://metodoscuantitativos.github.io/mc2/files/programa_2024.pdf) 
 
-Programación: [`[Programación]`](https://ginowrs.github.io/mc2/files/programacion_2024.pdf) 
+Programación: [`[Programación]`](https://metodoscuantitativos.github.io/mc2/files/programacion_2024.pdf) 
 
 
 ![useR](files/curso_mc2.png)
+
+---
+## Descarga e instalación de R y RStudio
+
+- Descargar e instalar `R`: [`[Cápsula]`](https://posit.co/download/rstudio-desktop/) 
+
 
 ---
 ## Calendario
@@ -52,10 +58,7 @@ Nota: Todas las clases son presenciales, a continuación pueden ver las presenta
 | vier jul 05        | Tiempo para preparación y dudas           |   [`[.R]`](clases/class_9/class_9.R)                                                                                                                                                        |
 | vier jul 12        | **Entrega Grupal Final** presentación de investigación en clases y entrega de trabajo                                   | [`[clases]`](https://mebucca.github.io/dar_soc4001/clases/class_10/class_10#1) [`[.Rmd]`](clases/class_10/class_10.Rmd)                                                                                                                                                         |
 
----
-## Cápsulas
 
-- Descargar e instalar `R`: [`[Cápsula]`](https://posit.co/download/rstudio-desktop/): 
 
 ---
 ## Evaluaciones 
