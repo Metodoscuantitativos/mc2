@@ -43,8 +43,7 @@ Nota: Todas las clases son presenciales, a continuación pueden ver las presenta
 | Fecha             | Contenido                                                     | Material                                                     |
 |-------------------|---------------------------------------------------------------|--------------------------------------------------------------|
 | vier mar 15       | Introducción a R base y Rstudio                               | [`[Clase1]`](https://metodoscuantitativos.github.io/mc2/clases/clase_01/clase_1#1) [`[.R]`](clases/clase_01/clase_1.R) [`[Capsulas]`](https://www.youtube.com/playlist?list=PLtMKbC0NRgrE6LO02NvL4G9LdypG3P4lA)|
-| vier mar 22        | Cuestionarios y `tidyverse`                             |  [`[Clase2]`](https://metodoscuantitativos.github.io/mc2/clases/clase_02/clase_2#1) [`[.R]`](clases/clase_02/clase_2.R)                                       
-[`[Capsulas]`](https://www.youtube.com/playlist?list=PLtMKbC0NRgrE6LO02NvL4G9LdypG3P4lA) |
+| vier mar 22        | Cuestionarios y `tidyverse`                             |  [`[Clase2]`](https://metodoscuantitativos.github.io/mc2/clases/clase_02/clase_2#1) [`[.R]`](clases/clase_02/clase_2.R)|
 | vier abril 5         | Introducción muestreo y Excel                                 |      Pendiente      |                                                  
 | vier abril 12        | Data Wrangling                                 |  Pendiente                       |
 | vier abril 19        | **Evaluación individual I**: nivelación en R    | Pendiente |
