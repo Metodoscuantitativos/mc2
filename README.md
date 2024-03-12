@@ -9,7 +9,8 @@ Bienvenidxs al curso de Métodos Cuantitativos II de la carrera de Antropología
 |-----------------------|-------|
 | Sebastián Muñoz       |  sebastianmunozt@gmail.com|
 | Gino Ocampo           |  ginowrs@gmail.com|
-|-----------------------|-------|
+
+
 | Ayudantes             | email |
 |-----------------------|------|
 | Matías Álvarez       | maalvarr@alumnos.uahurtado.cl|
