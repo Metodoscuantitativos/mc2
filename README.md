@@ -34,9 +34,9 @@ Nota: Todas las clases son presenciales, a continuación pueden ver las presenta
 
 | Fecha             | Contenido                                                      | Material                                                                                                                                                  |
 |-------------------|---------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| vier mar 15       | Introducción a R base y Rstudio                               | [`[Clase1]`](https://metodoscuantitativos.github.io/mc2/clases/clase_01/clase_1#1)   [`[.R]`](clases/clase_1/clase_1.R)                                    |
-| vier mar 22        | Cuestionarios y `tidyverse`                             |  [`[Clase2]`](https://metodoscuantitativos.github.io/mc2/clases/clase_02/Clase_2#1)                                      |
-| vier abril 5         | Introducción muestreo y Excel                                 | [`[clases]`](https://metodoscuantitativos.github.io/mc2/clases/clase_02/clase_2#1) [`[.Rmd]`](clases/class_2/class_2.Rmd)                                                                                                                                                         |
+| vier mar 15       | Introducción a R base y Rstudio                               | [`[Clase1]`](https://metodoscuantitativos.github.io/mc2/clases/clase_01/clase_1#1)   [`[.R]`](clases/clase_01/clase_1.R)                                    |
+| vier mar 22        | Cuestionarios y `tidyverse`                             |  [`[Clase2]`](https://metodoscuantitativos.github.io/mc2/clases/clase_02/Clase_2#1) [`[.R]`](clases/clase_02/clase_2.R)                                       |
+| vier abril 5         | Introducción muestreo y Excel                                 | [`[clases]`](https://metodoscuantitativos.github.io/mc2/clases/clase_03/clase_3#1) [`[.Rmd]`](clases/class_2/class_2.Rmd)                                                                                                                                                         |
 | vier abril 12         | Data Wrangling                                 |  [`[.R]`](clases/class_2/class_2.R)                                                                                                                                                         |
 | vier abril 19        | **Evaluación individual I**: nivelación en R                                                      | [`[workflow.zip]`](clases/class_4/workflow.zip)                                                                                                                                                       |
 | vier abril 26       | Análisis de datos categóricos                                                    |  [`[workflow_ta.zip]`](clases/class_4/workflow_ta.zip)                                                                                                                                                              |
@@ -74,38 +74,35 @@ Nota: Todas las clases son presenciales, a continuación pueden ver las presenta
 ---
 ## Grupos de trabajo
 
-| Nombre                 | Apellido(s)          | Ayudante  |
+Claro, aquí tienes la tabla con todas las celdas vacías:
+
+
+| Nombre                 | Apellido(s)          | Grupo     |
 |------------------------|----------------------|-----------|
-| Cristina Natalia Alicia | Arenas Cembrano      | Roberto   |
-| Consuelo Esperanza     | Avilés Urzúa         | Matías    |
-| Daleskha Paola         | Candel Sarmiento     | Sebastián |
-| Angie                  | Carrasco Hernández   | Roberto   |
-| Emilio Alfredo         | Chahuán Espinoza     | Matías    |
-| Cristina Andrea        | Cousinard Zepeda     | Sebastián |
-| Isidora Fernanda Sofia | Delhin Brayovic      | Roberto   |
-| Felipe Andrés          | González Jorquera    | Matías    |
-| Karla                  | González Palominos   | Sebastián |
-| Michael James          | Johnson Poblete      | Roberto   |
-| Verónica Francisca     | Krause Rodas         | Matías    |
-| Gabriela del Carmen    | Kreft Vega           | Sebastián |
-| María Catalina         | Lyon Karstulovici    | Roberto   |
-| Daniel Ignacio         | Montabone Aravena    | Matías    |
-| Andres                 | Necochea Vega        | Sebastián |
-| Ximena del Carmen      | Riesco Muñoz         | Roberto   |
-| Andrea                 | Sáez Speleta         | Matías    |
-| Bianca Elizabeth       | Sánchez Garay        | Sebastián |
-| Ana Maria              | Surhoff Saavedra     | Roberto   |
-| Daniela Alessandra     | Tapia Segovia        | Matías    |
-| Francisco Alejandro    | Varas Ganzó          | Sebastián |
-| Victoria Eugenia       | Wilson Coddou        | Roberto   |
+|                        |                      |           |
+|                        |                      |           |
+|                        |                      |           |
+|                        |                      |           |
+|                        |                      |           |
+|                        |                      |           |
+|                        |                      |           |
+|                        |                      |           |
+|                        |                      |           |
+|                        |                      |           |
+|                        |                      |           |
+|                        |                      |           |
+|                        |                      |           |
+|                        |                      |           |
+|                        |                      |           |
+|                        |                      |           |
+|                        |                      |           |
+|                        |                      |           |
+|                        |                      |           |
+|                        |                      |           |
+|                        |                      |           |
+|                        |                      |           |
+|                        |                      |           |
 
-
-### Ayudantías
-
-| Ayudante              | Link |
-|-----------------------|------|
-| Matías Álvarez       | maalvarr@alumnos.uahurtado.cl|
-| Francesca Rocco     | franroco21@gmail.com|
 
 
 #### Bibliografía del curso
