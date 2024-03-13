@@ -3,7 +3,7 @@
     "path": "C:/Users/sebastian/Desktop/PRODUCCION/00. ACCIÓN PROXIMA/03. CUANTI/Curso Cuanti 2/Curso UAH/2024/mc2/clases/clase_01/clase_1.Rmd",
     "project_path": "clase_1.Rmd",
     "type": "r_markdown",
-    "hash": "808771905",
+    "hash": "93038734",
     "contents": "",
     "dirty": false,
     "created": 1710186883548.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "78,3",
-        "scrollLine": "53"
+        "cursorPosition": "119,54",
+        "scrollLine": "95"
     },
     "folds": "",
-    "lastKnownWriteTime": 1710335344,
+    "lastKnownWriteTime": 1710336566,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1710335344289,
+    "last_content_update": 1710336566743,
     "read_only": false,
     "read_only_alternatives": []
 }

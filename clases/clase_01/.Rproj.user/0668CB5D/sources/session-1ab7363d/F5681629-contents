@@ -86,7 +86,7 @@ Nota: En general las ayundantías son online, a excepción de algunas con Matía
 | Inicio Trabajo de Campo       | Hacer 5 cuestionarios por persona            | Abril 22       |
 | Finalización Trabajo de Campo | Hacer 5 cuestionarios por persona            | Abril 26       |
 | Avance 2                      | Procesamiento y análisis básico              | Mayo 10        |
-| Evaluación individual II      | Procesamiento y análisis de datos categóricos | Junio 14       |
+| Evaluación individual II      | Procesamiento y análisis de datos cuanti/cuali | Junio 14       |
 | Entrega grupal final          | Presentación de investigación en clases y entrega de trabajo | Julio 12 |
 
 
@@ -95,31 +95,33 @@ Nota: En general las ayundantías son online, a excepción de algunas con Matía
 ## Grupos de trabajo
 
 
-| Nombre                 | Apellido(s)          | Grupo     |
-|------------------------|----------------------|-----------|
-|                        |                      |           |
-|                        |                      |           |
-|                        |                      |           |
-|                        |                      |           |
-|                        |                      |           |
-|                        |                      |           |
-|                        |                      |           |
-|                        |                      |           |
-|                        |                      |           |
-|                        |                      |           |
-|                        |                      |           |
-|                        |                      |           |
-|                        |                      |           |
-|                        |                      |           |
-|                        |                      |           |
-|                        |                      |           |
-|                        |                      |           |
-|                        |                      |           |
-|                        |                      |           |
-|                        |                      |           |
-|                        |                      |           |
-|                        |                      |           |
-|                        |                      |           |
+| Grupo                  | Tema                  | Nombre               | Apellido  |
+|------------------------|-----------------------|----------------------|-----------|
+|                        |                       |                      |           |
+|                        |                       |                      |           |
+|                        |                       |                      |           |
+|                        |                       |                      |           |
+|                        |                       |                      |           |
+|                        |                       |                      |           |
+|                        |                       |                      |           |
+|                        |                       |                      |           |
+|                        |                       |                      |           |
+|                        |                       |                      |           |
+|                        |                       |                      |           |
+|                        |                       |                      |           |
+|                        |                       |                      |           |
+|                        |                       |                      |           |
+|                        |                       |                      |           |
+|                        |                       |                      |           |
+|                        |                       |                      |           |
+|                        |                       |                      |           |
+|                        |                       |                      |           |
+|                        |                       |                      |           |
+|                        |                       |                      |           |
+|                        |                       |                      |           |
+|                        |                       |                      |           |
+|                        |                       |                      |           |
+
 
 
 
