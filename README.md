@@ -94,8 +94,9 @@ Nota: En general las ayundantías son online, a excepción de algunas con Matía
 ---
 ## Asistencia
 
-Para ver su asistencia dirijasé al siguiente link:
-https://docs.google.com/spreadsheets/d/1L0uKet7DfZEo6yCOWiTvtb1wX2KRl3KvjPHbykqjLM8/edit#gid=0
+Para ver su asistencia dirijasé al siguiente [`[link]`](https://docs.google.com/spreadsheets/d/1L0uKet7DfZEo6yCOWiTvtb1wX2KRl3KvjPHbykqjLM8/edit#gid=0)
+
+
 
 
 Recuerde puede faltar a 8 bloques! 
