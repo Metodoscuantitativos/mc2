@@ -141,36 +141,36 @@ Recuerde puede faltar a 8 bloques!
 
 **Básica**
 
-[`[Clase1]`](https://metodoscuantitativos.github.io/mc2/clases/clase_01/clase_1#1)
+
 
 - [`[Ritchey, Ferris (2001) Estadística para las ciencias sociales. El potencial de la imaginación estadística (México D.F.: McGraw-Hill/Interamericana Editores)]`](https://metodoscuantitativos.github.io/mc2/bibliografía/basica/Ferris-Ritchey-McGraw.pdf)
 
 
-- Boccardo y Ruiz (2019) RStudio para Estadística Descriptiva en Ciencias Sociales
+- [`[Boccardo y Ruiz (2019) RStudio para Estadística Descriptiva en Ciencias Sociales]`](https://metodoscuantitativos.github.io/mc2/bibliografía/basica/Boccardo-y-Ruiz-(2019)-RStudio-para-Estadística-Descriptiva-en-Ciencias-Sociales.pdf)
 
 **Complementaria**
 
-- Imai, K. (2018). Quantitative social science: an introduction. Princeton University Press.
+- [`[Imai, K. (2018). Quantitative social science: an introduction. Princeton University Press]`](https://metodoscuantitativos.github.io/mc2/bibliografía/complementaria/0.3 Imai (2008) Quantitative Social Science. An Introduction.pdf)
 
-- Madrigal L. Frontmatter. In: Statistics for Anthropology. Cambridge University Press; 2012:i-v. 
+- [`[Madrigal L. Frontmatter. In: Statistics for Anthropology. Cambridge University Press; 2012:i-v]`](https://metodoscuantitativos.github.io/mc2/bibliografía/ 
 
-- Harvey, G. (2016). Excel 2016 for dummies. John Wiley & Sons
+- [`[Harvey, G. (2016). Excel 2016 for dummies. John Wiley & Sons]`](https://metodoscuantitativos.github.io/mc2/bibliografía/
 
 **Optativa**
 
-- Howard s. Becker - Datos, pruebas e ideas-Siglo XXI (2018)
+- [`[Howard s. Becker - Datos, pruebas e ideas-Siglo XXI (2018)]`](https://metodoscuantitativos.github.io/mc2/bibliografía/
 
-- Joel (2004) Uso y Abuson de Las Estadisticas
+- [`[Joel (2004) Uso y Abuson de Las Estadisticas]`](https://metodoscuantitativos.github.io/mc2/bibliografía/
 
-- D'Ignazio y Klein (2020) Data Feminism-MIT Press
+- [`[D'Ignazio y Klein (2020) Data Feminism-MIT Press]`](https://metodoscuantitativos.github.io/mc2/bibliografía/
  
-- Sevilla (2005) Gramática de los gráficos
+- [`[Sevilla (2005) Gramática de los gráficos]`](https://metodoscuantitativos.github.io/mc2/bibliografía/
 
-- Sosa, Walter (2020) Big Data
+- [`[Sosa, Walter (2020) Big Data]`](https://metodoscuantitativos.github.io/mc2/bibliografía/
 
-- AS Checklist for Articles_OSF
+- [`[AS Checklist for Articles_OSF]`](https://metodoscuantitativos.github.io/mc2/bibliografía/
 
-- Belcher Cómo-escribir-un-artículo-académico-en-12-semanas
+- [`[Belcher Cómo-escribir-un-artículo-académico-en-12-semanas]`](https://metodoscuantitativos.github.io/mc2/bibliografía/
 
 
 
