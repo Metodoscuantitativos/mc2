@@ -150,27 +150,27 @@ Recuerde puede faltar a 8 bloques!
 
 **Complementaria**
 
-- [`[Imai, K. (2018). Quantitative social science: an introduction. Princeton University Press]`](https://metodoscuantitativos.github.io/mc2/bibliografía/complementaria/0.3 Imai (2008) Quantitative Social Science. An Introduction.pdf)
+- [`[Imai, K. (2018). Quantitative social science: an introduction. Princeton University Press]`](https://metodoscuantitativos.github.io/mc2/bibliografía/complementaria/Imai-(2008)-Quantitative-Social-Science-An-ntroduction.pdf)
 
-- [`[Madrigal L. Frontmatter. In: Statistics for Anthropology. Cambridge University Press; 2012:i-v]`](https://metodoscuantitativos.github.io/mc2/bibliografía/ 
+- [`[Madrigal L. Frontmatter. In: Statistics for Anthropology. Cambridge University Press; 2012:i-v]`](https://metodoscuantitativos.github.io/mc2/bibliografía/complementaria/Lorena-Madrigal-Statistics-for-Anthropology-Cambridge-University-Press-(2012).pdf) 
 
-- [`[Harvey, G. (2016). Excel 2016 for dummies. John Wiley & Sons]`](https://metodoscuantitativos.github.io/mc2/bibliografía/
+- [`[Harvey, G. (2016). Excel 2016 for dummies. John Wiley & Sons]`](https://metodoscuantitativos.github.io/mc2/bibliografía/complementaria/Para-Dummies-Greg-Harvey-Excel-2016-para-Dummies-Para-Dummies-2017.pdf)
 
 **Optativa**
 
-- [`[Howard s. Becker - Datos, pruebas e ideas-Siglo XXI (2018)]`](https://metodoscuantitativos.github.io/mc2/bibliografía/
+- [`[Howard s. Becker - Datos, pruebas e ideas-Siglo XXI (2018)]`](https://metodoscuantitativos.github.io/mc2/bibliografía/optativa/Howard-Becker-Datos-pruebas-e-ideas-Siglo-XXI-(2018).pdf)
 
-- [`[Joel (2004) Uso y Abuson de Las Estadisticas]`](https://metodoscuantitativos.github.io/mc2/bibliografía/
+- [`[Joel (2004) Uso y Abuson de Las Estadisticas]`](https://metodoscuantitativos.github.io/mc2/bibliografía/optativa/Joel (2004)-Uso-y-Abuson-de-Las-Estadisticas.pdf)
 
-- [`[D'Ignazio y Klein (2020) Data Feminism-MIT Press]`](https://metodoscuantitativos.github.io/mc2/bibliografía/
+- [`[D'Ignazio y Klein (2020) Data Feminism-MIT Press]`](https://metodoscuantitativos.github.io/mc2/bibliografía/optativa/D'Ignazio-y Klein-(2020)-Data-Feminism-MIT-Press.pdf)
  
-- [`[Sevilla (2005) Gramática de los gráficos]`](https://metodoscuantitativos.github.io/mc2/bibliografía/
+- [`[Sevilla (2005) Gramática de los gráficos]`](https://metodoscuantitativos.github.io/mc2/bibliografía/optativa/Sevilla-(2005)-Gramática-de-los-gráficos.pdf)
 
-- [`[Sosa, Walter (2020) Big Data]`](https://metodoscuantitativos.github.io/mc2/bibliografía/
+- [`[Sosa, Walter (2020) Big Data]`](https://metodoscuantitativos.github.io/mc2/bibliografía/optativa/Sosa-Walter-(2020)-Big-Data.pdf)
 
-- [`[AS Checklist for Articles_OSF]`](https://metodoscuantitativos.github.io/mc2/bibliografía/
+- [`[AS Checklist for Articles_OSF]`](https://metodoscuantitativos.github.io/mc2/bibliografía/optativa/AS-Checklist-for-Articles-OSF.pdf)
 
-- [`[Belcher Cómo-escribir-un-artículo-académico-en-12-semanas]`](https://metodoscuantitativos.github.io/mc2/bibliografía/
+- [`[Belcher Cómo-escribir-un-artículo-académico-en-12-semanas]`](https://metodoscuantitativos.github.io/mc2/bibliografía/optativa/Belcher-Cómo-escribir-un-artículo-académico-en-12-semanas.pdf)
 
 
 
