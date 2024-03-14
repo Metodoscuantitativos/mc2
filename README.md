@@ -160,9 +160,9 @@ Recuerde puede faltar a 8 bloques!
 
 - [`[Howard s. Becker - Datos, pruebas e ideas-Siglo XXI (2018)]`](https://metodoscuantitativos.github.io/mc2/bibliografía/optativa/Howard-Becker-Datos-pruebas-e-ideas-Siglo-XXI-(2018).pdf)
 
-- [`[Joel (2004) Uso y Abuson de Las Estadisticas]`](https://metodoscuantitativos.github.io/mc2/bibliografía/optativa/Joel (2004)-Uso-y-Abuson-de-Las-Estadisticas.pdf)
+- [`[Joel (2004) Uso y Abuson de Las Estadisticas]`](https://metodoscuantitativos.github.io/mc2/bibliografía/optativa/Joel(2004)-Uso-y-Abuson-de-Las-Estadisticas.pdf)
 
-- [`[D'Ignazio y Klein (2020) Data Feminism-MIT Press]`](https://metodoscuantitativos.github.io/mc2/bibliografía/optativa/D'Ignazio-y Klein-(2020)-Data-Feminism-MIT-Press.pdf)
+- [`[D'Ignazio y Klein (2020) Data Feminism-MIT Press]`](https://metodoscuantitativos.github.io/mc2/bibliografía/optativa/D'Ignazio-y-Klein-(2020)-Data-Feminism-MIT-Press.pdf)
  
 - [`[Sevilla (2005) Gramática de los gráficos]`](https://metodoscuantitativos.github.io/mc2/bibliografía/optativa/Sevilla-(2005)-Gramática-de-los-gráficos.pdf)
 
