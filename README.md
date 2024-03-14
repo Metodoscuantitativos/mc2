@@ -31,7 +31,7 @@ Programación: [`[Programación]`](https://metodoscuantitativos.github.io/mc2/fi
 ---
 ## Descarga e instalación de R y RStudio
 
-- Descargar e instalar `R`: [`[Cápsula]`](https://posit.co/download/rstudio-desktop/) 
+- Descargar e instalar `R`: [`[Cápsula]`](https://youtu.be/URtP9Qo2Trw?si=6BCceJEx7f6sXduZ) 
 
 
 ---
