@@ -69,7 +69,7 @@ Nota: En general las ayundantías son online, a excepción de algunas con Matía
 
 | Fecha      | Contenido                                                  | Tareas |
 |------------|------------------------------------------------------------|--------|
-| a definir  | Instalación de R y elementos básicos                       | [`[.R]`](ayudantias/ayudantia_01/ayudantia_01.R), [`[PPT]`](https://metodoscuantitativos.github.io/mc2/ayudantia_01/ayudantia1.pdf)|
+| a definir  | Instalación de R y elementos básicos                       | [`[.R]`](ayudantias/ayudantia_01/ayudantia_01.R), [`[PPT]`](https://github.com/Metodoscuantitativos/mc2/blob/main/ayudantias/ayudantia_01/ayudantia1.pdf)|
 
 
 
