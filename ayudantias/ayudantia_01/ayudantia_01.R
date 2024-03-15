@@ -1,4 +1,4 @@
-# Script de R - Ejercicios No Resueltos
+# Script de R - Ejercicios No Resueltos.
 
 # I. Preguntas básicas iniciales ----------------------------------------------
 # a) Describe en tus propias palabras la diferencia entre R como lenguaje de programación y RStudio.
