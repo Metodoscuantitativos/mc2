@@ -104,12 +104,13 @@ Recuerde puede faltar a 8 bloques!
 ---
 ## Grupos de trabajo
 
+Joaquín Orellana, Noel Casas-Cordero, Samanta Letelier
 
 | Grupo                  | Tema                  | Nombre               | Apellido  |
-|------------------------|-----------------------|----------------------|-----------|
-|                        |                       |                      |           |
-|                        |                       |                      |           |
-|                        |                       |                      |           |
+|----------|-----------------------|----------------------|-----------|
+|       1  | sociodemográficos y proceso general |Noel  |     Casas-Cordero      |
+|       1  | sociodemográficos y proceso general | Samanta  | Letelier          |
+|       1  | sociodemográficos y proceso general | Joaquín |  Orellana          |
 |                        |                       |                      |           |
 |                        |                       |                      |           |
 |                        |                       |                      |           |
