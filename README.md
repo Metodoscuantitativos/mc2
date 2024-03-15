@@ -69,7 +69,7 @@ Nota: En general las ayundantías son online, a excepción de algunas con Matía
 
 | Fecha             | Contenido                                                      | Tareas                                              |
 |-------------------|----------------------------------------------------------------|-----------------------------------------------------|
-| a definir         | Instalación de R y elementos básicos                           | [`[.R]`](ayudantias/ayudantia_01/ayudantia_01.R)    |
+| a definir         | Instalación de R y elementos básicos                           | [`[.R]`](ayudantias/ayudantia_01/ayudantia_01.R)  [`[PPT]`](ayudantias/ayudantia_01/Metodología-de-investigacion-cuantitativa-y-análisis-de-datos-Estadísticospdf.R)    |
 
 
 
