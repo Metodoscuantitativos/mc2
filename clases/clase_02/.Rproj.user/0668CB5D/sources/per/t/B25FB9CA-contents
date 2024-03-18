@@ -1,0 +1,883 @@
+
+---
+title: " ¿A qué se le dice 'música urbana' en Chile? Una visión desde las ciencias sociales"
+author: "Sebastián Muñoz-Tapia & Carla Pinochet Cobos"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    nature:
+      slideNumberFormat: "%current%"
+      highlightStyle: github
+      highlightLines: true
+      ratio: 16:9
+      countIncrementalSlides: true
+      font-family: "Outfit, Arial, sans-serif"
+---
+
+
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+
+#install.packages("pacman")
+pacman::p_load(xaringan,xaringanthemer,tidyverse, gt,kableExtra, xaringanExtra )
+
+
+style_duo_accent_inverse(
+  primary_color = "#FFFFFF",
+  secondary_color = "#808080",
+  inverse_header_color = "#A8FBC8"
+)
+
+
+```
+
+
+
+```{r xaringan-animate-css, echo=FALSE}
+xaringanExtra::use_animate_css()
+xaringanExtra::use_tachyons()
+xaringanExtra::use_share_again()
+
+```
+
+
+
+class: slideInRight, fadeOutLeft
+
+background-image: url("img/logos.png")
+background-size: cover
+
+
+
+.pull-left[
+
+## ¿A qué se le dice “música urbana” en Chile?: Una visión desde las ciencias sociales
+
+-	Sebastián Muñoz-Tapia
+  - Departamento de Antropología, Universidad Alberto Hurtado
+  - rapytecnologias.com @rapytecnologias: Fondo de la música: n°655450
+  - ANID, Fodecyt posdoctoral: n°3220141
+-	Carla Pinochet Cobos 
+  - Departamento de Antropología, Universidad Alberto Hurtado
+-	Ambos: 
+  - cmus.cl 
+  - @cmus (ANID, NCS_2022_016)]
+---
+
+
+![Música urbana](img/Musica-urbana_01Port.gif)
+---
+
+class: inverse, animated, slideInRight
+
+# ¿Qué es la música urbana? 
+## Tres grandes respuestas contrapuestas:  
+
+
+-	“músicas de la calle”: 
+  - “todo lo que sea música de la calle. De hecho, el hip hop, el rap es parte de la música urbana… Todos estos estilos vienen de la calle, de gente que quiere cambiar su realidad” (Pedro, manager 33 años)
+  - Mezcla: origen popular de los artistas que la producen, posible vínculo con el mundo del hampa. 
+  - Eufemismo de “música urbana”: para no decir “música de calle”
+-	“música comercial”
+  - una operación industrial, nuevo pop. 
+  - crítica: expresión domesticada
+  - sentido positivo:
+    - “tener un mejor estándar de vida” 
+    - “ayudar a la familia”, "obtener trabajo"
+-	“música libre”: 
+  - Libertad creativa, libertad de escucha: “hacer de todo”, “ser versátil”
+  - “Dale tu corte”: original, arriesgarse, jugársela. 
+  
+---
+
+class: middle, slideInRight, fadeOutLeft
+background-image: url("img/3.png")
+background-size: cover
+
+## Carácter insuficiente de tales perspectivas
+-	raíces subalternas o populares que algunos de los artistas comparten no constituyen un patrimonio exclusivo de las “músicas de calle”
+-	ni estos orígenes resultan más distintivos de la música urbana que de otros géneros como el folclore o la cumbia. 
+-	carácter “industrial” no entrega luces porque se incluye algunos (rap, trap, reggaetón o mambo) y no otros (rock o k-pop)
+-	el carácter “libre”, “abierto”, “jugado”: no es exclusivo de lo urbano: autonomía creativa discurso clásico en el arte.
+
+---
+
+class: inverse, middle, slideInRight, fadeOutLeft
+
+## ¿Cómo se articulan y conviven estas definiciones? si aparentemente, ninguna logra dar cuenta de la singularidad del fenómeno
+-	Postura: 
+  - *“no tanto en qué es la música urbana, sino más bien cómo esta categoría emerge y se estabiliza en Chile”* 
+  - Discusiones que tienen artistas, periodistas especializados, manager y productores de eventos sobre su definición y la valoración.
+  - Desarrollo tecnológico
+  - Sonidos
+
+
+
+  
+---
+
+class:   inverse, middle, slideInRight, fadeOutLeft
+
+.pull-left[
+
+# Dos temas
+
+###	Mediaciones que producen las etiquetas musicales: 
+- ¿cómo se producen los *géneros musicales*?
+
+### Controversias sobre la autenticidad 
+- ¿cómo se *valora* la música?
+]
+
+.pull-rigth[
+![ojos](img/ojos.gif)
+
+ ]
+
+
+---
+
+class: middle, slideInRight, fadeOutLeft
+background-image: url("img/1.png")
+background-size: cover
+
+
+## Metodología (mixtas): 
+
+.pull-rigth[
+-	podcast
+-	notas en diarios
+-	entrevistas realizadas por otros
+-	entrevistas propias (rapytecnologias.com)
+-	datos cuantitativos de streaming.
+- observación participante
+ ]
+
+
+---
+
+class:  middle, slideInRight, fadeOutLeft
+background-image: url("img/network.gif")
+background-size: cover
+
+# 1. ¿Qué es lo que se nombra cómo música urbana en Chile? 
+
+## La música urbana como ensamblado
+
+###	A través de las discusiones entre distintas personas, desarrollo tecnológico y sonidos.
+###	Genealogía: del rap en Chile, la escisión rap y trap y la fusión de la “música urbana” (reggaeton, trap, mambo, rap)
+
+
+---
+
+class: middle, slideInRight, fadeOutLeft
+
+## ¿Qué son los géneros musicales? 
+-	**prácticas de categorización** en las cuales se establecen etiquetas, se clasifican obras y eventos musicales, pero también se asocian con las personas que las crean, las escuchan o trabajan con ellas (Fellone 2021; Drott 2013; Buch 2018, 2013; Brackett 2016; Fabbri 2016; Guerrero 2012; Di Maggio 1987; Krogh 2019; Lena 2016).
+-	nombrar a las músicas *trasciende una definición meramente sonora, formal y técnica* (Guerrero 2012). 
+-	proceso que resulta de una asociación entre una variedad de recursos materiales, institucionales, sociales y simbólicos, que Eric Drott (2013) denomina **ensamblado**.
+
+
+<div style="text-align: center;">
+  <img src="img/gifs-de-ondas-sonoras-1.gif" alt="Descripción de la imagen" style="width:300px;height:200px;">
+</div>
+
+
+---
+class: inverse, middle, slideInRight, fadeOutLeft
+
+## ¿Qué agentes que intervienen en las prácticas de categorización?
+-	los sellos discográficos (grandes o pequeños), los periodistas, los consultores y los agentes de marketing (Hammou 2023). 
+-	las instituciones estatales y las políticas públicas (Blázquez 2009; Hammou y Sonnette-Manouguian 2022)
+-	las operaciones psicosociales para percibir e identificar la música (López-Cano 2004) 
+-	papel de los objetos como dispositivos materiales para la creación, escucha y distribución musical (Drott 2013; Krogh 2019).
+
+---
+
+class: middle, slideInRight, fadeOutLeft
+
+## ¿Qué es lo “urbano”? (en otros países)
+
+.pull-left[
+-	**Estados Unidos**: “*urban contemporary*” desde la década de 1980 (Karim Hammou (2023)
+  - influencia de periodistas, profesionales del marketing, encuestadores y consultores
+  - eufemización de la cuestión racial; aspectos territoriales.
+  
+  
+-	**Francia**: “*musique urbaine*”: desde la década de 1990 (Hammou y Marie Sonnette-Manouguian, 2022)
+  - la relevancia de las políticas estatales y eventos financiados por el gobierno para fortalecer la categoría “urbano”. 
+  - institucionalización de un conjunto de prácticas deportivas y musicales en eventos y centros culturales, así como a través de intervenciones en barrios populares.]
+  
+.pull-right[
+
+![urban](img/urbancontemp.png)
+  
+]  
+---
+
+class:  animated, slideInRight, fadeOutLeft
+background-image: url("img/30rapchileno.jpg")
+background-size: cover
+
+.pull-right[
+## ¿Qué pasó en Chile?
+#### Escisión: "rap" hegemónico vs. "trap" 
+#### Fusión: del "trap" a la "música urbana" 
+]
+
+
+
+
+---
+class: slideInRight, fadeOutLeft
+
+background-image: url("img/3.png")
+background-size: cover
+
+
+
+## El rap hegemónico: boom-bap contracultural o hardcore 
+
+.pull-left[
+-	95- 99: 
+  - Conjunto de discos elaborados por sellos discográficos major: 
+    - “Ser Humano” de Tiro de Gracia (1997)
+  - Convivían con discos underground:
+    - Producidos por computadoras y software, en lugar de máquinas de ritmo y sintetizadores
+
+-	2000-2015:
+  - Aceleración de la adopción digital (computadores e internet): 
+    - Home-studios (softwares y hardwares); distribución vía CD-R, MP3s, YouTube
+    - Computador como metadispositivo
+    - Proliferación de discos independientes y red colaborativa de rap underground.
+  - Retiro de grandes sellos
+]
+
+.pull-right[
+![ryt](img/ryt.png)
+
+]
+---
+
+class: middle, inverse, slideInRight, fadeOutLeft
+
+
+## ¿Qué tipo de rap se produjo?
+
+
+
+
+.pull-left[
+- Diversidad de categorías: 
+  - “rap político” (e.g. Salvaje Decibel, Portavoz, Guerrillero Oculto, Subverso) 
+  - “rap hardcore” (e.g. CHR, De Killtros o Estrellas del Porno) 
+  - otras denominaciones difusas:
+    - “rap medio reggae” (e.g. Movimiento Original, Elixir de Beat), 
+    - “rap medio electrónico” (e.g. Zonora Point y Ceaese), 
+    - “más experimental” (e.g. FDA, Demencia Local o Colectivo Etéreo). 
+
+]
+
+
+.pull-right[
+![cash](img/portavoz.gif)
+]
+
+---
+
+class: middle, slideInRight, fadeOutLeft
+
+## Nomenclaturas más extendidas: “rap político” y el “rap hardcore”
+
+.pull-left[
+- predominaron sonidos cercanos al boom-bap del Nueva York de los noventa [ejemplo, de sonido]
+- “rap hardcore”: 
+  - mostrar habilidades al rapear y narrar historias cotidianas
+- “rap político”:
+    - tono contracultural
+    - participación en movilizaciones sociales y a agrupaciones como la Red de Hip-Hop Activista.]
+
+.pull-right[
+![estudiantes](img/estudiantes-marchas-scaled.jpg)
+]
+---
+
+class: middle, inverse, slideInRight, fadeOutLeft
+
+## Desarrollo de *masa crítica* (Crossley Ibrahim, 2012)
+
+.pull-left[
+-	“...acción colectiva requiere un número suficiente de personas con el interés y los recursos necesarios —una masa crítica— que están adecuadamente conectados para permitir la coordinación —las redes sociales”. 
+-	¿Cómo se expandió esta masa crítica? 
+  - nutrida oferta de música, recitales (en barrios y masivos: autogestionados y mainstream (Portavoz en Lollapalooza, 2015)
+  - videos en YouTube]
+
+.pull-left[
+![yt](img/youtube.gif)
+
+]
+
+
+---
+ 
+  
+<video width="100%" controls>
+  <source src="img/videos/portavoz en lollapalooza.mp4" type="video/mp4">
+  Tu navegador no soporta el elemento de video.
+</video>
+
+
+
+
+---
+class: slideInRight, fadeOutLeft
+
+# La escisión rap/trap y su constitución alternativa
+
+.pull-left[
+
+-	Exploración con sonidos “crunk”, “dirty south”, luego “trap” desde los 2005: 
+    - como DownZouthKingz, posteriormente los Nación Trizzii, KSN Fam, C o Zonora Point)
+    - bombos, sub-bajos y hi-hat acelerados cercanos a la TR-808, el uso de sintetizadores, ad-libs (vocalizaciones), un tempo entre 60 y 70 BPM, voces ralentizadas y el uso de auto-tune.
+-	Otras formas de vestirse: 
+    - marcas de lujo como Gucci, Balenciaga, Prada, Versace, “más americanizado”. 
+    - pantalones apretados y colores flúor.
+]
+.pull-right[
+
+![cash](img/bling-bling-gucci-mane.gif)]
+
+
+
+---
+
+background-image: url("img/5.png")
+background-size: cover
+
+<video width="100%" controls>
+  <source src="img/videos/JID.mp4" type="video/mp4">
+  Tu navegador no soporta el elemento de video.
+</video>
+
+
+---
+
+background-image: url("img/6.png")
+background-size: cover
+
+
+
+
+<div style="float: right; margin-left: 20px;">
+  <video width="15%" controls>
+    <source src="img/videos/Chystemc - Boombarrio.mp4" type="video/mp4">
+    Tu navegador no soporta el elemento de video.
+  </video>
+</div>
+
+
+
+
+---
+
+class: middle, inverse, slideInRight, fadeOutLeft
+
+## Temáticas: 
+- Ceaese, Drefquila, Paloma mami: 
+  - letras personales, existenciales, amor/desamor
+
+### Nacion Trizzi, Pablo Chill-E o Big Angelo: 
+  - “la calle”: vivencias generales de las clases populares a una particular relación con la obtención de dinero de manera no necesariamente legal, la delincuencia o las drogas.
+    - ascenso social. 
+
+
+.pull-left[
+![paloma](img/paloma mami.gif)
+]
+
+
+.pull-rigth[
+![cash](img/wu tang.gif)
+
+]
+
+---
+class: middle, slideInRight, fadeOutLeft
+
+background-image: url("img/money.gif")
+background-size: cover
+
+
+##Jernej Kaluža (2018): 
+### *el trap muestra una doble realidad: estar atrapado (en la vida de la calle) y escapar de la trampa, hacia una vida idealizada y soñada llena de oro y diamantes (el ascenso social)*.
+
+## En Chile
+### A diferencia de lo que sucedía en Estados Unidos, hasta la década del 2010 no era común  que la música rapera hablara de dinero, de marcas de ropa, de consumismo o de la delincuencia y la vida de “calle”.
+
+
+
+
+---
+
+class: middle, inverse, slideInRight, fadeOutLeft
+
+
+.pull-left[
+## Habilitación tecnológica
+  - Intensidad de consumos, individualización de dispositivos, streaming, Instagram
+  - Gran reservorio musical y fomento del omnivorismo (Peterson, 1993)
+
+## Latin-Trap
+  - Arcángel, Ñengo, Anuel o Bad Bunny. 
+  - Criz Gómez (en Molina, 2021), es la influencia de estos artistas la que provoca la comercialización del género en Chile.]
+  
+
+.pull-rigth[
+
+
+
+<img src="img/spotify.gif" alt="Descripción de la imagen" style="width:500px;height:300px;"/>
+
+
+]
+  
+
+
+---
+class: middle, slideInRight, fadeOutLeft
+
+## Redes colaborativas específicas 
+-	Espacios virtuales: YouTube, SoundCloud, Facebook
+-	Espacios físicos: fiestas (Trap House, Club Greta o Ambar), se mezclaba reggaetón, dembow o música electrónica, como el dubstep
+-	Colaboraciones musicales
+-	Medios de comunicación – Instagram (Trap2Day, Trapchilememes, Malayasposting) 
+-	Propias cuentas de Instagram de los artistas
+
+---
+class: middle, center, slideInRight, fadeOutLeft
+
+<video width="50%" controls>
+  <source src="img/videos/cuña MARLONmp4.mp4" type="video/mp4">
+  Tu navegador no soporta el elemento de video.
+</video>
+
+
+---
+class: middle, inverse, center, slideInRight, fadeOutLeft
+
+# Jennifer C. Lena (2016): 
+## *se podría afirmar que entre el 2015 y 2018 el trap pasó de ser una vanguardia —de pequeños grupos que experimentan— a una escena —donde se consolidaban ciertos rasgos musicales y prácticas sociales—, ofreciendo una alternativa al rap chileno*.
+
+
+---
+class: middle, slideInRight, fadeOutLeft
+
+# Del trap a la “música urbana”
+
+## Posicionar la categoría trap
+-	2019: “Los números del trap” (hits virales), la cuantificación digital como signo de popularidad: 
+  - streaming en YouTube, Spotify, followers en Instagram
+-	2019: llegada a Premios Pulsar, Lollapalooza
+-	2021: Libro “Historia del Trap en Chile” (Molina, 2021)
+
+---
+
+class: middle, inverse, slideInRight, fadeOutLeft
+
+## La categoría trap en el ojo de la tormenta
+-	Cambios en la industria: 
+    - distribuidoras/agregadoras (Distrokid, TheOrchard, OnerPm, CDBaby), intermediarias entre artistas y plataformas (Spotify, YouTube, Apple Music)
+    - monetización – oportunidades de negocio: artistas, plataformas, sellos, productores de eventos
+-	Hibridaciones musicales, el concepto trap como concepto difuso: 
+    - “a todo se le decía trap…Se englobaban cosas que no eran trap, pero se entendía que podían ser”.
+
+
+---
+
+class: middle, center, slideInRight, fadeOutLeft
+
+
+
+## Proceso de cambio de la industria de la música
+
+
+
+
+<img src="img/gstreaming.jpg" alt="g1" style="max-width:68%;height:auto;">
+
+
+
+---
+
+class: middle, center, slideInRight, fadeOutLeft
+
+
+
+<video width="50%" controls>
+  <source src="img/videos/CUÑA THOMAS.mp4" type="video/mp4">
+  Tu navegador no soporta el elemento de video.
+</video>
+
+
+
+
+
+---
+
+class: slideInRight, fadeOutLeft
+
+## La palabra trap se queda corta
+
+.pull-left[
+
+-	Colaboraciones trap, reggaetón y mambo (desde el 2018)
+
+### *"Fue [la canción] ‘Perco con mari’ el primer tema en que se combinó todo lo urbano del Kevin, porque el Kevin venía con otro tipo de música: reggaetón, dembow; y el Pablo que venía totalmente del trap de la calle”(Fran C en Molina 2021)*.
+
+- particular uso de "urbano"
+]
+
+.pull-right[
+
+![pablo](img/perco.jpg)]
+
+]
+
+---
+
+class: middle, inverse, slideInRight, fadeOutLeft
+
+## Usos del término “música urbana” o “genero urbano”
+
+.pull-left[
+-	Premios Pulsar: acepción más cercana al uso estadounidense: “black music”
+-	2017,8,9:  Artistas lo asociaban al reggaetón
+-	“Música urbana” fue subsumiendo a varios géneros: trap, el reggaetón, el mambo, dembow o el funk carioca, el r&b, teniendo una relación ambivalente con lo que en Chile se considera rap
+]
+
+.pull-right[
+![dy](img/daddy.png)]
+]
+
+
+
+---
+class: middle, slideInRight, fadeOutLeft
+
+## ¿Qué habilita el concepto “urbano”? ¿“urbano es todo”?
+
+.pull-left[
+
+### Artistas: 
+- libertad de ir a un sonido a otro y colaborar
+### Periodistas y productores de eventos: 
+- simplificar y comprender una realidad musical compleja
+### Sellos o casas editoras: 
+- conglomerar artista y construir una “marca”. ]
+
+
+.pull-right[
+![pablo](img/generourbano.jpeg)
+
+]
+
+
+---
+class: middle, inverse, center, slideInRight, fadeOutLeft
+
+# Trabajador de una distribuidora
+##“*a mí me contrataron (...) porque yo era “experto en urbano”. Y yo decía, pero ¿qué? ¿cómo “experto en urbano”? Era porque conocía el trap, porque conocía los reguetoneros, porque conocía a los raperos. Siento que en Chile se engloba así: urbano es todo*”.
+---
+
+class: middle, slideInRight, fadeOutLeft
+
+background-image: url("img/3.png")
+background-size: cover
+
+## La chilenización de la “música urbana” y su relación con la industria
+-	Estallido social (2019) y COVID (2020-21):
+  - los conciertos y las fiestas se limitaron
+- explosión de los streams de “música urbana”
+  - Marcianeke, Jordan 23, Julianno Sosa, Dainesitta y AK420 captaron al público cautivo del reggaetón, anteriormente cautivo de puertorriqueños y colombianos
+  - “Una noche en Medellín” de Cris MJ y “Ultra Solo” de Polima Westcoast y Pailita. 
+---
+
+
+
+class: middle, center, inverse, slideInRight, fadeOutLeft
+
+
+
+![g1](img/escucha de música chile.jpeg)
+
+  
+---
+
+
+background-image: url("img/3.png")
+background-size: cover
+
+## Medios alternativos y la Junta
+.pull-left[
+-	Medios convencionales: capacidad limitada de seguir estos procesos
+-	Proliferación de medios alternativos en Instagram
+-	La Junta: mezcla lo convencional y lo novedoso: 
+    - figura destacada de los medios mainstream, a través de YouTube
+    - realización de premios: “los premios de la música urbana”
+    - une, aglomera, **junta** a distintos artistas: rap, trap, reggaetón, mambo.]
+    
+
+.pull-right[
+
+
+<img src="img/jc.gif" alt="g1" style="max-width:380%;height:auto;">
+
+]
+---
+
+class: middle, inverse, slideInRight, fadeOutLeft
+
+.pull-left[
+## La gran industria se pone al día
+-	programas de TV abierta: “Stage Urbano” en La Red y, sobre todo, “Urbanos” en Televisión Nacional. 
+-	Festival Internacional de la Canción de Viña del Mar 
+-	Lollapalooza en 2023
+-	Alianzas con productoras y artistas hacen shows individuales: Teatro Caupolicán o Movistar Arena ]
+
+.pull-right[
+
+
+![g1](img/urbanostvn.jpg)
+]
+
+
+
+---
+
+class: slideInRight, fadeOutLeft
+
+## La música urbana como un hipergénero sin consenso
+### “El carácter amplio de la “música urbana” resultó útil para sus actores, permitiendo mezclar estilos y suavizar las referencias a la “calle” en el marco de la libertad creativa y los intereses comerciales”
+
+-	**Hipergénero** (Buch, 2018,2013): categorías que operan en nivel de clasificación superior con limitaciones escasas: “música clásica” o “world music”
+-	**Funcionamiento implícito de lo urbano** (Karim Hammou, 2023 vía Denis Laborde):
+  - Los actores que lo utilizan no comparten necesariamente una definición” 
+  - Lo “urbano” permite coordinar actividades colectivas, como una posibilidad de cooperación (coordinación) sin consenso”.
+
+---
+
+class: middle, inverse, slideInRight, fadeOutLeft
+
+# 2. Una cartografía estético-moral de la música urbana: Discusiones en torno a la “*autenticidad*"
+
+## Dicotomía: 
+
+
+.pull-left[
+- Unidad “hacia afuera”
+- Controversias “hacia adentro”
+  ]
+
+
+
+
+
+---
+
+class: slideInRight, fadeOutLeft
+
+## Autenticidad: valoración de la música y los géneros musicales
+###	“modos de atribuir a cierta música y a ciertos/as músicos/as el carácter de bueno (frente a lo malo) y verdadero (frente a lo falso) a través de juicios estéticos y éticos (Frith, 2001; Moore, 2002; Peterson, 2005; Shuker, 2005).
+
+-	Criterios destacados para enjuiciar: 
+    - la originalidad, la sinceridad y la honestidad de los artistas, el hecho de “ser fiel a sí mismo” (Taylor 1994), 
+    - vínculo con un grupo o categoría social más amplia como la clase social, la raza o la etnia; 
+    - pertenencia a un espacio territorial e incluso un tiempo histórico (pasado, presente o futuro) (Guillard y Sonnette 2020). 
+
+---
+
+class: middle, inverse, slideInRight, fadeOutLeft
+
+## Procesos de autentificación (Peterson, 2005) en el hip-hop:
+
+###“keep it real”: ser o mantenerse “real”, usos en Estados Unidos (Murray Forman, 2021):  
+-	afirmarse a sí mismos o desacreditar a competidores; 
+-	demostrar conocimiento de los códigos culturales y la historia del hip-hop; 
+-	establecer una conexión con los barrios marginales 
+-	resaltar la permanencia de un individuo en el hip-hop. 
+
+---
+class: middle, slideInRight, fadeOutLeft
+
+.pull-left[
+## Figura del gangsta
+- hombres negros de clases populares, sus formas de sobrevivir y su posible cercanía a la criminalidad. 
+- Importancia en: gangsta rap y el trap
+
+## Sensibilidad postgangsta
+- Variaciones históricas de esta figura: más aislada e individualizada, centrada en los estados emocionales y reflexivos internos, dando cuenta de la vulnerabilidad y problemas de salud mental.]
+  
+.pull-right[
+![gangta](img/gangsta2.gif)]
+
+]
+
+---
+
+class: middle, inverse, slideInRight, fadeOutLeft
+
+## ¿Cuáles son las discusiones en torno al valor de la música? ¿Qué criterios de autenticidad se ponen en valor?
+## Escisión rap/ trap : cuestión generacional
+### Rap versus trap
+-	Desde el rap hegemónico (político, hardcore y boom-bap) al trap:
+    - trap perdió el vinculo con el hip-hop (la tradición) 
+    - trap se volvió comercial y está dominado por la industria
+    - trap desestima calidad musical y competencias artísticas (rapeo versus autotune; playback y la poca habilidad en vivo)
+
+---
+
+class: middle, slideInRight, fadeOutLeft
+background-image: url("img/1.png")
+background-size: cover
+
+### Desde el trap al rap
+- Crítica al purismo, cerrado, dogmático: 
+  - Sonora (boom-bap), temática (contracultural)
+- Fome, aburrido
+    - Hipócrita
+    - Machista
+
+
+![pablo](img/pablo.gif)]
+
+---
+
+
+class: middle, center, slideInRight, fadeOutLeft
+
+
+
+<video width="100%" controls>
+  <source src="img/videos/mataska.mp4" type="video/mp4">
+  Tu navegador no soporta el elemento de video.
+</video>
+
+
+
+
+---
+
+class: middle, inverse, slideInRight, fadeOutLeft
+
+## Resonancias con la heterogeneidad de valores en clases populares chilenas
+### La política como transformación colectiva
+### La cultura de la "calle"
+### La importancia del consumo
+### Digitalización transversal
+
+---
+class: middle, slideInRight, fadeOutLeft
+
+.pull-left[
+
+## ¿Quién es trap? 
+
+-	Cuando el trap se consolida popularmente
+  - Quienes hacen trap de “calle”
+  - Quienes se expresan su propia identidad, su propia historia: ser “fiel a sí mismo” o “**darle el corte**”
+-	Autenticidad que representa a un grupo, autenticidad en primera persona.]
+
+.pull-right[
+
+<img src="img/daletucorte.png" alt="dale" width="400px" />
+
+
+]
+
+---
+
+class: middle, slideInRight, fadeOutLeft
+background-image: url("img/1.png")
+background-size: cover
+
+<video width="50%" controls>
+  <source src="img/videos/VIDEO ISYS.mp4" type="video/mp4">
+  Tu navegador no soporta el elemento de video.
+</video>
+
+
+
+---
+class: middle, inverse, slideInRight, fadeOutLeft
+
+
+## Consideraciones artístico-personales y comerciales en la “música urbana”
+-	Contexto de altas ganancias económicas para algunos/as e imperativo de “pegarla”
+-	Hacer lo que a uno le gusta y sentirse cómodo consigo mismo
+ 
+#### *"Lo que pasa es que el trap nunca lo voy a dejar a un lado, la verdad a mí lo que me encanta es hacer es el trap. O sea, es mi fuerte, como mi esencia. Yo lo he dicho en todas las entrevistas, pero para mí hacer reggaetón no me gusta tanto porque lo encuentro muy monótono, siempre lo mismo, denigran demasiado a la mujer, que la disco o la botella, pero lamentablemente es lo que a veces el público consume, es lo que realmente nos paga, entonces si hay que hacerlo, lo hacemos. Pero a mí me encanta hacer el trap, porque en el trap yo realmente puedo cantar sobre algo, un sentimiento, una vivencia, y donde yo creo que uno realmente hace a los fanáticos verdaderos".* 
+
+(Julianno Sosa)
+
+ 
+
+---
+
+class: middle, slideInRight, fadeOutLeft
+
+### Negociación de ambos criterios en el **guetto fabolous** (Mukherjee 2016)
+-	ascenso social acentuado “sin un desclasamiento identitario”
+-	astucia para lograr un equilibrio entre :
+  - “ser fiel a uno mismo”  
+  - sus “orígenes sociales” (“no me olvido de donde vengo”) 
+  - objetivos económicos y comerciales
+---
+class: middle, inverse, slideInRight, fadeOutLeft
+
+# Reflexiones finales
+-	géneros musicales no son universales. Son construcciones donde se pueden mezclar elementos locales con globales, confluyendo elementos estético-sonores, actores sociales diversos con sus argmentos y tecnologías. Tal es la conformación de ensamblados.
+-	nombrar y valorar la “música urbana” debería entenderse en la singularidad chilena, más que sólo exportando categorías: hay una historia propia. 
+-	Música urbana vehiculiza diferencias: 
+  - inter-clases: ¿quién es trap? 
+  - intra-clases: política, calle, dale tu corte
+  - generacionales: nuevo escenario de escucha, producción y distribución 
+  - Digitalización ampliada y cambios en la industria de la música
+-	Música y subjetividad: 
+  - crisis de instituciones (políticas clásicas, educativas, laborales)
+  - formas de construirnos a nosotros mismos como personas y como colectivos
+
+
+---
+
+class: middle, slideInRight, fadeOutLeft
+
+## Temas futuros
+-	la relación de la “música urbana” con el género (sexual)
+-	la aparición de la temática de la vulnerabilidad y salud mental
+-	el relativo apaciguamiento de las tensiones estéticas y valóricas
+-	conexión con la crisis de seguridad y delincuencia que vive Chile. 
+-	¿Qué pasó con la cultura hip-hop? ¿Hay una cultura hip-hop descentrada?
+
+---
+
+background-image: url("img/logos.png")
+background-size: cover
+
+class: middle, slideInRight, fadeOutLeft
+
+# Gracias!
+
+### Contactos
+
+- rapytecnologias.com
+- @rapytecnologias
+
+- cmus.cl
+- @cmusmilenio
+
+- semunoz@uahurtado.cl
+- cpinochet@uahurtado.cl
+
+
+
+
