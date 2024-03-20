@@ -1,6 +1,6 @@
 #clase 2: paquetes y tidyverse
 
-# 0. Repaso de acuerdos y de lo que son los data.frame 
+
 # I. Instalación de Paquetes y tidyverse -------------------------------------
 
 #1. Instalar
@@ -17,7 +17,7 @@ pacman::p_load(tidyverse,Lock5Data, openintro) #tidyverse y bases de datos de ci
 #Lenguaje de programación de la "nueva escuela"
 #Versus r base
 
-#00.1 Manipulación datos con tidyverse %>% 
+#00.1 Manipulación datos con tidyverse %>%   
 # %>% el pipe: encadenar funciones, realizar procedimientos por capas
 #va de lo macro a lo micro, de izquierda a derecha
 #aplica tal función o realiza tal procedimiento
@@ -45,48 +45,40 @@ names(data)
 
 #forma 1
 data %>% 
-  dplyr::select(Movie, LeadStudio, Genre)
+  dplyr::select(Movie, LeadStudio, Genre) 
 
 #forma 2
-data %>% select(Movie, LeadStudio, Genre)
+data %>% select(Movie, LeadStudio, Genre) 
 
 #¿Por qué se usan los dos puntos?
 #Cada paquete puede incluir funciones específicas
 #los doble dos puntos (::) llaman a esas funciones
 #a veces las funciones pueden coincidir y R puede que se pierda
 
-#asingar
+#asignar
 data_select <- data %>% select(Movie, LeadStudio, Genre)
 # acá estoy guardando en data_select la selección que realicé 
-
+# se mantiene cantidad de casos, se reduce cantidad de variables
 
 #otras selecciones
-#a. todas las variables que no sean -c
+#a. todas las variables que no sean -c ####
 #ni Budget, ni WorldGross
 
 data %>% select(-c(Budget, WorldGross))
 
-#b. ordenar
+#b. ordenar ####
 data %>% select(Year, everything()) %>% #pone primero Year, luego el resto
   view()
 
-#c. las que comiencen con start_with
+#c. las que comiencen con start_with ####
 data %>% select(starts_with(match="M")) %>% 
   view()
 
-#d. las que terminen con ends_with
+#d. las que terminen con ends_with ####
 data %>% select(ends_with(match="E")) %>% 
 view()
 
-#e. las que son numéricas
-data %>% select_if(is.numeric)
 
-#f. las que son categóricas
-data %>% select_if(is.character)
-
-
-#f. transformar a mayúsculas
-data %>% select_all(toupper)
 
 #Práctica 1#### 
 #00. En la base de datos oscars
@@ -140,19 +132,19 @@ data %>% dplyr::filter (Year==2018)  # con::
 data %>% filter (Year >= 2016) %>% view()
 
 #presupuesto mayor que 210
-data %>% filter (Budget >=210) 
+data %>% filter (Budget >=210) %>% view ()
 
 #filtrar por variables categóricas
-data %>% filter (Genre== "Drama") %>% view() # ojo que las categóricas van con comillas
-
+data %>% filter (Genre== "Documentary") %>% view() # ojo que las categóricas van con comillas
+unique(data$Genre)
 
 #filtrar por dos tipos de variables
 data %>% filter (Genre=="Action" & Year==2013) %>% view()
 
 #filtrar por una y otra (| al lado del 1 en pc)
-data %>% filter (Genre== "Comedy"| Genre == "Drama")
+data %>% filter (Genre== "Comedy"| Genre == "Drama") 
 data %>% filter (Genre %in% c("Comedy", "Drama")) #cuando se selecciona más de una variable
-
+class(data$Genre)
 
 
 #Práctica 2####
@@ -194,48 +186,47 @@ unique(oscars$name)
 # 03. Mutate ------------------------------------------------------------------
 #crear, rescribir, actualizar una nueva variable
 
-#01. ROI: retorno de inversión, pedidas o ganancias
-#en data
-
-data %>% mutate(ROI = (WorldGross - Budget)/Budget) %>% view() 
-# WorldGross: cuando se recaudo
-# Budget: cuánto costo (presupuesto)
-
-# nombre de nueva variable
-# lo que se va a hacer
-
-data %>% 
-  mutate(ROI = (WorldGross - Budget)/Budget) %>% 
-  arrange(desc(ROI)) %>% 
-  view() 
-
-
-#02. Diferencia de ratting: películas controversiales
+#01. Diferencia de ratting: películas controversiales
 data %>% mutate(Dif_rating = (RottenTomatoes - AudienceScore)) %>% view() 
 
 
-#03. Con oscars: case_when para recodificar!
-
-oscars %>% mutate (Mayores60 = case_when (age < 59 ~ "Menor 60", 
-                                        age >= 60 ~ "Mayor 60"))
+#02. Con oscars: case_when para recodificar!
+oscars %>% mutate (Mayores60 = case_when (age <= 59 ~ "Menor 60", 
+                                        age >= 60 ~ "Mayor 60")) %>% view() 
 
 
 
 #Práctica 3####
 #01. Generar una variable de edad recodificada: 18 a 35, 36 a 50, 51 a 59, 60 y más. 
+oscars_r1 <- oscars %>%
+  mutate(CategoriaEdad = case_when(
+    age %in% 18:35  ~ "18 a 35",
+    age %in% 36:50  ~ "36 a 50",
+    age %in% 51:59  ~ "51 a 59",
+    age >= 60       ~ "60 y más",
+    TRUE            ~ "Fuera de rango" # Para cualquier edad fuera de los rangos especificados
+  ))
 
+oscars_r2 <- oscars %>%
+  mutate(CategoriaEdad = case_when(
+    age %in% c(18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35) ~ "18 a 35",
+    age %in% c(36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50) ~ "36 a 50",
+    age %in% c(51, 52, 53, 54, 55, 56, 57, 58, 59) ~ "51 a 59",
+    age >= 60 ~ "60 y más",
+    TRUE ~ "Fuera de rango" # Para cualquier edad fuera de los rangos especificados
+  ))
 
 
 
 # 04. Group by ----------------------------------------------------------------
-# Agrupar de tipo categóricas
-#requiere alguna operación posterior
-#cuáles son los estudios con mayor cantidad de películas ganadoras
+# Agrupar según una variable cualitativa (ordinal, nominal), no cuantitativa
+# requiere alguna operación posterior
+# cuáles son los estudios con mayor cantidad de películas ganadoras
 
 data %>% 
   group_by(LeadStudio) %>% 
   count() %>% #cuenta la cantidad
-  arrange(desc(n)) #ordena de mayor a menor, descendente, sin desc desde menor
+  arrange(desc(n)) %>% view () #ordena de mayor a menor, descendente, sin desc desde menor
 
 
 
@@ -244,9 +235,11 @@ data %>%
 # Filtrar cuando tengan más de dos oscars
 
 oscars %>% group_by(name) %>% 
-  count() %>% 
-  filter (n>=2) %>% 
-  arrange(desc(n))
+  count() %>% # cuento la cantidad oscar por actor/actriz
+  filter (n>=2) %>%  # filtro por personas que tengan más de dos oscar
+  arrange(desc(n)) %>% # ordeno de mayor a menor 
+  view()
+
 
 
 # Agrupar por película y contabilizar las que tengan más de dos oscar
@@ -261,9 +254,10 @@ oscars %>% group_by(name) %>%
 
 data %>% 
   group_by(LeadStudio) %>% 
-  summarise(Freq = n(), 
-            Prom = mean(AudienceScore, na.rm = TRUE)) %>% 
-  rename(Productora= LeadStudio) %>% view()
+  summarise(Freq = n(),  # cantidad de peliculas por estudio
+            Prom = mean(AudienceScore, na.rm = TRUE)) %>% # promedio de calificación de audiencia
+  rename(Productora= LeadStudio) %>% # renombra la variable LeadStudio y ponle Productora
+  arrange(desc(Freq)) %>%  view() #Ordena según cantidad de películas Freq
 
 
 
