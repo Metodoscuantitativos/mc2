@@ -13,6 +13,7 @@
 # b) Enumera las pestañas principales de RStudio y describe brevemente su funcion.
 # c) Explica que elementos tiene una función en R y cómo se estructura.
 
+#Recuerden que esto está en el ppt
 
 
 # II. Uso de R como calculadora -------------------------------------------------------
@@ -31,7 +32,14 @@ sqrt(21) #raiz cuadrada
 # 3. Multiplica 25 por 43.
 # 4. Divide 1000 por 250.
 
-
+#1
+150+350
+#2
+1000-500
+#3
+25*43
+#4
+1000/250
 
 # III. Concatenación de Objetos ------------------------------------------------
 #Agrupacion
@@ -51,6 +59,16 @@ c(21, 12) + c(2, 1)
 # 2. Concatena los números 5, 15, y 25 en un vector llamado 'vector2'.
 # 3. Suma 5 a cada elemento de 'vector1' y guarda el resultado en 'resultado1'.
 
+#1
+vector1 <- c(10, 20, 30)
+
+#2
+vector2 <- c(5, 15, 25)
+
+#3
+resultado1 <- 5 + c(10, 20, 30)
+#o también
+resultado1 <- 5 + vector1
 
 
 # IV. Operadores Lógicos ------------------------------------------------------
@@ -76,7 +94,12 @@ c(38 <= 15, 3 < 5 & 6, 3 == 5)
 # 2. ¿Es 100 diferente de 200?
 # 3. ¿Es 30 mayor que 25 y menor que 50 al mismo tiempo?
 
+50==50
+100!=200
+30 > 25 & 50 #30 es mayor a 25 y 50 al mismo tiempo?
+(30 > 25) < 50 
 
+30 > 25 & 30 < 50
 
 # V. Lenguaje orientado a objetos -----------------------------------------------------------------
 #podemos crear objetos que se guarden como tales en distintos lenguajes, 
@@ -104,6 +127,8 @@ b
 
 #depende del orden, en este caso el orden si altera el producto 
 
+
+#se pueden hacer operaciones directamente con los objetos:
 presupuesto_2020 <- 20000
 presupuesto_2021 <- 30000
 presupuesto_total <- presupuesto_2020 + presupuesto_2021
@@ -115,6 +140,15 @@ presupuesto_total
 # 2. Suma 'numero1' y 'numero2', y guarda el resultado en 'suma_total'.
 # 3. Multiplica 'numero1' por 2 y guarda el resultado en 'doble_numero1'.
 
+#1
+numero1 <- 100
+numero2 <- 200
+
+#2
+suma_total <- numero1+numero2
+
+#3
+doble_numero1 <- 2 * numero1
 
 
 # VI. Funciones básicas [seq, rep] ---------------------------------
@@ -171,6 +205,14 @@ which(seq(from = 1, to = 17, by = 1) > 12) #nos entrega la posición, de qué n�
 # 2. Repite el número 5, diez veces y guarda el resultado en 'repeticion1'.
 # 3. Crea una secuencia del 10 al 50 con un intervalo de 5 y guárdala en 'secuencia2'.
 
+#1
+secuencia1 <- seq(from = 1, to = 20, by = 2)
+
+#2
+repeticion1 <- rep(5, times = 10)
+
+#3
+secuencia2 <- seq(from = 10, to = 50, by = 5)
 
 
 # VII. Indexación y data.frame ----------------------------------------------------------------
@@ -178,7 +220,7 @@ which(seq(from = 1, to = 17, by = 1) > 12) #nos entrega la posición, de qué n�
 #Ejemplo: data frame de caracteristicas de los estudiantes del curso
 #contiene vectores en distintas dimensiones: edad, tipo de colegio, tendencia politica, genero
 
-##Data frame
+##DATA FRAME
 #seleccion de las variables
 edad <- c(22, 18, 25, 20, 21, 20)
 tipo_colegio <- c("privado", "publico", "publico", "privado", "publico", "publico")
@@ -188,10 +230,13 @@ genero <- c("mujer", "hombre", "mujer", "otro", "mujer", "hombre")
 #creacion de una base de datos con las caracteristicas de los estudiantes del curso
 data.frame(edad, tipo_colegio, tendencia_politica, genero)
 
-# Para guardar la base de datos
+#para guardar la base de datos 
 estudiantes_antropologia <- data.frame(edad, tipo_colegio, tendencia_politica, genero)
 
-##Indexar
+#ver la data
+View(estudiantes_antropologia)
+
+##INDEXAR
 #Rescatar objetos de una data frame o base de datos
 #se representa por los corchetes [x]
 
@@ -239,6 +284,8 @@ tendencia_politica <- c("izquierda", "derecha", "centro", "izquierda", "derecha"
 ingreso_familiar <- c(1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000, 10500)
 comuna_residencia <- c("Providencia", "Las Condes", "Ñuñoa", "Santiago", "Vitacura", "La Reina", "Peñalolén", "Macul", "La Florida", "Puente Alto", "Maipú", "Pudahuel", "Cerrillos", "Quilicura", "Recoleta", "Independencia", "Conchalí", "Renca", "Cerro Navia", "Lo Prado")
 
+#Ya estan las variables, así que ahora creamos la data que incluya esas variables
+estudiantes_antropologia <- data.frame(edad, sexo, tendencia_politica, ingreso_familiar, comuna_residencia)
 
 
 # Funciones básicas -------------------------------------------------------
@@ -266,4 +313,16 @@ sd() #desviacion estandar
 # 2. Calcula la desviación estándar de la edad de los estudiantes.
 # 3. Muestra la información del décimo estudiante.
 # 4. Muestra todas las comunas de residencia de los estudiantes.
+
+#1
+mean(estudiantes_antropologia$edad) # Edad promedio
+
+#2
+sd(estudiantes_antropologia$edad) # Desviación estándar de la edad
+
+#3
+estudiantes_antropologia[10, ] # Información del décimo estudiante
+
+#4
+estudiantes_antropologia$comuna_residencia # Columna de comunas de residencia
 
