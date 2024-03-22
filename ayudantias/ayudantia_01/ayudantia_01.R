@@ -94,12 +94,20 @@ c(38 <= 15, 3 < 5 & 6, 3 == 5)
 # 2. ¿Es 100 diferente de 200?
 # 3. ¿Es 30 mayor que 25 y menor que 50 al mismo tiempo?
 
+#1
 50==50
-100!=200
-30 > 25 & 50 #30 es mayor a 25 y 50 al mismo tiempo?
-(30 > 25) < 50 
 
+#2
+100!=200
+
+#3
+#principales errores:
+30 > 25 & 50 #30 es mayor a 25 y 50 al mismo tiempo?
+(30 > 25) < 50  #30 es mayor a 25? esto seria menor a 50?
+
+#respuesta correcta:
 30 > 25 & 30 < 50
+
 
 # V. Lenguaje orientado a objetos -----------------------------------------------------------------
 #podemos crear objetos que se guarden como tales en distintos lenguajes, 
