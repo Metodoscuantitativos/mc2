@@ -108,34 +108,40 @@ Recuerde puede faltar a 8 bloques!
 ## Grupos de trabajo
 
 
-
-| Grupo                  | Tema                  | Nombre               | Apellido  |
-|----------|-----------------------|----------------------|-----------|
-|       1  | sociodemográficos y proceso general |Noel  |     Casas-Cordero      |
-|       1  | sociodemográficos y proceso general | Samanta  | Letelier          |
-|       1  | sociodemográficos y proceso general | Joaquín |  Orellana          |
-|                        |                       |                      |           |
-|                        |                       |                      |           |
-|                        |                       |                      |           |
-|                        |                       |                      |           |
-|                        |                       |                      |           |
-|                        |                       |                      |           |
-|                        |                       |                      |           |
-|                        |                       |                      |           |
-|                        |                       |                      |           |
-|                        |                       |                      |           |
-|                        |                       |                      |           |
-|                        |                       |                      |           |
-|                        |                       |                      |           |
-|                        |                       |                      |           |
-|                        |                       |                      |           |
-|                        |                       |                      |           |
-|                        |                       |                      |           |
-|                        |                       |                      |           |
-|                        |                       |                      |           |
-|                        |                       |                      |           |
-|                        |                       |                      |           |
-
+| Grupo | Tema                               | Nombre   | Apellido      |
+|-------|------------------------------------|----------|---------------|
+| 1     | sociodemográficos y proceso general | Noel     | Casas-Cordero |
+| 1     | sociodemográficos y proceso general | Samanta  | Letelier      |
+| 1     | sociodemográficos y proceso general | Joaquín  | Orellana      |
+| 2     | RRSS                               | Krishna  | Asencio       |
+| 2     | RRSS                               | Martín   | Campusano     |
+| 2     | RRSS                               | Patricia | González      |
+| 2     | RRSS                               | María    | Llantén       |
+| 2     | RRSS                               | Florencia| Martin        |
+| 2     | RRSS                               | Camila   | Segura        |
+| 3     | Ocio                               | Sofía    | Ballerino     |
+| 3     | Ocio                               | Camila   | Crisóstomo    |
+| 3     | Ocio                               | Olivier  | Delherbe      |
+| 3     | Ocio                               | Alejandra| Mondaca       |
+| 3     | Ocio                               | Daniela  | Pasmino       |
+| 4     | Cuidado ambiental                  | Matilde  | Céspedes      |
+| 4     | Cuidado ambiental                  | Gonzalo  | Muñoz         |
+| 4     | Cuidado ambiental                  | Alonso   | Silva         |
+| 4     | Cuidado ambiental                  | Julia    | Sotomayor     |
+| 5     | Actividades Extracurriculares      | Valeria  | Carvajal      |
+| 5     | Actividades Extracurriculares      | Joaquín  | Castillo      |
+| 5     | Actividades Extracurriculares      | Martín   | Cifuentes     |
+| 5     | Actividades Extracurriculares      | Catalina | Fuentes       |
+| 5     | Actividades Extracurriculares      | Venecia  | Moreno        |
+| 5     | Actividades Extracurriculares      | Mariana  | Pérez         |
+| 5     | Actividades Extracurriculares      | Pedro    | Villarroel    |
+| 6     | Prácticas musicales                | Isidora  | Aros          |
+| 6     | Prácticas musicales                | Christell| Gutiérrez     |
+| 6     | Prácticas musicales                | Ricardo  | Quiroz        |
+| 7     | Religión                           | Amanda   | Baez          |
+| 7     | Religión                           | Valentina| González      |
+| 7     | Religión                           | Javiera  | Herrera       |
+| 7     | Religión                           | Antonia  | Ramírez       |
 
 
 
