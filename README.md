@@ -70,7 +70,7 @@ Nota: En general las ayundantías son online, a excepción de algunas con Matía
 | Fecha      | Contenido                                                  | Tareas | Material a discutir |
 |------------|------------------------------------------------------------|--------|------------|
 | 20-04  | Instalación de R y elementos básicos                       | [`[.R]`](ayudantias/ayudantia_01/ayudantia_01.R), [`[PPT]`](https://github.com/Metodoscuantitativos/mc2/blob/main/ayudantias/ayudantia_01/ayudantia1.pdf)|[`[Brecha digital de género]`](https://www.iacc.cl/blog/brecha-digital-de-genero-y-como-afecta-a-las-mujeres/)  |
-por definir | tidyverse: select, filter, mutate, group_by | [`[.R]`](ayudantias/ayudantia_02/ayudantia_02.R) |  [`[Feminismo de datos]`](https://www.youtube.com/watch?v=2K-GG7EgiT8&ab_channel=M%C3%A9xicoEval%C3%BAa)  |
+por definir | tidyverse: select, filter, mutate, group_by | [`[.R]`](ayudantias/ayudantia_02/ayudantia_02.R) |  [`[Feminismo de datos]`](https://www.youtube.com/watch?v=2K-GG7EgiT8&ab_channel=M%C3%A9xicoEval%C3%BAa) [`[Importancia de los datos]`](https://escueladedatos.online/experiencia/la-importancia-de-los-datos-en-la-lucha-de-las-mujeres/) |
 
 
 
