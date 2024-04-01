@@ -136,11 +136,21 @@ class(mi.lista [[3]])
 # 03. Procesamiento de base de datos --------------------------------------
 
 # install.packages("pacman")
-pacman::p_load(tidyverse, openxlsx, readxl,readr,janitor, forcats, writexl, DataExplorer) #dos formatos de excel xlsx y xl
+pacman::p_load(tidyverse,# Universo de paquetes : tidyr, dplyr, ggplot2,readr,purrr,tibble, stringr, forcats
+               openxlsx,#leer archivos xlsx
+               readxl,# leer archivos xl      #dos formatos de excel xlsx y xl
+               janitor,#limpieza de datos
+               writexl,#Guardar tablas formato excel
+               DataExplorer) #Exploración rápida
 
 
 #Importar el archivo y asignarlo en el environment----
 pham <- read.xlsx(xlsxFile = "base/ALTO MAIPO.xlsx", colNames = TRUE, detectDates = TRUE)
+
+#Explorar
+glimpse(pham) #Una primera mirada de lo que hay en mis datos, la primera fila es extraña, dice "respuesta" o repite el nombre de la variable.
+
+pham <- pham[-1,]
 
 names(pham) #observo que hay puntos, mayúsculas y minúsculas, etcétera. Está sucia
 
@@ -234,37 +244,33 @@ nuevos_nombres
 pham <- pham %>%
   rename_at(vars(cols_a_renombrar), ~ nuevos_nombres) #recodificación múltiples con un vector
 
+#Problema!
 
 #renombro algunas variables en específico
 
-pham$cual_es_el_valor_que_paga_mensualmente
-
-pham$cual_es_la_ocupacion_principal_del_jefe_de_hogar_enc_respuesta_espontanea_clasificar_en_una_de_las_siguientes_categorias
 
 #veo categorías de todas las variables
 sapply(pham, FUN = unique)
 
 #posibilidad de renombrar uno por uno las variables de interés. # primero nuevo nombre y luego nombre antiguo
-pham <- pham %>% dplyr::rename(sistema_salud = a_que_sistema_de_salud_pertenece_su_familia_enc_leer_alternativas_y_responder_todas_las_que_correspondan,
+
+pham <- pham %>% dplyr::rename( anios_comuna = hace_cuantos_anos_vive_en_esta_comuna_enc_anotar_cantidad_de_anos_si_es_menos_de_un_ano_anotar_0,
+                        propiedad_vivienda = la_vivienda_que_usted_ocupa_es_enc_leer_alternativas,
+                        sistema_salud = a_que_sistema_de_salud_pertenece_su_familia_enc_leer_alternativas_y_responder_todas_las_que_correspondan,
                         pago_vivienda = cual_es_el_valor_que_paga_mensualmente,  
                         ocupacion_jefe_hogar = cual_es_la_ocupacion_principal_del_jefe_de_hogar_enc_respuesta_espontanea_clasificar_en_una_de_las_siguientes_categorias, 
-                        genero = p03, 
-                        annio = p04, 
-                        comuna_actual = p05, 
-                        comuna_pre= p06, 
-                        tipo_colegio = p07, 
-                        puntaje = p08, 
-                        estudio_trabajo = p09, 
-                        educacion_madre = p10, 
-                        trabaja_madre =p11, 
-                        empleo_madre =p12, 
-                        educacion_padre =p13, 
-                        trabaja_padre =p14, 
-                        empleo_padre = p15, 
-                        psdhogar = p17, 
-                        clase_social_subjetiva = p18)
+                        servicio_salud = cuando_usted_o_algun_familiar_necesita_atencion_de_salud_adonde_acude_principalmente_enc_leer_alternativas_y_responder_una, 
+                        calidad_atencion = ha_cambiado_la_calidad_de_la_atencion_en_los_ultimos_seis_meses, 
+                        cambio_atencion = si_nota_un_cambio_como_ha_cambiado_en_enc_leer_cada_tipo_de_cambio_y_anotar_1_si_2_no_todos_los_tipos_de_cambios_deben_quedar_con_una_respuesta_anotada, 
+                        ocurrencia_incidentes= en_los_ultimos_seis_meses_han_ocurrido_incidentes_que_alteren_el_orden_publico_en_la_localidad_donde_vive_enc_leer_alternativas_y_responder_una, 
+                        beneficios_aes_gener = la_presencia_de_aes_gener_en_la_comuna_le_ha_traido_beneficios_a_usted_o_a_su_familia_enc_leer_cada_tipo_de_beneficio_todos_los_tipos_de_beneficios_deben_quedar_con_una_respuesta_anotada, 
+                        mecanismo_produccion = usted_conoce_el_mecanismo_por_el_cual_opera_la_produccion_de_electricidad_en_la_central_hidroelectrica_alto_maipo, 
+                        nombre_mecanismo = solo_si_conoce_el_mecanismo_me_podria_indicar_cual_es_el_mecanismo_que_se_utiliza, 
+                        diferencia_caudal = desde_el_inicio_de_las_actividades_de_alto_maipo_ha_notado_diferencias_en_el_nivel_del_caudal_del_rio_enc_leer_cada_uno_de_los_ambitos_elegir_una_alternativa)
 
 
+
+names(pham)
 
 
 # selección y transformación de variables ---------------------------------
@@ -284,24 +290,28 @@ DataExplorer::create_report(pham)
 # Transformaciones/limpieza en variables categóricas
 
 names (pham)
-unique(pham$comuna_actual)
+unique(pham$situacion_ocupacional)
 
-#realizaremos un conjunto de transformaciones/limpiezas de nuestras BBDD. 
+#realizaremos un conjunto de transformaciones/limpiezas de nuestra BBDD. 
 
-# para comuna actual
-pham$comuna_actual <- tolower(pham$comuna_actual) #todas a minusculas
-pham$comuna_actual  <- gsub(pattern = " ", replacement = "", x = pham$comuna_actual) #elimino los espacios
+# para situación ocupacional
+pham$situacion_ocupacional <- tolower(pham$situacion_ocupacional) #todas a minusculas
+pham$situacion_ocupacional  <- gsub(pattern = " ", replacement = "", x = pham$situacion_ocupacional) #elimino los espacios
 
-# pham$comuna_actual  <- gsub(" ", "", pham$comuna_actual) 
-#tal es la forma por default. 
+# pham$situacion_ocupacional  <- gsub(" ", "", pham$situacion_ocupacional) (forma por default)
 
-table(pham$comuna_actual)
+table(pham$situacion_ocupacional)
 
-# para comuna pre
-pham$comuna_pre <- tolower(pham$comuna_pre)
-pham$comuna_pre  <- gsub(" ", "", pham$comuna_pre)
+#Recodificar a 3 categorías "trabajo remunerado", "trabajo no remunerado" y "no trabaja"
 
-table(pham$comuna_pre)
+aki voy!!!!
+
+# principales traslados
+
+pham$principales_traslados <- tolower(pham$principales_traslados)
+pham$principales_traslados  <- gsub(" ", "", pham$principales_traslados)
+
+table(pham$principales_traslados)
 
 #utilizando el siguiente ejemplo, elimine los tildes y la ñ
 # categories <- gsub(" ", "_", categories)
@@ -389,6 +399,11 @@ class(pham$puntaje)
 #edad
 
 table(pham$edad) #observo las frecuencias de edad
+
+#Case_when----
+
+#La función 'cases_when()' permite crear una nueva variable en base al valor(es) de otra(s) variable(s). Más cómodo que if_else() cuando la condición es complexa.
+
 
 pham <- pham %>% 
   mutate (edadr= case_when (edad %in% c(18:20) ~ "18 a 20", 

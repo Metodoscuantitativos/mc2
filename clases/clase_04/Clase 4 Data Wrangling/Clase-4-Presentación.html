@@ -57,6 +57,8 @@ class: center, middle, inverse, title-slide
 
 ![datos](img/list.jpg)
 
+
+
 ---
 class: center, middle
 
@@ -157,12 +159,7 @@ base.covid &lt;- readRDS(file = "../Fuentes/base_covid_sample.RDS")
 **IMPORTANTE**: Siempre que lean bases de datos asignarlas a un nuevo objeto. De lo contrario, las va a mostrar completas en consola y no va a guardarlas en el ambiente de trabajo (enviroment)
 
 ---
-class: center, middle
 
-##Janitor
-![datos](img/janitor.jpg)
-
----
 class: center, middle
 
 ##if else
@@ -178,7 +175,8 @@ Por lo general, cada paquete que presenta funciones para importar bases de dato,
  - el paquete **openxlsx** tiene una función denominada **`write.xlsx()`** que nos permite exportar un dataframe creando un archivo **.xslx**
  - En RBase la función **`saveRDS()`** nos permite exportar archivos de extensión **.RDS** (son menos pesados para trabajarlos luego desde R)
 
-En general estas funciones tienen un primer parametro para especificar el objeto a exportar, y un segundo para especificar la ruta y el nombre de archivo a crear () 
+En general estas funciones tienen un primer parametro para especificar el objeto a exportar, y un segundo para especificar la ruta y el nombre de archivo a crear 
+
 
 ```r
 write.xlsx(x = objeto_resultados,file = "Resultados/cuadro1.xlsx")
@@ -186,6 +184,90 @@ write.xlsx(x = objeto_resultados,file = "Resultados/cuadro1.xlsx")
 saveRDS(object = objeto_resultados,file = "Resultados/base_nueva.RDS")
 ```
 
+---
+
+class: inverse, center, middle
+
+# Data Wrangling
+
+---
+
+class: inverse, middle, center
+background-image: url('img/caos_tidy.png')
+background-size: cover
+background-color: black
+
+---
+class:  middle, center
+
+##"Todas las familias felices se parecen entre sí; pero cada familia infeliz tiene un motivo especial para sentirse desgraciada" - **Leon Tolstoi**
+
+---
+class:  middle, center
+
+##“Tidy datasets are all alike, but every messy dataset is messy in its own way.” — **Hadley Wickham**.
+
+---
+
+![datos](img/tidydata.png)
+
+
+
+---
+class: center, middle
+
+##Tidyverse
+
+![datos](img/core_packages_tidyverse.png)
+
+
+---
+class: center, middle
+
+##Janitor
+![datos](img/janitor.jpg)
+
+---
+
+
+
+---
+
+# Operadores lógicos
+
+&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th&gt;&lt;b&gt;Operador&lt;/b&gt;&lt;/th&gt;
+    &lt;th&gt;&lt;b&gt;Comparación&lt;/b&gt;&lt;/th&gt;
+    &lt;th&gt;&lt;b&gt;Ejemplo&lt;/b&gt;&lt;/th&gt;
+    &lt;th&gt;&lt;b&gt;Resultado&lt;/b&gt;&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;&lt;code&gt;x | y&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;x Ó y es verdadero&lt;/td&gt;
+    &lt;td&gt;&lt;code&gt;TRUE | FALSE&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;TRUE&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;&lt;code&gt;x &amp;amp; y&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;x Y y son verdaderos&lt;/td&gt;
+    &lt;td&gt;&lt;code&gt;TRUE &amp;amp; FALSE&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;FALSE&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;&lt;code&gt;!x&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;x no es verdadero (negación)&lt;/td&gt;
+    &lt;td&gt;&lt;code&gt;!TRUE&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;FALSE&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;&lt;code&gt;isTRUE(x)&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;x es verdadero (afirmación)&lt;/td&gt;
+    &lt;td&gt;&lt;code&gt;isTRUE(TRUE)&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;TRUE&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+---
 
 
     </textarea>
