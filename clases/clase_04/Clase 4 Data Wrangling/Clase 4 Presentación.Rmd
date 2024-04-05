@@ -1,5 +1,5 @@
 ---
-title: "Clase 5"
+title: "Clase 4"
 subtitle: "Data Wrangling"  
 author: 
   - "Sebastián Muñoz"
@@ -62,6 +62,8 @@ pacman::p_load(tidyverse, gt,kableExtra )
 ## Listas
 
 ![datos](img/list.jpg)
+
+
 
 ---
 class: center, middle
@@ -137,12 +139,7 @@ base.covid <- readRDS(file = "../Fuentes/base_covid_sample.RDS")
 **IMPORTANTE**: Siempre que lean bases de datos asignarlas a un nuevo objeto. De lo contrario, las va a mostrar completas en consola y no va a guardarlas en el ambiente de trabajo (enviroment)
 
 ---
-class: center, middle
 
-##Janitor
-![datos](img/janitor.jpg)
-
----
 class: center, middle
 
 ##if else
@@ -158,12 +155,98 @@ Por lo general, cada paquete que presenta funciones para importar bases de dato,
  - el paquete **openxlsx** tiene una función denominada **`write.xlsx()`** que nos permite exportar un dataframe creando un archivo **.xslx**
  - En RBase la función **`saveRDS()`** nos permite exportar archivos de extensión **.RDS** (son menos pesados para trabajarlos luego desde R)
 
-En general estas funciones tienen un primer parametro para especificar el objeto a exportar, y un segundo para especificar la ruta y el nombre de archivo a crear () 
+En general estas funciones tienen un primer parametro para especificar el objeto a exportar, y un segundo para especificar la ruta y el nombre de archivo a crear 
+
 ```{r eval=FALSE, include=T}
 write.xlsx(x = objeto_resultados,file = "Resultados/cuadro1.xlsx")
 
 saveRDS(object = objeto_resultados,file = "Resultados/base_nueva.RDS")
 ```
 
+---
+
+class: inverse, center, middle
+
+# Data Wrangling
+
+---
+
+class: inverse, middle, center
+background-image: url('img/caos_tidy.png')
+background-size: cover
+background-color: black
+
+
+---
+class:  middle, center
+
+##"Todas las familias felices se parecen entre sí; pero cada familia infeliz tiene un motivo especial para sentirse desgraciada" - **Leon Tolstoi**
+
+---
+class:  middle, center
+
+##“Tidy datasets are all alike, but every messy dataset is messy in its own way.” — **Hadley Wickham**.
+
+---
+
+![datos](img/tidydata.png)
+
+
+
+---
+class: center, middle
+
+##Tidyverse
+
+![datos](img/core_packages_tidyverse.png)
+
+
+---
+class: center, middle
+
+##Janitor
+![datos](img/janitor.jpg)
+
+---
+
+
+
+---
+
+# Operadores lógicos
+
+<table>
+  <tr>
+    <th><b>Operador</b></th>
+    <th><b>Comparación</b></th>
+    <th><b>Ejemplo</b></th>
+    <th><b>Resultado</b></th>
+  </tr>
+  <tr>
+    <td><code>x | y</code></td>
+    <td>x Ó y es verdadero</td>
+    <td><code>TRUE | FALSE</code></td>
+    <td>TRUE</td>
+  </tr>
+  <tr>
+    <td><code>x &amp; y</code></td>
+    <td>x Y y son verdaderos</td>
+    <td><code>TRUE &amp; FALSE</code></td>
+    <td>FALSE</td>
+  </tr>
+  <tr>
+    <td><code>!x</code></td>
+    <td>x no es verdadero (negación)</td>
+    <td><code>!TRUE</code></td>
+    <td>FALSE</td>
+  </tr>
+  <tr>
+    <td><code>isTRUE(x)</code></td>
+    <td>x es verdadero (afirmación)</td>
+    <td><code>isTRUE(TRUE)</code></td>
+    <td>TRUE</td>
+  </tr>
+</table>
+---
 
 
