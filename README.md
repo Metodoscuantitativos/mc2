@@ -76,9 +76,11 @@ Nota: En general las ayundantías son online, a excepción de algunas con Matía
 
 ---
 
-### Sugerencias y Comentarios Ayudantías
+### Sugerencias y Comentarios Clases, Ayudantías y Evaluaciones
 
-Aquí, en el siguiente [`[Forms]`](https://docs.google.com/forms/d/e/1FAIpQLSetmFl4HRcoa8bM0jKJBcZP3blN_XASOaUC06g82zaqvmanbw/viewform?usp=sf_link), pueden dejar sus comentarios. En lo posible que sean críticas constructivas o dudas sobre las Ayudantías :)
+- Aquí, en el siguiente [`[Forms]`](https://docs.google.com/forms/d/e/1FAIpQLSetmFl4HRcoa8bM0jKJBcZP3blN_XASOaUC06g82zaqvmanbw/viewform?usp=sf_link), pueden dejar sus comentarios. En lo posible que sean críticas constructivas o  sugerencias sobre las clases, las evaluacioens o ayudantías para que podamos ir mejorando :) 
+- Los comentarios son anónimos !
+
 
 
 ![crítica](files/criticas.jpeg) 
