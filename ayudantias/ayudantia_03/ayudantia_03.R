@@ -1,15 +1,18 @@
-# 03. Procesamiento de base de datos --------------------------------------
+# Ayudantía 2
+# Procesamiento, limpieza y transformación de datos
+
+#Procesamiento de base de datos ------------------------------------------------
 
 # install.packages("pacman")
 pacman::p_load(tidyverse,# Universo de paquetes : tidyr, dplyr, ggplot2,readr,purrr,tibble, stringr, forcats
-               openxlsx,#leer archivos xlsx
-               readxl,# leer archivos xl      #dos formatos de excel xlsx y xl
+               openxlsx,#leer archivos xlsx 
+               readxl,# leer archivos xl      #dos formatos de Excel xlsx y xl
                janitor,#limpieza de datos
                writexl,#Guardar tablas formato excel
                DataExplorer) #Exploración rápida
 
 
-#Importar el archivo y asignarlo en el environment----
+#Importar el archivo y asignarlo en el environment------------------------------
 pham <- read.xlsx(xlsxFile = "base/ALTOMAIPO.xlsx", colNames = TRUE, detectDates = TRUE)
 
 #Explorar
