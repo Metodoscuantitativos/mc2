@@ -1,45 +1,42 @@
-# Ayudantía 2
-# Procesamiento, limpieza y transformación de datos
-
-#Procesamiento de base de datos ------------------------------------------------
+# 03. Procesamiento de base de datos --------------------------------------
 
 # install.packages("pacman")
 pacman::p_load(tidyverse,# Universo de paquetes : tidyr, dplyr, ggplot2,readr,purrr,tibble, stringr, forcats
-               openxlsx,#leer archivos xlsx 
-               readxl,# leer archivos xl      #dos formatos de Excel xlsx y xl
+               openxlsx,#leer archivos xlsx
+               readxl,# leer archivos xl      #dos formatos de excel xlsx y xl
                janitor,#limpieza de datos
                writexl,#Guardar tablas formato excel
                DataExplorer) #Exploración rápida
 
 
 #Importar el archivo y asignarlo en el environment------------------------------
-pham <- read.xlsx(xlsxFile = "ayudante_03/ALTO MAIPO.xlsx", colNames = TRUE, detectDates = TRUE)
+base_am <- read.xlsx(xlsxFile = "/Users/fran/Desktop/R ayudantías/mc2/ayudantias/ayudantia_03/ALTO MAIPO.xlsx", colNames = TRUE, detectDates = TRUE)
 
 #Explorar
-glimpse(pham) #Una primera mirada de lo que hay en mis datos, la primera fila es extraña, dice "respuesta" o repite el nombre de la variable.
+glimpse(base_am) #Una primera mirada de lo que hay en mis datos, la primera fila es extraña, dice "respuesta" o repite el nombre de la variable.
 
-pham <- pham[-1,]
+base_am <- base_am[-1,]
 
-names(pham) #observo que hay puntos, mayúsculas y minúsculas, etcétera. Está sucia
+names(base_am) #observo que hay puntos, mayúsculas y minúsculas, etcétera. Está sucia
 
 
 #limpieza inicial----
-pham <- janitor::clean_names(pham) #con esto transformo todo a minúscula, quito tildes, saco signos, borro espacios
+base_am <- janitor::clean_names(base_am) #con esto transformo todo a minúscula, quito tildes, saco signos, borro espacios
 
-names(pham)
+names(base_am)
 
 
 
 #observación de base
-nrow(pham) #473 cantidad de casos
-ncol(pham) #26 cantidad de variables
-sapply(pham, FUN = class) # sapply: realiza un a función a varias variables 
-str(pham) #estructura del objeto base de datos
+nrow(base_am) #473 cantidad de casos
+ncol(base_am) #26 cantidad de variables
+sapply(base_am, FUN = class) # sapply: realiza un a función a varias variables 
+str(base_am) #estructura del objeto base de datos
 
 # Renombrar variables -----------------------------------------------------
 
 #extraigo el nombre de todas las variables
-names (pham)
+names (base_am)
 
 # [1] "comuna"                                                                                                                                                                                    
 # [2] "localidad"                                                                                                                                                                                 
@@ -110,7 +107,7 @@ nuevos_nombres
 
 
 #renombro considerando todas las columnas elegidas asignando nuevos nombres
-pham <- pham %>%
+base_am <- base_am %>%
   rename_at(vars(cols_a_renombrar), ~ nuevos_nombres) #recodificación múltiples con un vector
 
 #Problema! "cual" at locations 7 and 12.!
@@ -119,11 +116,11 @@ pham <- pham %>%
 
 
 #veo categorías de todas las variables
-sapply(pham, FUN = unique)
+sapply(base_am, FUN = unique)
 
 #posibilidad de renombrar uno por uno las variables de interés. # primero nuevo nombre y luego nombre antiguo
 
-pham <- pham %>% dplyr::rename( anios_comuna = hace_cuantos_anos_vive_en_esta_comuna_enc_anotar_cantidad_de_anos_si_es_menos_de_un_ano_anotar_0,
+base_am <- base_am %>% dplyr::rename( anios_comuna = hace_cuantos_anos_vive_en_esta_comuna_enc_anotar_cantidad_de_anos_si_es_menos_de_un_ano_anotar_0,
                                 propiedad_vivienda = la_vivienda_que_usted_ocupa_es_enc_leer_alternativas,
                                 sistema_salud = a_que_sistema_de_salud_pertenece_su_familia_enc_leer_alternativas_y_responder_todas_las_que_correspondan,
                                 pago_vivienda = cual_es_el_valor_que_paga_mensualmente,  
@@ -139,11 +136,11 @@ pham <- pham %>% dplyr::rename( anios_comuna = hace_cuantos_anos_vive_en_esta_co
 
 
 
-names(pham)
+names(base_am)
 
 
 # selección y transformación de variables ---------------------------------
-DataExplorer::create_report(pham) 
+DataExplorer::create_report(base_am) 
 
 # sino funciona el DataExplorer
 # install.packages("htmltools", version = "0.5.4")
@@ -158,29 +155,29 @@ DataExplorer::create_report(pham)
 
 # Transformaciones/limpieza en variables categóricas
 
-names (pham)
+names (base_am)
 
 #Situación Ocupacional
-unique(pham$situacion_ocupacional)
+unique(base_am$situacion_ocupacional)
 
 #realizaremos un conjunto de transformaciones/limpiezas de nuestra BBDD. 
 
 # para situación ocupacional (respuesta abierta)
-pham$situacion_ocupacional <- tolower(pham$situacion_ocupacional) #todas a minusculas
-pham$situacion_ocupacional  <- gsub(pattern = " ", replacement = "", x = pham$situacion_ocupacional) #elimino los espacios
+base_am$situacion_ocupacional <- tolower(base_am$situacion_ocupacional) #todas a minusculas
+base_am$situacion_ocupacional  <- gsub(pattern = " ", replacement = "", x = base_am$situacion_ocupacional) #elimino los espacios
 
-# pham$situacion_ocupacional  <- gsub(" ", "", pham$situacion_ocupacional) (forma por default)
+# base_am$situacion_ocupacional  <- gsub(" ", "", base_am$situacion_ocupacional) (forma por default)
 
-table(pham$situacion_ocupacional)
+table(base_am$situacion_ocupacional)
 
 #Recodificar a 3 categorías 
 #1. Trabajo remunerado; 2. Trabajo no remunerado; 3. No trabaja.
 
-unique(pham$situacion_ocupacional)
+unique(base_am$situacion_ocupacional)
 
 #Recodificamos con mutate y case_when
 
-pham<- pham %>% mutate(situacion_ocupacional=case_when(situacion_ocupacional=="Trabajo remunerado"~"Trabajo remunerado",
+base_am <- base_am %>% mutate(situacion_ocupacional=case_when(situacion_ocupacional=="Trabajo remunerado"~"Trabajo remunerado",
                                                        situacion_ocupacional=="Trabajando"~"Trabajo remunerado",
                                                        situacion_ocupacional=="Trabajo independiente"~"Trabajo remunerado",
                                                        situacion_ocupacional=="Trabajando remunerado"~"Trabajo remunerado",
