@@ -10,7 +10,7 @@ pacman::p_load(tidyverse,# Universo de paquetes : tidyr, dplyr, ggplot2,readr,pu
 
 
 #Importar el archivo y asignarlo en el environment------------------------------
-base_am <- read.xlsx(xlsxFile = "/Users/fran/Desktop/R ayudantías/mc2/ayudantias/ayudantia_03/ALT0MAIPO.xlsx", colNames = TRUE, detectDates = TRUE)
+base_am <- read.xlsx(xlsxFile = "/Users/fran/Desktop/R ayudantías/mc2/ayudantias/ayudantia_03/ALTOMAIPO.xlsx", colNames = TRUE, detectDates = TRUE)
 
 #Explorar
 glimpse(base_am) #Una primera mirada de lo que hay en mis datos, la primera fila es extraña, dice "respuesta" o repite el nombre de la variable.
