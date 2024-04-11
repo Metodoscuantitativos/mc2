@@ -1,26 +1,26 @@
 {
-    "id": "696E9805",
-    "path": "C:/Users/ginow/OneDrive - Universidad de Chile/Escritorio/Proyectos/MIS/MIS/script2.R",
+    "id": "0BF8ED53",
+    "path": "C:/Users/ginow/OneDrive - Universidad de Chile/Escritorio/Proyectos/MIS/MIS/script1.R",
     "project_path": null,
     "type": "r_source",
-    "hash": "2818729756",
+    "hash": "0",
     "contents": "",
     "dirty": false,
-    "created": 1712714840326.0,
+    "created": 1712003490465.0,
     "source_on_save": false,
-    "relative_order": 6,
+    "relative_order": 4,
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "122,0",
-        "scrollLine": "106"
+        "cursorPosition": "125,93",
+        "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1712705590,
+    "lastKnownWriteTime": 1711491693,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1712705590,
+    "last_content_update": 1711491693,
     "read_only": false,
     "read_only_alternatives": []
 }
