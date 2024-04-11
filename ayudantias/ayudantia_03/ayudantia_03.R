@@ -1,4 +1,7 @@
-# 03. Procesamiento de base de datos --------------------------------------
+# Ayudantía 3
+# Limpieza y transformación de datos
+
+#Procesamiento de base de datos ------------------------------------------------
 
 # install.packages("pacman")
 pacman::p_load(tidyverse,# Universo de paquetes : tidyr, dplyr, ggplot2,readr,purrr,tibble, stringr, forcats
@@ -9,7 +12,7 @@ pacman::p_load(tidyverse,# Universo de paquetes : tidyr, dplyr, ggplot2,readr,pu
                DataExplorer) #Exploración rápida
 
 
-#IMPORTAR LA BASE DESDE EXCEL Y GUARDARLA EN EL ENVIROMENT------------------------------
+#IMPORTAR LA BASE DESDE EXCEL Y GUARDARLA EN EL ENVIROMENT----------------------
 #vamos a importar la base de datos en escel a RStudio
 #la vamos a llamar base_am
 base_am <- read.xlsx(xlsxFile = "/Users/fran/Desktop/R ayudantías/mc2/ayudantias/ayudantia_03/ALTOMAIPO.xlsx", colNames = TRUE, detectDates = TRUE)
