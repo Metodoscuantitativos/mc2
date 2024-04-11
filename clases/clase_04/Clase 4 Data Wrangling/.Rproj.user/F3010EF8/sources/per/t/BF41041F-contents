@@ -163,10 +163,11 @@ names(pham)
 
 
 #observación de base
-nrow(pham) # cantidad de casos
-ncol(pham) # cantidad de variables
+nrow(pham) #473 cantidad de casos
+ncol(pham) #26 cantidad de variables
 sapply(pham, FUN = class) # sapply: realiza un a función a varias variables 
-str(pham)
+str(pham) #estructura del objeto base de datos
+
 # Renombrar variables -----------------------------------------------------
 
 #extraigo el nombre de todas las variables
@@ -244,7 +245,7 @@ nuevos_nombres
 pham <- pham %>%
   rename_at(vars(cols_a_renombrar), ~ nuevos_nombres) #recodificación múltiples con un vector
 
-#Problema!
+#Problema! "cual" at locations 7 and 12.!
 
 #renombro algunas variables en específico
 
@@ -290,11 +291,13 @@ DataExplorer::create_report(pham)
 # Transformaciones/limpieza en variables categóricas
 
 names (pham)
+
+#Situación Ocupacional
 unique(pham$situacion_ocupacional)
 
 #realizaremos un conjunto de transformaciones/limpiezas de nuestra BBDD. 
 
-# para situación ocupacional
+# para situación ocupacional (respuesta abierta)
 pham$situacion_ocupacional <- tolower(pham$situacion_ocupacional) #todas a minusculas
 pham$situacion_ocupacional  <- gsub(pattern = " ", replacement = "", x = pham$situacion_ocupacional) #elimino los espacios
 
@@ -302,9 +305,55 @@ pham$situacion_ocupacional  <- gsub(pattern = " ", replacement = "", x = pham$si
 
 table(pham$situacion_ocupacional)
 
-#Recodificar a 3 categorías "trabajo remunerado", "trabajo no remunerado" y "no trabaja"
+#Recodificar a 3 categorías 
+#1. Trabajo remunerado; 2. Trabajo no remunerado; 3. No trabaja.
 
-aki voy!!!!
+unique(pham$situacion_ocupacional)
+
+#Recodificamos con mutate y case_when
+
+pham<- pham %>% mutate(situacion_ocupacional=case_when(situacion_ocupacional=="Trabajo remunerado"~"Trabajo remunerado",
+                                                              situacion_ocupacional=="Trabajando"~"Trabajo remunerado",
+                                                              situacion_ocupacional=="Trabajo independiente"~"Trabajo remunerado",
+                                                              situacion_ocupacional=="Trabajando remunerado"~"Trabajo remunerado",
+                                                              situacion_ocupacional=="Trabajador remunerado"~"Trabajo remunerado",
+                                                              situacion_ocupacional=="Trabajaba"~"Trabajo remunerado",
+                                                              situacion_ocupacional=="Si"~"Trabajo remunerado",
+                                                              situacion_ocupacional=="Aseo"~"Trabajo remunerado",
+                                                              situacion_ocupacional=="Activo"~"Trabajo remunerado",
+                                                              situacion_ocupacional=="Garzona"~"Trabajo remunerado",
+                                                              situacion_ocupacional=="Ayudante de cocina"~"Trabajo remunerado",
+                                                              situacion_ocupacional=="Trabajando municipla"~"Trabajo remunerado",
+                                                              situacion_ocupacional=="trabaja"~"Trabajo remunerado",
+                                                              situacion_ocupacional=="1"~"Trabajo remunerado",
+                                                              situacion_ocupacional=="Trabaja"~"Trabajo remunerado",
+                                                              situacion_ocupacional=="Trabajo rumerado"~"Trabajo remunerado",
+                                                              situacion_ocupacional=="Trabajo remerado"~"Trabajo remunerado",
+                                                              situacion_ocupacional=="Trabajo renunerado"~"Trabajo remunerado",
+                                                              situacion_ocupacional=="Trabajando desde casa"~"Trabajo remunerado",
+                                                              situacion_ocupacional=="trabajo remunerado"~"Trabajo remunerado",
+                                                              situacion_ocupacional=="Trabajo renminerado"~"Trabajo remunerado",
+                                                              situacion_ocupacional=="Dueña de casa"~"Trabajo no remunerado",
+                                                              situacion_ocupacional=="Trabajo remunerdo"~"Trabajo no remunerado",
+                                                              situacion_ocupacional=="2"~"Trabajo no remunerado",
+                                                              situacion_ocupacional=="Trabajo no remunerado"~"Trabajo no remunerado",
+                                                              situacion_ocupacional=="2?"~"Trabajo no remunerado",
+                                                              situacion_ocupacional=="Cesante"~"No trabaja",
+                                                              situacion_ocupacional=="No trabajaba"~"No trabaja",
+                                                              situacion_ocupacional=="No"~"No trabaja",
+                                                              situacion_ocupacional=="Reservas"~"No trabaja",
+                                                              situacion_ocupacional=="Estudiando"~"No trabaja",
+                                                              situacion_ocupacional=="No trabaja"~"No trabaja",
+                                                              situacion_ocupacional=="no trabaja"~"No trabaja",
+                                                              situacion_ocupacional=="Licencia por cirugía"~"No trabaja",
+                                                              situacion_ocupacional=="3"~"No trabaja",
+                                                              situacion_ocupacional=="Estudiante"~"No trabaja",
+                                                              situacion_ocupacional=="Jubilada"~"No trabaja",
+                                                              situacion_ocupacional=="No trajaba"~"No trabaja",
+                                                              situacion_ocupacional=="3 jubilado"~"No trabaja",
+                                                              situacion_ocupacional=="3 jubilada"~"No trabaja",
+                                                              TRUE~situacion_ocupacional))
+
 
 # principales traslados
 
