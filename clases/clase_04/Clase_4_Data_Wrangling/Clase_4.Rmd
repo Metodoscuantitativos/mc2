@@ -2,7 +2,7 @@
 title: "Clase 4"
 subtitle: "Data Wrangling"  
 author: 
-  - "Sebastián Muñoz"
+  - "Sebastián Muñoz & Gino Ocampo"
 date: '`r Sys.Date()`'
 output:
   xaringan::moon_reader:
@@ -252,5 +252,6 @@ class: center, middle
   </tr>
 </table>
 ---
+class: inverse, center, middle
 
-
+#Vamos al código

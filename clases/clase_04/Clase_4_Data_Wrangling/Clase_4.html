@@ -3,8 +3,8 @@
   <head>
     <title>Clase 4</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Sebastián Muñoz" />
-    <meta name="date" content="2024-04-01" />
+    <meta name="author" content="Sebastián Muñoz &amp; Gino Ocampo" />
+    <meta name="date" content="2024-04-11" />
     <script src="Clase-4-Presentación_files/header-attrs/header-attrs.js"></script>
     <script src="Clase-4-Presentación_files/kePrint/kePrint.js"></script>
     <link href="Clase-4-Presentación_files/lightable/lightable.css" rel="stylesheet" />
@@ -21,10 +21,10 @@ class: center, middle, inverse, title-slide
 ## Data Wrangling
 ]
 .author[
-### Sebastián Muñoz
+### Sebastián Muñoz &amp; Gino Ocampo
 ]
 .date[
-### 2024-04-01
+### 2024-04-11
 ]
 
 ---
@@ -158,12 +158,7 @@ base.covid &lt;- readRDS(file = "../Fuentes/base_covid_sample.RDS")
 ```
 **IMPORTANTE**: Siempre que lean bases de datos asignarlas a un nuevo objeto. De lo contrario, las va a mostrar completas en consola y no va a guardarlas en el ambiente de trabajo (enviroment)
 
----
 
-class: center, middle
-
-##if else
-![datos](img/if else.png)
 
 
 ---
@@ -197,6 +192,7 @@ background-image: url('img/caos_tidy.png')
 background-size: cover
 background-color: black
 
+
 ---
 class:  middle, center
 
@@ -210,7 +206,11 @@ class:  middle, center
 ---
 
 ![datos](img/tidydata.png)
+---
+#Data Wrangling
 
+Es el proceso que más tiempo conlleva en el análisis de datos.
+![datos](img/datawrangling_time.png)
 
 
 ---
@@ -228,8 +228,13 @@ class: center, middle
 ![datos](img/janitor.jpg)
 
 ---
+#Transformación
 
+Mutate con if_else
+class: center, middle
 
+##if else
+![datos](img/if else.png)
 
 ---
 
@@ -268,8 +273,9 @@ class: center, middle
   &lt;/tr&gt;
 &lt;/table&gt;
 ---
+class: inverse, center, middle
 
-
+#Vamos al código
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

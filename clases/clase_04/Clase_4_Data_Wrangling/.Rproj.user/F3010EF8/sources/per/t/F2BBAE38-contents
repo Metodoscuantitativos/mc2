@@ -2,7 +2,7 @@
 title: "Clase 4"
 subtitle: "Data Wrangling"  
 author: 
-  - "Sebastián Muñoz"
+  - "Sebastián Muñoz & Gino Ocampo"
 date: '`r Sys.Date()`'
 output:
   xaringan::moon_reader:
@@ -138,12 +138,7 @@ base.covid <- readRDS(file = "../Fuentes/base_covid_sample.RDS")
 ```
 **IMPORTANTE**: Siempre que lean bases de datos asignarlas a un nuevo objeto. De lo contrario, las va a mostrar completas en consola y no va a guardarlas en el ambiente de trabajo (enviroment)
 
----
 
-class: center, middle
-
-##if else
-![datos](img/if else.png)
 
 
 ---
@@ -190,7 +185,11 @@ class:  middle, center
 ---
 
 ![datos](img/tidydata.png)
+---
+#Data Wrangling
 
+Es el proceso que más tiempo conlleva en el análisis de datos.
+![datos](img/datawrangling_time.png)
 
 
 ---
@@ -208,8 +207,13 @@ class: center, middle
 ![datos](img/janitor.jpg)
 
 ---
+#Transformación
 
+Mutate con if_else
+class: center, middle
 
+##if else
+![datos](img/if else.png)
 
 ---
 
@@ -248,5 +252,6 @@ class: center, middle
   </tr>
 </table>
 ---
+class: inverse, center, middle
 
-
+#Vamos al código
