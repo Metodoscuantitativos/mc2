@@ -6,6 +6,45 @@ MIS<-clean_names(MIS)
 
 names(MIS)
 
+tabyl(MIS$x13_en_los_ultimos_seis_meses_han_ocurrido_incidentes_que_alteren_el_orden_publico_en_la_localidad_donde_vive_enc_leer_alternativas_y_responder_una)
+
+tabyl(MIS$x14_en_esos_incidentes_estuvieron_involucradas_personas_que_no_residan_habitualmente_en_la_localidad_donde_usted_vive_enc_leer_alternativas_y_responder_una)
+
+tabyl(MIS$x15_conoce_usted_el_origen_de_las_personas_foraneas_que_estuvieron_involucradas_enc_leer_alternativas_y_responder_una)
+
+tabyl(MIS$x16_de_donde_son)
+
+
+MIS<- MIS %>% mutate(x16_de_donde_son=case_when(x16_de_donde_son=="Comunas aledañas"~"Santiago",
+                                          x16_de_donde_son=="Otra comuna"~"Santiago",
+                                          x16_de_donde_son=="Personas de afuera de la comuna"~"Santiago",
+                                          x16_de_donde_son=="otras comunas turistas"~"Santiago",
+                                          x16_de_donde_son=="Visitantes"~"Santiago",
+                                          x16_de_donde_son=="Del pueblo"~"Localidades de San José",
+                                          x16_de_donde_son=="Dinamo"~"Localidades de San José",
+                                          x16_de_donde_son=="Misma localidad"~"Localidades de San José",
+                                          x16_de_donde_son=="Residente de San José de maipo"~"Localidades de San José",
+                                          x16_de_donde_son=="Residentes y extranjeros"~"Localidades de San José",
+                                          x16_de_donde_son=="San Gabriel"~"Localidades de San José",
+                                          x16_de_donde_son=="San José de Maipo"~"Localidades de San José",
+                                          x16_de_donde_son=="Vecinos"~"Localidades de San José",
+                                          x16_de_donde_son=="Vecinos del sector"~"Localidades de San José",
+                                          x16_de_donde_son=="Vecinos y otros residentes"~"Localidades de San José",
+                                          x16_de_donde_son=="Pintaba Puente Alto"~"Puente Alto",
+                                          x16_de_donde_son=="Puente Alto"~"Puente Alto",
+                                          x16_de_donde_son=="Puente Alto y la pintada"~"Puente Alto",
+                                          x16_de_donde_son=="Puente Alto,  La Florida, La Pintana"~"Puente Alto",
+                                          x16_de_donde_son=="Puente Alto, La Florida y La Pintana"~"Puente Alto",
+                                          x16_de_donde_son=="Puente alto"~"Puente Alto",
+                                          x16_de_donde_son=="puente alto"~"Puente Alto",
+                                          x16_de_donde_son=="Extranjeros"~"Extranjeros",
+                                          x16_de_donde_son=="Extranjeros y turistas"~"Turistas",
+                                          x16_de_donde_son=="Turistas"~"Turistas",
+                                          x16_de_donde_son=="Visitantes"~"Turistas",
+                                          x16_de_donde_son=="otras comunas turistas"~"Extranjeros",
+                                          TRUE ~x16_de_donde_son))
+
+table(MIS$x16_de_donde_son)
 
 #Seleccionar variables de situación ocupacional 
 #x35 | x41 | x47 | x53| x59
@@ -220,7 +259,7 @@ tabyl(MIS_ocupacion$s_laboral1)
 
 
 ----------------------------------------------------------
-MIS<-read_xlsx("BBDD MIS ALTO MAIPO.xlsx", skip = 1 ,na = c("99\tNS-NR", "Respuesta"))
+MIS<-read_xlsx("BBDD MIS ALTO MAIPO.xlsx", na = c("99\tNS-NR", "Respuesta"))
 
 names(MIS)
 unique(MIS$...93 )#filtro, se contabiliza la variable anterior
@@ -241,6 +280,8 @@ tabyl(MIS_educacion$...105)
 tabyl(MIS_educacion$...110)
 tabyl(MIS_educacion$...115)
 tabyl(MIS_educacion$...120)
+
+#cambiar nombres
 
 names(MIS_educacion)[names(MIS_educacion) == "...95"] <- "t_ee1"
 names(MIS_educacion)[names(MIS_educacion) == "...100"] <- "t_ee2"
@@ -376,7 +417,142 @@ MIS_educacion<- MIS_educacion %>% mutate(t_ee4=case_when(t_ee4=="Municipal"~"Esc
                                                          t_ee4=="Colegio Particular subencionado"~"Escuela o Liceo",
                                                          t_ee4=="Liceo municipal"~"Escuela o Liceo",
                                                          t_ee4=="particular subencionado"~"Escuela o Liceo",
-                                                         t_ee4==""~"",
+                                                         t_ee4=="Privada"~"Universidad", 
+                                                         t_ee4=="Universidad"~"Universidad", 
+                                                         t_ee4=="Instituto"~"CFT o IP", 
+                                                         t_ee4=="I.p"~"CFT o IP",
+                                                         TRUE~t_ee4))
+
+MIS_educacion<- MIS_educacion %>% mutate(t_ee5=case_when(t_ee5=="Colegio particular subencionado"~"Escuela o Liceo",
+                                                         t_ee5=="Corporación municipal"~"Escuela o Liceo",
+                                                         t_ee5=="Municipal"~"Escuela o Liceo",
+                                                         t_ee5=="Subvencionado"~"Escuela o Liceo",
+                                                         t_ee5=="Colegio municipal"~"Escuela o Liceo",
+                                                         TRUE~t_ee5))
+
+MIS_educacion<- MIS_educacion %>% mutate(t_ee6=case_when(t_ee6=="Puente alto"~"Escuela o Liceo",
+                                                         t_ee6=="Municipal"~"Escuela o Liceo",
+                                                         TRUE~t_ee6))
                                                          
-                                                         
-                                                         ))
+table(MIS_educacion$t_ee1)
+table(MIS_educacion$t_ee2)
+table(MIS_educacion$t_ee3)
+table(MIS_educacion$t_ee4)
+table(MIS_educacion$t_ee5)
+table(MIS_educacion$t_ee6)
+
+matricula<-read.csv("MATRICULA_2023.csv",sep = ";")
+names(matricula)
+
+unique(matricula$NOM_COM_RBD)
+
+matricula_sj<-matricula %>% filter(NOM_COM_RBD=="SAN JOSÉ DE MAIPO") 
+
+tabyl(matricula_sj$COD_DEPE)
+#1: Municipal
+# 2: Particular Subvencionado
+# 1 Municipal                1703 0.6392643
+# 3 Particular subvencionado  961 0.3607357
+
+matricula <- read.csv("Matricula-por-estudiante-2023/20230906_Matrícula_unica_2023_20230430_WEB.CSV", sep = ";")
+
+#Delitos
+
+delitos <- read_excel("tramitacionfinal669953.xlsx", skip =4) 
+
+#primer semestre 2022                                     45047      45169
+delitos_2023<- delitos %>% filter(`FECHA DELITO` >=45047 & `FECHA DELITO`<=45169)
+table(delitos_2023$DELITO)
+
+
+
+delitos_2023 %>% group_by (DELITO) %>% summarise(total=sum(`TOTAL CASOS`))
+
+
+#segundo semestre 2022
+delitos_t2_2022<- delitos %>% filter(`FECHA DELITO` >=44758 & `FECHA DELITO`<=44914)
+table(delitos_t2_2022$DELITO)
+
+delitos_t2_2022 %>% summarise(total=sum(`TOTAL CASOS`))
+
+#primer semestre 2023
+delitos_t1_2023<- delitos %>% filter(`FECHA DELITO` >=44940 & `FECHA DELITO`<=45101)
+table(delitos_t1_2023$DELITO)
+
+delitos_t1_2023 %>% summarise(total=sum(`TOTAL CASOS`))
+
+#segundo semestre 2023
+delitos_t2_2023<- delitos %>% filter(`FECHA DELITO` >=45130 & `FECHA DELITO`<=45255)
+table(delitos_t2_2023$DELITO)
+
+delitos_t2_2023 %>% summarise(total=sum(`TOTAL CASOS`))
+
+#transición
+
+delitos_transicion %>% summarise(sum(`TOTAL CASOS`))
+
+delitos_transicion<-delitos_transicion %>% mutate(DELITO=case_when(DELITO=="Homicidio calificado"~"Homicidio",
+                                               DELITO=="Hurto Falta"~"Hurto",
+                                               DELITO=="Hurto agravado"~"Hurto",
+                                               DELITO=="Hurto de bienes pertenecientes a redes de suministro publico"~"Hurto",
+                                               DELITO=="Hurto simple por un valor de 4 a 40 UTM"~"Hurto",
+                                               DELITO=="Hurto simple por un valor de media a menos de 4 UTM"~"Hurto",
+                                               DELITO=="Hurto simple por un valor sobre 40 UTM"~"Hurto",
+                                               DELITO=="Lesiones con arma blanca "~"Lesiones",
+                                               DELITO=="Lesiones con arma de fuego"~"Lesiones",
+                                               DELITO=="Lesiones graves"~"Lesiones",
+                                               DELITO=="Lesiones leves"~"Lesiones",
+                                               DELITO=="Lesiones menos graves"~"Lesiones",
+                                               DELITO=="Robo con intimidación"~"Robo",
+                                               DELITO=="Robo con intimidación, violencia o sorpresa veh. motorizado"~"Robo",
+                                               DELITO=="Robo con violencia"~"Robo",	
+                                               DELITO=="Robo de accesorios de vehículos/especies interior vehículos"~"Robo",
+                                               DELITO=="Robo de vehículo motorizado"~"Robo",
+                                               DELITO=="Robo de vehículo motorizado por sorpresa, violencia o intimidación"~"Robo",
+                                               DELITO=="Robo en bienes nacionales de uso público"~"Robo",
+                                               DELITO=="Robo en lugar habitado o destinado a la habitación"~"Robo",
+                                               DELITO=="Robo en lugar no habitado"~"Robo",
+                                               DELITO=="Robo frustrado"~"Robo",
+                                               DELITO=="Robo por sorpresa"~"Robo",
+                                               DELITO=="Violación de mayor de 14 años"~"Violación",
+                                               DELITO=="Violación de menor de 14 años"~"Violación",
+                                               TRUE ~DELITO
+                                               ))
+
+y <- delitos_transicion %>% 
+  select(`TOTAL CASOS`, DELITO) %>% 
+  group_by(DELITO) %>% 
+  summarise(total=sum(`TOTAL CASOS`))
+
+write.csv(y, file = "y.csv")
+#DETENIDOS
+detenidos <- read_excel("tramitacionfinal669953.xlsx", skip = 4, sheet = 3) 
+
+#2022 primer semestre
+detenidos_2023<- detenidos %>% filter(`FECHA DELITO` >=45047 & `FECHA DELITO`<=45169)
+
+detenidos_2023 %>% group_by(DELITO) %>% summarise(total=sum(`TOTAL DETENIDOS`))
+  
+detenidos_t1_2022 %>% group_by(DELITO) %>% summarise(total=sum(`TOTAL DETENIDOS`))
+#2022 segundo semestre
+detenidos_t2_2022<- detenidos %>% filter(`FECHA DELITO` >=44758 & `FECHA DELITO`<=44914)
+detenidos_t2_2022 %>% group_by(DELITO) %>% summarise(total=sum(`TOTAL DETENIDOS`))
+#2023 primer semestre
+detenidos_t1_2023<- detenidos %>% filter(`FECHA DELITO` >=44940 & `FECHA DELITO`<=45101)
+detenidos_t1_2023 %>% group_by(DELITO) %>% summarise(total=sum(`TOTAL DETENIDOS`))
+#2023 segundo semestre
+detenidos_t2_2023<- detenidos %>% filter(`FECHA DELITO` >=45130 & `FECHA DELITO`<=45255)
+detenidos_t2_2023 %>% group_by(DELITO) %>% summarise(total=sum(`TOTAL DETENIDOS`))
+
+
+
+
+
+#detenidos<-detenidos[1:84,]
+detenidos_trans<-detenidos %>% filter(`FECHA DELITO`>= 44673& `FECHA DELITO` <= 45074)
+
+t<-detenidos_trans %>% select(DELITO,`TOTAL DETENIDOS`) %>%  group_by(DELITO) %>% summarise(total= sum(`TOTAL DETENIDOS`))
+
+sum(detenidos_trans$`TOTAL DETENIDOS`)
+
+write.csv(t, file = "t.csv") 
