@@ -234,6 +234,7 @@ nombres <- c(
  #genero un vector sólo con las 4 primeras letras:
 nuevos_nombres <- str_sub(string = nombres, start = 1, end = 4 ) #muestro los argumentos
 
+nuevos_nombres <- str_sub( nombres,  1, 4 )
 
 #primer argumento - string = de donde saco los nombres: el vector creado
 #segundo argumento - start = desde que posición extraigo (p)
@@ -250,7 +251,7 @@ pham <- pham %>%
 
 
 #veo categorías de todas las variables
-sapply(pham, FUN = unique)
+sapply(pham, FUN = unique) 
 
 #posibilidad de renombrar uno por uno las variables de interés. # primero nuevo nombre y luego nombre antiguo
 
@@ -290,7 +291,7 @@ DataExplorer::create_report(pham)
 
 
 
-# Transformaciones/limpieza en variables categóricas
+# Transformaciones/limpieza en variables categóricas---
 
 names (pham)
 
@@ -301,7 +302,7 @@ unique(pham$situacion_ocupacional)
 
 # para situación ocupacional (respuesta abierta)
 #pham$situacion_ocupacional <- tolower(pham$situacion_ocupacional) #todas a minusculas
-pham$situacion_ocupacional  <- gsub(pattern = " ", replacement = "", x = pham$situacion_ocupacional) #elimino los espacios
+#pham$situacion_ocupacional  <- gsub(pattern = " ", replacement = "", x = pham$situacion_ocupacional) #elimino los espacios
 
 # pham$situacion_ocupacional  <- gsub(" ", "", pham$situacion_ocupacional) (forma por default)
 
@@ -315,7 +316,8 @@ unique(pham$situacion_ocupacional)
 #Recodificamos con mutate y case_when (para recodificar categoría de respuesta)
 
 base <- base %>% mutate(nueva_variable=case_when(variable_original=="Valor de la condición"~"Nuevo valor de la categoría",
-                                                 variable_original=="talvalor"~"nuevovalor"))
+                                                 variable_original=="talvalor"~"nuevovalor",
+                                                 variable_original=="x valor"~"nuevovalor"))
 
 pham <- pham %>% mutate(situacion_ocupacional=case_when(situacion_ocupacional=="Trabajo remunerado"~"Trabajo remunerado",
                                                               situacion_ocupacional=="Trabajando"~"Trabajo remunerado",
@@ -357,6 +359,8 @@ pham <- pham %>% mutate(situacion_ocupacional=case_when(situacion_ocupacional=="
                                                               situacion_ocupacional=="No trajaba"~"No trabaja",
                                                               situacion_ocupacional=="3 jubilado"~"No trabaja",
                                                               situacion_ocupacional=="3 jubilada"~"No trabaja",
+                                                              situacion_ocupacional=="1 - Situación Laboral junio 2018"~ NA,
+                                                              situacion_ocupacional==" "~ NA,
                                                               TRUE~situacion_ocupacional))
 
 
