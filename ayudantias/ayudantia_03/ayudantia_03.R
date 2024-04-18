@@ -148,9 +148,9 @@ base_am <- base_am %>%
 #¿Qué estamos diciendo aquí?
 #rename_at() permite renombrar columnas seleccionadas basándose en condiciones específicas: renombrame esto en 
 #vars permite seleccionar columnas basadas en sus nombres 
-#cols_a_renombrares es el vector creado anteriormente que contiene los nombres de las columnas que se desean renombrar
+#cols_a_renombrar es es el vector creado anteriormente que contiene los nombres de las columnas que se desean renombrar
 
-#renombrame las columnas basadas en sus nombres desde el vector cols_a_renombrar                                                         
+#renombrame las columnas de la data original basadas en sus nombres desde el vector cols_a_renombrar                                                         
 
 #Problema! "cual" at locations 7 and 12.!
 #! Names must be unique, lo que quiere decir es que el nuevo nombre que se está intentando asignar ya existe en el dataframe 
@@ -159,9 +159,9 @@ base_am <- base_am %>%
 #el código distinct no nos sirve en este caso para eliminar duplicados, pues elimina filas 
 #¿Qué podemos hacer?
 
-#5. Podemos renombrar algunas variables en específico
+#Podemos *renombrar algunas variables en específico*
 
-#veo categorías de todas las variables
+#veo las categorías de todas las variables
 sapply(base_am, FUN = unique)
 #sapply() se utiliza para *aplicar* una función determinada a cada columna del dataframe 
 #En este caso, se desea aplicar la función unique() a cada variable de la data base_am
@@ -197,6 +197,7 @@ names(base_am)
 DataExplorer::create_report(base_am) 
 
 #DataExplorer es una herramienta en R que proporciona funciones útiles para explorar y visualizar conjuntos de datos
+#genera un reporte en R Markdown
 #Este código utiliza la función create_report() del paquete DataExplorer::
 #create_report() es una función que genera un informe automático sobre un dataframe dado
 #En este caso, le estamos diciendo a RStudio que nos abra la función create_report( y la aplique a la data), tener una visión general de los datos
@@ -296,15 +297,68 @@ base_am <- base_am %>% mutate(situacion_ocupacional=case_when(situacion_ocupacio
 #veamos cómo nos queda la recodificación
 unique(base_am$situacion_ocupacional)
 
-situacion_ocupacional <- base_am$situacion_ocupacional 
-
-situacion_ocupacional
-view(situacion_ocupacional)
-
 
 #Ejercicio----------------------------------------------------------------------
 #Recodifiquemos la variable "parentezco_con_jedfe_de_hogar"
 #veamos los datos de la variable
 
+#¿Qué tenemos que hacer primero?
+#1. Seleccionar la variable y ver los datos únicos para esta variable (con unique)
+
+unique(base_am$parentezco_con_jedfe_de_hogar)
+
+#2. Dejar todas las categorías en un mismo formato
+#poner todo en minúscula y eliminar los espacios
+
+base_am$parentezco_con_jedfe_de_hogar <- tolower(base_am$parentezco_con_jedfe_de_hogar) #pasa todas a minusculas
+base_am$parentezco_con_jedfe_de_hogar  <- gsub(pattern = " ", replacement = "", x = base_am$parentezco_con_jedfe_de_hogar) #elimino los espacios
+
+#3. Solicitar los datos expuestos en forma de tabla para determinar qué categorías construir y cuál dato dejar en cada categoría
+#¿qué categorías podríamos establecer?
+
+table(base_am$parentezco_con_jedfe_de_hogar)
+
+#4. Recodificar
+
+base_am <- base_am %>% mutate(parentezco_con_jedfe_de_hogar=case_when(parentezco_con_jedfe_de_hogar=="Jefe/a de hogar"~"jefedehogar",
+                                                                      parentezco_con_jedfe_de_hogar=="Jefe/a de hogar"~"jefadehogar",
+                                                                      parentezco_con_jedfe_de_hogar=="Jefe/a de hogar"~"jefadefamilia",
+                                                                      parentezco_con_jedfe_de_hogar=="Jefe/a de hogar"~"jefedefamilia",
+                                                                      parentezco_con_jedfe_de_hogar=="Jefe/a de hogar"~"jefasehogar(viuda)",
+                                                                      parentezco_con_jedfe_de_hogar=="Jefe/a de hogar"~"jefedehogar.(separado)",
+                                                                      parentezco_con_jedfe_de_hogar=="Jefe/a de hogar"~"jegadehogar",
+                                                                      parentezco_con_jedfe_de_hogar=="Jefe/a de hogar"~"jefadejogar",
+                                                                      parentezco_con_jedfe_de_hogar=="Jefe/a de hogar"~"jefasehogar",
+                                                                      parentezco_con_jedfe_de_hogar=="Jefe/a de hogar"~"jefehogar",
+                                                                      parentezco_con_jedfe_de_hogar=="Jefe/a de hogar"~"jefe",
+                                                                      parentezco_con_jedfe_de_hogar=="Pareja"~"pareja",
+                                                                      parentezco_con_jedfe_de_hogar=="Pareja"~"cónyuge",
+                                                                      parentezco_con_jedfe_de_hogar=="Pareja"~"conyuge",
+                                                                      parentezco_con_jedfe_de_hogar=="Pareja"~"conyugue",
+                                                                      parentezco_con_jedfe_de_hogar=="Pareja"~"esposo",
+                                                                      parentezco_con_jedfe_de_hogar=="Pareja"~"esposa",
+                                                                      parentezco_con_jedfe_de_hogar=="Madre/Padre"~"madre",
+                                                                      parentezco_con_jedfe_de_hogar=="Madre/Padre"~"mama",
+                                                                      parentezco_con_jedfe_de_hogar=="Madre/Padre"~"padre",
+                                                                      parentezco_con_jedfe_de_hogar=="Hijo/hija"~"hija",
+                                                                      parentezco_con_jedfe_de_hogar=="Hijo/hija"~"hijo",
+                                                                      parentezco_con_jedfe_de_hogar=="Hijo/hija"~"hijajefadehogar",
+                                                                      parentezco_con_jedfe_de_hogar=="Otro"~"conviviente",
+                                                                      parentezco_con_jedfe_de_hogar=="Otro"~"abuela",
+                                                                      parentezco_con_jedfe_de_hogar=="Otro"~"nieta",
+                                                                      parentezco_con_jedfe_de_hogar=="Otro"~"nieto",
+                                                                      parentezco_con_jedfe_de_hogar=="Otro"~"3",
+                                                                      parentezco_con_jedfe_de_hogar=="Otro"~"6",
+                                                                      parentezco_con_jedfe_de_hogar=="Otro"~"10",
+                                                                      parentezco_con_jedfe_de_hogar=="Otro"~"2",
+                                                                      parentezco_con_jedfe_de_hogar=="Otro"~"4",
+                                                                      parentezco_con_jedfe_de_hogar=="Otro"~"1",
+                                                                      parentezco_con_jedfe_de_hogar=="Otro"~"dueñodecasa",
+                                                                      parentezco_con_jedfe_de_hogar=="Otro"~"dueñadecasa",
+                                                                      parentezco_con_jedfe_de_hogar=="Otro"~"ahijado",
+                                                                      parentezco_con_jedfe_de_hogar=="Otro"~"jubilada",
+                                                                      TRUE~parentezco_con_jedfe_de_hogar))
+
+table(base_am$parentezco_con_jedfe_de_hogar)
 
 
