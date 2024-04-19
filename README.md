@@ -46,7 +46,7 @@ Nota: Todas las clases son presenciales, a continuación pueden ver las presenta
 | vier mar 22  | Cuestionarios y `tidyverse`                                             | [`[Clase2]`](https://metodoscuantitativos.github.io/mc2/clases/clase_02/clase_2#1) [`[.R]`](clases/clase_02/clase_2.R) [`[Capsulas]`](https://youtube.com/playlist?list=PLtMKbC0NRgrHdBUAW7fcEhGYQC4qDg_XP&si=Lvx9okoAY3OXk4Bt) |
 | vier abril 5 | Introducción muestreo y Excel                                           | [`[Clase3]`](https://metodoscuantitativos.github.io/mc2/clases/clase_03/clase_3#1) [`[.xslx]`](clases/clase_03/marco_excel.xlsx)                                                                                                              |
 | vier abril 12| Data Wrangling                                                          | [`[Capsula]`](https://youtu.be/Gjvdr_pu1-M) [`[.R]`](clases/clase_04/Clase_4_Data_Wrangling/Clase_4_Script.R) [`[.xslx]`](clases/clase_04/Clase_4_Data_Wrangling/base/ALTO_MAIPO.xlsx) | 
-| vier abril 19| **Evaluación individual I**: nivelación en R                            | [`[.R.a]`](clases/clase_05/prueba/prueba_1_A.R),[`[.R.b]`](clases/clase_05/prueba/prueba_1_B.R),[`[.R.c]`](clases/clase_05/prueba/prueba_1_C.R)  |
+| vier abril 19| **Evaluación individual I**: nivelación en R                            | [`[.R.a]`](clases/clase_05/prueba/prueba_1_A.R) [`[.R.b]`](clases/clase_05/prueba/prueba_1_B.R) [`[.R.c]`](clases/clase_05/prueba/prueba_1_C.R)  |
 
 | vier abril 26| Análisis de datos categóricos | 
 pendiente  |                                                             
