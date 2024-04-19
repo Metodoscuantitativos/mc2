@@ -112,7 +112,7 @@ pham_200 <- ____ [ _:___,] #debe rellenar el siguiente código
 
 table(pham_200$principales_traslados)
 
-pham_200 <- pham_200 %>%
+____ <- ____ %>%
   mutate(principales_traslados = case_when(
     principales_traslados %in% c("Tabajo", "1", "Teabajo", "Trababo", "trabajo", "Trabajo", 
                                  "Trabajo/ medico", "Trabao") ~ "Trabajo",
@@ -129,3 +129,9 @@ pham_200 <- pham_200 %>%
 
 
 # 0.4 Compruebe con laa función table que la recodificación esté correcta (1 pto)
+
+# Parte 4: Exportar datos -------------------------------------------------------
+# Guarde su base recodificada con sólo 200 casos y tres variables en la carpeta del proyecto con la siguiente función 
+
+
+write.xlsx(x = ____ ,file = ____) #(2 ptos)
