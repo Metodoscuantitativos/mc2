@@ -8,9 +8,9 @@
 
 #0.2 Modificar el tercer elemento de EDAD, asignandole el valor 30
 
-#0.3 Crear 3 vectores (llamarlos NOMBRE, PARENTESCO, COMUNA_RESIDENCIA) 
+#0.3 Crear 3 vectores (llamarlos NOMBRE, PARENTESCO, Deporte) 
 # con la misma cantidad de elementos que EDAD, pero con variables de tipo character (texto).
-# PARENTESCO: asigne los valores: Padre, Madre, Hijo, Hija
+# PARENTESCO: asigne los valores: Padre, Madre, Hijo, Hija, primo/a/e, tía/o, sobrina/o/e, abuelo/a, etc.
 
 #0.4 Crear un dataframe (llamarla: BASE_DATOS) que contenga los 4 vectores creados previamente
 
