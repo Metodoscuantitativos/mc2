@@ -54,13 +54,13 @@ pendiente
 
 | vier mayo 03 | Ejercicios en clase en R: procesamiento y análisis de datos categóricos | Pendiente                                                     
                                                                          |                                                                                                
-| vier mayo 10 | Visualización de datos categóricos en `ggplot`                          | Pendiente                                                            
-                                                                         |                                                                                             
+| vier mayo 10 | Visualización de datos categóricos en `ggplot`                          | Pendiente                                                                |                                                                                             
 | vier mayo 17 | Análisis de datos cuantitativos  | 
-Pendiente                                                                                                                                                              |
+Pendiente                                                                |
+
 | vier mayo 31 | Prueba de hipótesis: T de Student y ANOVA                               | Pendiente                                                                                                                                                              |
 | vier jun 07  | Correlación y regresión                                                 | Pendiente                                                                                                                                                              |
-| vier jun 14  | **Evaluación individual II**: Procesamiento y análisis de datos categóricos | Pendiente                                                                                                                                            |
+| vier jun 14  | **Evaluación individual II**: Procesamiento y análisis de datos categóricos | Pendiente                                                                                                                                                              |
 | vier jun 28  | Pruebas recuperativas                                                   | Pendiente                                                                                                                                                              |
 | vier jul 05  | Tiempo para preparación y dudas                                         | Pendiente                                                                                                                                                              |
 | vier jul 12  | **Entrega Grupal Final** presentación de investigación en clases y entrega de trabajo | Pendiente                                                                                                                                                              |
