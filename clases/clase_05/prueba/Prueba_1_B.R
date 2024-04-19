@@ -152,4 +152,10 @@ ____ <- ____ %>%
     )
   )
 
-# 0.4 Compruebe con laa función table que la recodificación esté correcta (1 pto)
+# 0.4 Compruebe con la función table que la recodificación esté correcta (1 pto)
+
+# Parte 4: Exportar datos -------------------------------------------------------
+# Guarde su base recodificada con sólo 200 casos y tres variables en la carpeta del proyecto con la siguiente función 
+
+
+write.xlsx(x = ____ ,file = ____) #(2 ptos)

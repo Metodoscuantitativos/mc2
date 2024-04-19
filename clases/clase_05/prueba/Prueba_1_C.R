@@ -110,9 +110,6 @@ pham_200 <- pham [ 1:200,] #debe rellenar el siguiente código
 #03. Recodifique las categorías de respuesta de la variable temporalidad_traslado 
 #utilizando mutate junto con case_when() (2 ptos)
 
-
-
-
 ____<- ____ %>%
   mutate(temporalidad_traslado = case_when(
     temporalidad_traslado %in% c("1", "6", "1 dia", "1 día", "diaria", "Diaria",
@@ -138,3 +135,10 @@ ____<- ____ %>%
   ))
 
 # 0.4 Compruebe con laa función table que la recodificación esté correcta (1 pto)
+
+
+# Parte 4: Exportar datos -------------------------------------------------------
+# Guarde su base recodificada con sólo 200 casos y tres variables en la carpeta del proyecto con la siguiente función 
+
+
+write.xlsx(x = ____ ,file = ____) #(2 ptos)
