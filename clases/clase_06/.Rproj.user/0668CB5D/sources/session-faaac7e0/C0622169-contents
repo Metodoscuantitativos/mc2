@@ -509,7 +509,7 @@ c_religionxraza1 %>%
 c_religionxraza1 %>% 
   kable(., caption="Tabla de contingencia para religión y raza") %>% 
   kable_classic(full_width = F, html_font = "Cambria", font_size = 15) %>% 
-  save_kable(file = "tablas/c_religionxraza1", zoom = 2)
+  save_kable(file = "tablas/c_religionxraza1.png", zoom = 2)
 
 
 
