@@ -90,8 +90,8 @@ style_duo_accent(primary_color = "#035AA6", secondary_color = "#03A696")
   + Realiza pruebas de hipótesis de significación estadística.
 
 - *Machine Learning/Inteligencia Artificial*: 
-  + Examina variables que refieren a una muestra o del universo.
-  + Realiza procesos de aprendizaje de los algoritmos.
+  + Realiza procesos de **aprendizaje** mediante los algoritmos.
+  + Algoritmo se alimenta de mediciones anteriores y se pueden ir actualizando.
   + Por ejemplo, Algoritmos de recomendación de consumos culturales (Spotify, Netflix, etcétera).
   
 
