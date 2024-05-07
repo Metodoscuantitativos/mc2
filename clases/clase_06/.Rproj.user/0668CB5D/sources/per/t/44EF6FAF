@@ -1,27 +1,26 @@
 {
-    "id": "C9F19527",
-    "path": "C:/Users/sebastian/Desktop/PRODUCCION/00. ACCIÓN PROXIMA/03. CUANTI/Curso Cuanti 2/Curso UAH/2024/mc2/clases/clase_06/Clase 6.R",
-    "project_path": "Clase 6.R",
+    "id": "44EF6FAF",
+    "path": "C:/Users/sebastian/Desktop/PRODUCCION/00. ACCIÓN PROXIMA/03. CUANTI/Curso Cuanti 2/Curso UAH/2024/mc2/clases/clase_06/clase_6.R",
+    "project_path": "clase_6.R",
     "type": "r_source",
     "hash": "2056057622",
     "contents": "",
     "dirty": false,
-    "created": 1714501346363.0,
+    "created": 1714743114712.0,
     "source_on_save": false,
-    "relative_order": 2,
+    "relative_order": 10,
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "512,0",
-        "scrollLine": "0",
-        "docOutlineVisible": "1"
+        "cursorPosition": "386,18",
+        "scrollLine": "376"
     },
     "folds": "",
     "lastKnownWriteTime": 1714581153,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1714581153699,
+    "last_content_update": 1714581153,
     "read_only": false,
     "read_only_alternatives": []
 }
