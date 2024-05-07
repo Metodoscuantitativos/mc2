@@ -13,7 +13,7 @@ pacman::p_load(tidyverse,# Universo de paquetes : tidyr, dplyr, ggplot2,readr,pu
 
 
 #Importar el archivo y asignarlo en el environment----
-base_antropologia <- read.xlsx(xlsxFile = "Encuesta Estudiantes Antropología 2023 (respuestas).xlsx")
+base_antropologia <- read.xlsx(xlsxFile = "Encuesta-Estudiantes-Antropología-2023-(respuestas).xlsx")
 
 #Explorar
 glimpse(base_antropologia) #Una primera mirada de lo que hay en mis datos, la primera fila es extraña, dice "respuesta" o repite el nombre de la variable.
