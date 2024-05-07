@@ -50,7 +50,7 @@ Nota: Todas las clases son presenciales, a continuación pueden ver las presenta
 <<<<<<< Updated upstream
 | vier abril 26 |  Data Wrangling 2 | Pendiente |                                                                
 | vier mayo 03 | Análisis de datos categóricos  | [`[Clase6]`](https://metodoscuantitativos.github.io/mc2/clases/clase_06/clase_6#1) [`[.R]`](clases/clase_06/clase_6.R) [`[Capsulas]`](https://youtube.com/playlist?list=PLtMKbC0NRgrFFrvMjEhJN5fJObYHS7HqN&si=iPz1E0auVjNJMvE7)|
-| vier abril 26 | Análisis de datos categóricos   |[`[Clase5]`](clases/clase_05/clase5_script.R) [`[.xslx]`] (clases/clase_05/Encuesta-Estudiantes-Antropología-(respuestas).xlsx)   |                                                                
+| vier abril 26 | Análisis de datos categóricos   |[`[Clase5]`](clases/clase_05/clase5_script.R) [`[.xslx]`](clases/clase_05/Encuesta-Estudiantes-Antropología-(respuestas).xlsx)   |                                                                
 | vier mayo 03 | Ejercicios en clase en R: procesamiento y análisis de datos categóricos | Pendiente |
 | vier mayo 10 | Visualización de datos categóricos en `ggplot`                          | Pendiente |                                                             
 | vier mayo 17 | Análisis de datos cuantitativos                                         | Pendiente |
