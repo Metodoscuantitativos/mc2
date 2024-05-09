@@ -98,9 +98,9 @@ Nota: En general las ayundantías son online, a excepción de algunas con Matía
 | Avance 1                      | Presentación de formulario corregido         | Abril 05       |
 | Formulario Final               | Presentación de formulario final conjunto (solo ayudantes y directores) | Abril 19       |
 | Evaluación individual I       | Nivelación en R                              | Abril 19       |
-| Inicio Trabajo de Campo       | Hacer 5 cuestionarios por persona            | Abril 22       |
-| Finalización Trabajo de Campo | Hacer 5 cuestionarios por persona            | Abril 26       |
-| Avance 2                      | Procesamiento y análisis básico              | Mayo 10        |
+| Inicio Trabajo de Campo       | Hacer 5 cuestionarios por persona            | Mayo 03 (recalendarización)       |
+| Finalización Trabajo de Campo | Hacer 5 cuestionarios por persona            | Mayo 10 (recalendarización)      |
+| Avance 2                      | Procesamiento y análisis básico: Data Wrangling, Análisis de datos cualitativos (frecuencias, tablas de contingencia y gráficos)| Mayo 31 (recalendarización)        |
 | Evaluación individual II      | Procesamiento y análisis de datos cuanti/cuali | Junio 14       |
 | Entrega grupal final          | Presentación de investigación en clases y entrega de trabajo | Julio 12 |
 
