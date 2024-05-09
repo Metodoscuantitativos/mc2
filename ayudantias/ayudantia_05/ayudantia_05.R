@@ -326,11 +326,14 @@ table(base_antropologia$empleo_padre)
 install.packages("rlang")
 library(rlang)
 
-install.packages("rlang")
+install.packages("xaringan")
 library(xaringan)
 
 install.packages ("xaringanthemer")
 library(xaringanthemer)
+
+install.packages("summarytools")
+library(summarytools)
 
 
 #Paquetes para clase
@@ -338,7 +341,9 @@ pacman::p_load(tidyverse, openxlsx, readxl,readr,janitor, forcats, writexl, Data
                datos,  knitr, gt, 
                summarytools, ggthemes)
 #knitr y gt me permitirán dar formato a las tablas
-# webshot::install_phantomjs() # Sino funcionan tablas, instalar para exportar tablas de knitr
+
+install.packages("webshot")
+webshot::install_phantomjs() # Sino funcionan tablas, instalar para exportar tablas de knitr
 
 
 ## ABRIR BASE DE DATOS
@@ -351,65 +356,101 @@ glimpse(datos)
 
 #¿Cuántos casos y cuántas variables?
 #¿Cuáles son los tipos de variables?
-
+#int: integer: numerica
+#fct: factor: cualitativa
 
 #¿Quiero saber cuántas personas son de cada religión?
 table(datos$religion)
 
 
 #Forma 1: Con freq de summarytools####
-freq(datos$religion) #está medio desordenada: frecuencias válidas y acumuladas por default
-freq(datos$religion, prop = TRUE, order = "freq", report.nas =  FALSE) #eliminé valores NA y ordené por frecuencia
+freq(datos$religion) #está medio desordenada: frecuencias válidas y acumuladas por default, se repiten.
+freq(datos$religion, prop = TRUE, order = "freq", report.nas =  FALSE) #eliminar valores NA y ordenar por frecuencia
 
-#argumentos (son separados por coma):
-#prop= TRUE: pon proporciones (no sólo frecuencias absolutas)
-#order= "freq": ordena por frecuencas
-#report.nas: FALSE: no reportes datos perdidos
+#Vemos que en la tabla se contemplan los NA: No aplica, Sin respuesta, No sabe (podría ser considerado).
 
+#Buscamos eliminar valores perdidos NA (Sin respuesta y No aplica)
+#básicamente porque no nos sirven en el análisis que queremos hacer de los datos
+#y además se contemplan como datos en las tablas, lo que altera los %
 
-#problema: aparece "Sin respuestas" y  "No aplica" en la tabla ¿Cómo eliminarlas?
+#Eliminar NA con mutate
+#tratamos de establecer que Sin respuesta y No aplica son NA
 datos %>% 
   mutate(religion = if_else(religion %in% c("Sin respuesta", "No aplica"), NA, religion)) %>% 
   freq(religion, prop = TRUE, order = "freq", report.nas =  FALSE)
 
-#ifelse: para religión. 
-# Si incluye "Sin respuesta", "No aplica"
-# Transforma en NA
-# Si no los incluye dejalo en religión
-
-
-class(datos$religion) #ifelse parece tener problemas para trabajar con variables factor: convierto religión y NA en character
+#¿Qué pasó? siguen apareciendo los valores, que no fueron categorizados como NA, ni eliminados.
+class(datos$religion) #religión = factor.
+#ifelse parece tener problemas para trabajar con variables factor 
+#¿Qué hago? convierto la variable religión en variable de tipo character
 
 datos %>% 
   mutate(religion = as.character(religion)) %>% #transformo a character
   mutate(religion = if_else(religion %in% c("Sin respuesta", "No aplica"), as.character(NA), religion)) %>% 
   freq(religion, prop = TRUE, order = "freq", report.nas =  FALSE)
 
-#Importancia de tipo de dato (class()) para hacer ciertos procedimientos. 
+#Destacar la importancia de tipo de dato (class()) para hacer ciertos procedimientos. 
 
+#EJERCICIO 1: tabla de frecuencia con freq####
+#hacer una tabla de frecuencia con freq() de la variable raza
+#¿Qué deberíamos hacer primero?
 
-#ejercicio: pruebe hacer una tabla de frecuencia con freq() de la variable raza
+#1. Chequear el tipo de variable, para anticipar errores como el anterior.
+##¿Con qué función lo hacemos? ¿Cómo completamos? ¿Qué tipo de variable es?
+____(datos$____)
+
+#2. Si es factor, transformar la variable a character
+##¿Con qué función debería hacerse?
+
+_____ %>% 
+  ______(raza = as.character(raza)) %>% #transformo a character
+  freq(raza, prop = TRUE, order = "freq", report.nas =  FALSE)
+
+#¿Cómo lo interpretamos?
+#Con respecto a la raza de las personas que respondieron la encuesta, 
+#16.395 personas son blancas, es decir, un 76,32% de la muestra, lo que representa una gran mayoría
+#por otro lado, 3.129 personas encuestadas son negras, esto es, un 14,57% de la muestra. 
+#Esto representaría una cantidad significativamente menor con respecto a las personas blancas.
+#por otro lado, 1.959 personas se identifican con otra raza, lo que significaría un 9,12% de la muestra.
+
+#Conclusiónes
+#hay una diferencia significativa y una enorme distancia entre la cantidad de personas blancas y negras.
+#las personas blancas de la muestra conforman una gran mayoría respecto a otras razas. 
+
+#Reflexión
+#Desde ahí se pueden sacar varias conclusiones: primero respecto a que una abismal mayoría de la muestra
+#corresponde a gente "blanca", lo cual nos invita a reflexionar sobre la construcción de este cuestionario,
+#en el sentido de ¿qué es ser blanco? ¿quiénes entran en esta categoría?
+#hay muchas identidades que se invisibilizan y que posiblemente son encasilladas en lo blanco,
+#y quizás a ciertas personas les pudo haber pasado que no supieron cómo categorizarse y terminaron
+#diciendo blanco. Eso ocurre cuando las categorías de respuesta son muy polares, y son insuficientes para
+#demostrar la realidad social. Al no existir otras categorías, posiblemente las personas se pueden haber 
+#visto presionadas a votar por la opción de blanco, y quizás eso explique además la enorme cantidad.
+#lo otro que se nos puede venir a la cabeza es el tema de los sesgos, pues en este caso podría haber un sesgo
+#al contemplar principalmente la noción de las personas blancas (igualmente esto depende de muchas cosas: lugar, contexto, ...)
+#para esto es interesante evaluar el propósito de la investigación.
 
 
 #Forma 2: mediante tidyverse####
 datos %>%
   count(religion) %>% # contar las frecuencias de cada religión
   mutate(Porcentaje = n / sum(n) * 100) %>% # genero un porcentaje
-  mutate(Porcentaje = round (Porcentaje, 2)) %>% #redondeo en un decimal
+  mutate(Porcentaje = round (Porcentaje, 2)) %>% #redondeo 
   arrange(desc(Porcentaje)) %>%  #ordeno de mayor a menor
   rename(Frecuencia = n, Religion= religion) 
 
-#observemos que sin respuesta aparece en el cálculo, preferimos eliminarla. 
+#Observemos que "Sin respuesta" aparece en el cálculo, preferimos eliminarla filtrando. 
 datos %>%
   filter (!(religion =="Sin respuesta")) %>% #elimino "Sin respuesta"
-  count(religion) %>%
-  mutate(Porcentaje = n / sum(n) * 100) %>%
-  mutate(Porcentaje = round (Porcentaje, 2)) %>% 
-  arrange(desc(Porcentaje)) %>% 
-  rename(Frecuencia = n, Religion= religion) 
+  count(religion) %>% #cuenta
+  mutate(Porcentaje = n / sum(n) * 100) %>% #saca el % del total con la frecuencia relativa multiplicada x 100
+  mutate(Porcentaje = round (Porcentaje, 2)) %>% #round redondea el % a 2 decimales.
+  arrange(desc(Porcentaje)) %>% #ordena los % de mayor a menor.
+  rename(Frecuencia = n, Religion= religion) #les da los nombres nuevos a los encabezados de la tabla.
 
+# ! es un operador de negación: significa "no igual a". Los filtra eliminándolos.
 
-#Acá le agrego el total con bind_rows
+#Acá le agrego el Total con bind_rows
 datos %>%
   filter (!(religion =="Sin respuesta")) %>% 
   count(religion) %>%
@@ -419,40 +460,69 @@ datos %>%
   rename(Frecuencia = n, Religion= religion) %>% 
   bind_rows(list(Religion = "Total", Frecuencia = sum(.$Frecuencia), Porcentaje = 100)) 
 
-#Ojo:  busqué en StackOverflow,  https://chat.openai.com/, https://rtutor.ai/
 
-
-#ejercicio: 
+#EJERCICIO 2: tabla de frecuencia con tidyverse#### 
 #pruebe hacer una tabla de frecuencia mediante tidyverse con la variable raza
 #pruebe hacerlo con otra variable más
 
+#Recordar que son una cadena de funciones asociadas con %>% 
+#¿Qué se hace primero?
+
+#Con la variable raza: 
+datos %>%
+  filter (!(____ =="Sin respuesta")) %>% 
+  count(____) %>%
+  mutate(Porcentaje = n / sum(n) * 100) %>%
+  mutate(Porcentaje = round (Porcentaje, 1)) %>% 
+  arrange(desc(Porcentaje)) %>% 
+  rename(Frecuencia = n, ____= ____) %>% 
+  bind_rows(list(____ = "Total", Frecuencia = sum(.$Frecuencia), Porcentaje = 100)) 
+
+#Comparemos esta tabla de raza con la que hicimos anteriormente...
+#¿Qué diferencias encontramos?
+
+#Con otra variable: ¿Cuál?
 
 
 
-# II.Tablas de contingencia ----------------------------------------------
-#Mediante ctable()####
 
+
+# II.Tablas de contingencia ----------------------------------------------------
+#Se utiliza para hacer un cruce entre dos variables, ya no sólo una como vimos anteriormente
+#nos permite evaluar cómo una variable afecta a la otra
+
+#1. Mediante ctable()####
 summarytools::ctable( x = datos$religion, y = datos$raza)
-
 
 # cruce de dos variables categóricas:
 # en la X suele ir variable dependiente: religión (izquierda)
-# en la y la independiente: raza (arriba)
-# la pregunta es: ¿cómo la dependiente modifica a la independiente?
+# en la Y la independiente: raza (arriba)
+# la pregunta es: ¿cómo la independiente modifica a la dependiente?
+
+#¿Cómo la raza influye en la religión?
+#¿La religión depende de la raza?
+#la mayoría de personas de raza negra son protestantes, es decir, 2.271 personas, 
+#mientras que la minoría de esta raza, es decir, una persona, es hinduista.
+
+#la mayoría de personas encuestadas blancas, es decir, 8.188 personas, son protestantes,
+#la segunda mayoría en este caso es la religión católica (4.001 personas)
+#la minoría, es decir, 7 personas, se identifican con la religión Nativa americana. 
+#la segunda minoría para las personas blancas encuestadas es el hinduismo, con 8 personas. 
 
 
-#1. Orden general de tabla ####
+#igualmente esta tabla está un poco desordenada, así que la vamos a ordenar...
 
-#ordeno re factorizando según orden deseado raza y religión por cantidad de casos por categoría. 
-
+#Orden general de tabla ####
+#La tabla se puede reordenar dependiendo de lo que uno estime conveniente
+#en este caso, ordenamos la raza en Blanca, Negra, Otra, por orden de mayor a menor.
 datos$raza <- datos$raza %>% fct_relevel(c("Blanca", "Negra", "Otra")) %>% 
   fct_drop("No aplica") #ordeno los resultados según raza y elimino la categoría no aplica
 
-#fct_relevel: pregunte a chatgpt: ¿Para qué sirve? y digale haz un ejemplo con raza
-#fct_drop: pregunte a chatgpt: ¿Para qué sirve? 
-
+#Tarea: ¿Para qué servían las funciones fct_relevel y fct_drop? Busquen en chat gpt*
 
 #para religión me fijo en el orden de importancia en la distribución de frecuencias y ordeno la tabla de esa manera.
+#La religión más seleccionada es protestante.
+#ordenamos de mayor a menor.
 
 # Protestante   10846    50.49    50.49
 # Católica    5124    23.85    74.34
@@ -490,52 +560,70 @@ datos$religion <- datos$religion %>% fct_relevel(c("Protestante",
 )) %>% 
   fct_drop("No aplica")
 
-#observar los niveles de una variable facto
-levels(datos$religion)
 
+#Uso de proporciones ####
+#Esto nos va a calcular los porcentajes de distintas formas
 
-#2. Uso de proporciones ####
-
-# sin proporciones
+# TABLA SIN PORCENTAJES
 ctable( x = datos$religion, y = datos$raza, prop = "n", justify = "l")
-
 #prop = "n" : es sin proporciones
 #justify: "l": es ajustar la tabla a la izquierda
 
-# proporciones total
+# TABLA CON PORCENTAJES DEL TOTAL
 ctable( x = datos$religion, y = datos$raza, prop = "t", justify = "l")
 
-#¿Qué se puede interpretar?
+#INTERPRETACIÓN GENERAL
+#¿Qué se puede interpretar? (en general)
+#38.11% de la muestra son personas protestantes y blancas a la vez.
 
-#proporciones según fila
+#TABLA CON PORCENTAJES SEGÚN FILA
 ctable( x = datos$religion, y = datos$raza, prop = "r", justify = "l") 
 #prop = "r" : es proporciones en filas
 
-#¿Qué se puede interpretar?
+#INTERPRETACIÓN POR FILAS
+#¿Qué se puede interpretar? (por fila)
+#De las personas protestantes encuestadas, un 75,5% son blancas.
 
-#proporciones según columna
+#TABLA CON PORCENTAJES SEGÚN COLUMNA
 ctable( x = datos$religion, y = datos$raza, prop = "c", justify = "l")
 
 #prop = "c" : es proporciones en columnas
 
-#¿Qué se puede interpretar?
+#INTERPRETACIÓN POR COLUMNAS####
+#¿Qué se puede interpretar? (por columnas) **
+# comparar porcentaje total con los porcentajes de las columnas e ir viendo
+#si hay grandes diferencias
 #más allá de un 5% del total se suele considerar una diferencia importante. 
 
-#3. Aproximandonos a la prueba de hipótesis chi cuadrado ####
-ctable( x = datos$religion, y = datos$raza, prop = "c", justify = "l", 
-        chisq = T)
+#¿Cómo se presenta el cruce entre estas dos variables?
+#¿Cómo la raza influye en la religión?
+#la raza negra correspondería al 72,58% de protestantes, lo que quiere decir que
+#la raza negra estaría influyendo en la religión que se tiene, al tener una tendencia protestante
+#¿qué generaría esta tendencia cultural?
 
-#Práctica#### 
+#Práctica*#### 
 #realice una tabla entre partido y raza
+summarytools::ctable( x = datos$______, y = datos$_____)
 
-#primero pase la siguiente sintaxis: 
-#¿quién la puede interpretar?
+#x dependiente
+#y independiente
+
+#¿Cómo se podría establecer la pregunta por la relación entre estas dos variables?
+#¿Podemos decir que una influye en la otra? ¿Cuál influiría en cuál?
+
+summarytools::ctable( x = datos$partido, y = datos$raza)
+
+#Pero primero...
+#Filtramos y Ordenamos
+#Quén me puede decir qué estamos haciendo con este código?
 unique(datos$partido)
 datos %>%
   mutate(partido = as.character(partido)) %>%
   mutate(partido = if_else(partido %in% c("Sin respuesta", "No aplica"), as.character(NA), partido)) %>%
   freq(partido, prop = TRUE, order = "freq", report.nas =  FALSE)
 
+#Recodificamos las categorías
+#Quién me dice qué estamoss haciendo en el código de abajo?
 datos <- datos %>%
   mutate(partido_r = case_when(partido ==  "No fuertemente demócrata" ~ "Demócrata",
                                partido ==  "Fuertemente demócrata" ~ "Demócrata",
@@ -548,20 +636,23 @@ datos <- datos %>%
                                partido ==  "No sabe" ~ "No sabe"))
 
 class(datos$partido_r)
-datos$partido_r <- as.factor(datos$partido_r) #por qué se transforma a factor?
+datos$partido_r <- as.factor(datos$partido_r) 
 class(datos$partido_r)
 
 datos$partido_r <- datos$partido_r %>% fct_relevel(c("Demócrata", "Republicano", 
                                                      "Independiente", "Otro partido", "No sabe"))
 
-#realice la tabla que estime conveniente e interprete: 
+#Ejercicio 3: tabla de contingencia e interpretación####
+#Realice la tabla que estime conveniente e interprete: 
 #¿Cuál es la variable dependiente y cuál es la independiente?
 #partido_r y raza
 
+summarytools::ctable( x = datos$partido_r, y = datos$raza)
+ctable( x = datos$religion, y = datos$raza, prop = "c", justify = "l")
 
 
-#Mediante prop.table()#### 
-#1. Uso de proporciones#### 
+#2. Mediante prop.table()#### 
+#Uso de proporciones#### 
 
 #atención con table!
 
@@ -627,7 +718,7 @@ datos %>%
 
 
 
-#2. Agrego addmargins #### 
+#Agrego addmargins #### 
 #en tablas anteriores no están los totales, addmargins permite agregarlos
 
 datos %>%
@@ -645,7 +736,7 @@ datos %>%
   addmargins(.,2) #agrega total de columnas
 
 
-#3. Combino addmargins y prop.table #### 
+#Combino addmargins y prop.table #### 
 
 #proporciones por filas
 datos %>%
@@ -676,7 +767,7 @@ datos %>%
 ctable( x = datos$religion, y = datos$raza, prop = "c", justify = "l")
 
 
-#Práctica####
+#Práctica*####
 #realice una tabla de contingencia por columnas entre partido_r y raza
 
 
@@ -799,7 +890,7 @@ datos %>%
 
 
 #Tablas de contingencia####
-#1 vía prop.table()####
+#Mediante prop.table()####
 
 #proporciones por columnas 
 c_religionxraza1 <- 
