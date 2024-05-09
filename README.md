@@ -49,8 +49,9 @@ Nota: Todas las clases son presenciales, a continuación pueden ver las presenta
 | vier abril 19| **Evaluación individual I**: nivelación en R                            | [`[.R.a]`](clases/clase_05/prueba/prueba_1_A.R) [`[.R.b]`](clases/clase_05/prueba/Prueba_1_B.R) [`[.R.c]`](clases/clase_05/prueba/Prueba_1_C.R) |
 | vier abril 26 |  Data Wrangling 2 | [`[Cápsula]`](https://youtu.be/TCOFzBTJn14) [`[Clase5]`](clases/clase_05/clase5_script.R) [`[.xslx]`](clases/clase_05/Encuesta-Estudiantes-Antropología-2023-(respuestas).xlsx)    |                                                   
 | vier mayo 03 | Análisis de datos categóricos  | [`[Clase6]`](https://metodoscuantitativos.github.io/mc2/clases/clase_06/clase_6#1) [`[.R]`](clases/clase_06/clase_6.R) [`[Capsulas]`](https://youtube.com/playlist?list=PLtMKbC0NRgrFFrvMjEhJN5fJObYHS7HqN&si=iPz1E0auVjNJMvE7)|
-| vier mayo 03 | Ejercicios en clase en R: procesamiento y análisis de datos categóricos | Pendiente |
-| vier mayo 10 | Visualización de datos categóricos en `ggplot`                          | Pendiente |                                                             
+| vier mayo 10 | Visualización de datos categóricos en `ggplot`                          | [`[Clase8]`](https://metodoscuantitativos.github.io/mc2/clases/clase_08/Clase_8.pptx) 
+[`[.R]`](clases/clase_08/Clase_8.R)
+[`[Capsulas]`](https://youtube.com/playlist?list=PLtMKbC0NRgrEiQkrPaX_zd_dmVmnxwQW1&si=tZxD8cVsrj6t4VK1)|                                                             
 | vier mayo 17 | Análisis de datos cuantitativos                                         | Pendiente |
 | vier mayo 31 | Prueba de hipótesis: T de Student y ANOVA                               | Pendiente |
 | vier jun 07  | Correlación y regresión                                                 | Pendiente |
@@ -60,6 +61,7 @@ Nota: Todas las clases son presenciales, a continuación pueden ver las presenta
 | vier jul 12  | **Entrega Grupal Final** presentación de investigación en clases y entrega de trabajo | Pendiente| 
 
 
+clases/
 
 ---
 
