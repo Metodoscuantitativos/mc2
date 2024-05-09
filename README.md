@@ -102,8 +102,9 @@ Nota: En general las ayundantías son online, a excepción de algunas con Matía
 | Finalización Trabajo de Campo | Hacer 5 cuestionarios por persona            | Mayo 10 (recalendarización)      |
 | Avance 2                      | Procesamiento y análisis básico: Data Wrangling, Análisis de datos cualitativos (frecuencias, tablas de contingencia y gráficos)| Mayo 31 (recalendarización)        |
 | Evaluación individual II      | Procesamiento y análisis de datos cuanti/cuali | Junio 14       |
+| Pruebas recuperativas         | Pruebas 1 y 2 según el caso                    | Junio 28       |
 | Entrega grupal final          | Presentación de investigación en clases y entrega de trabajo | Julio 12 |
-
+| Entrega final de notas          |  -  | Julio 19 |
 
 
 ---
