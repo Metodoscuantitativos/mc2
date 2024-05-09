@@ -357,7 +357,7 @@ glimpse(datos)
 table(datos$religion)
 
 
-#01.Forma 1: Con freq de summarytools####
+#Forma 1: Con freq de summarytools####
 freq(datos$religion) #está medio desordenada: frecuencias válidas y acumuladas por default
 freq(datos$religion, prop = TRUE, order = "freq", report.nas =  FALSE) #eliminé valores NA y ordené por frecuencia
 
@@ -391,7 +391,7 @@ datos %>%
 #ejercicio: pruebe hacer una tabla de frecuencia con freq() de la variable raza
 
 
-#02.Forma 2: mediante tidyverse####
+#Forma 2: mediante tidyverse####
 datos %>%
   count(religion) %>% # contar las frecuencias de cada religión
   mutate(Porcentaje = n / sum(n) * 100) %>% # genero un porcentaje
@@ -430,7 +430,7 @@ datos %>%
 
 
 # II.Tablas de contingencia ----------------------------------------------
-#01.mediante ctable()####
+#Mediante ctable()####
 
 summarytools::ctable( x = datos$religion, y = datos$raza)
 
@@ -441,7 +441,7 @@ summarytools::ctable( x = datos$religion, y = datos$raza)
 # la pregunta es: ¿cómo la dependiente modifica a la independiente?
 
 
-#01.1. Orden general de tabla ####
+#1. Orden general de tabla ####
 
 #ordeno re factorizando según orden deseado raza y religión por cantidad de casos por categoría. 
 
@@ -494,7 +494,7 @@ datos$religion <- datos$religion %>% fct_relevel(c("Protestante",
 levels(datos$religion)
 
 
-#01.2. Uso de proporciones ####
+#2. Uso de proporciones ####
 
 # sin proporciones
 ctable( x = datos$religion, y = datos$raza, prop = "n", justify = "l")
@@ -521,11 +521,11 @@ ctable( x = datos$religion, y = datos$raza, prop = "c", justify = "l")
 #¿Qué se puede interpretar?
 #más allá de un 5% del total se suele considerar una diferencia importante. 
 
-#01.3. Aproximandonos a la prueba de hipótesis chi cuadrado ####
+#3. Aproximandonos a la prueba de hipótesis chi cuadrado ####
 ctable( x = datos$religion, y = datos$raza, prop = "c", justify = "l", 
         chisq = T)
 
-#práctica#### 
+#Práctica#### 
 #realice una tabla entre partido y raza
 
 #primero pase la siguiente sintaxis: 
@@ -560,8 +560,8 @@ datos$partido_r <- datos$partido_r %>% fct_relevel(c("Demócrata", "Republicano"
 
 
 
-#02.mediante prop.table()#### 
-#01.1. Uso de proporciones#### 
+#Mediante prop.table()#### 
+#1. Uso de proporciones#### 
 
 #atención con table!
 
@@ -627,7 +627,7 @@ datos %>%
 
 
 
-#01.2. Agrego addmargins #### 
+#2. Agrego addmargins #### 
 #en tablas anteriores no están los totales, addmargins permite agregarlos
 
 datos %>%
@@ -645,7 +645,7 @@ datos %>%
   addmargins(.,2) #agrega total de columnas
 
 
-#01.3. Combino addmargins y prop.table #### 
+#3. Combino addmargins y prop.table #### 
 
 #proporciones por filas
 datos %>%
@@ -676,14 +676,14 @@ datos %>%
 ctable( x = datos$religion, y = datos$raza, prop = "c", justify = "l")
 
 
-#práctica####
+#Práctica####
 #realice una tabla de contingencia por columnas entre partido_r y raza
 
 
 # III. Formatear y Guardar tablas -----------------------------------------
 
-#01.Distribución de frecuencias####
-#01.1 exportarla a excel####
+#Distribución de frecuencias####
+#1 exportarla a excel####
 
 #A. con freq()
 f_religion1 <- datos %>% 
@@ -713,7 +713,7 @@ f_religion2 <- datos %>%
 
 write.xlsx(f_religion2, "tablas/f_religion2.xlsx") #guardalo en un excel
 
-#01.2 exportarla formateada con kable####
+#2 exportarla formateada con kable####
 #A. freq()
 #kable
 datos %>% 
@@ -798,8 +798,8 @@ datos %>%
   save_kable(file = "tablas/f_religion2.png", zoom = 3) #file = donde la guardamos, zoom = cuan grande se guarda
 
 
-#02. Tablas de contingencia####
-#02.1 vía prop.table()####
+#Tablas de contingencia####
+#1 vía prop.table()####
 
 #proporciones por columnas 
 c_religionxraza1 <- 
