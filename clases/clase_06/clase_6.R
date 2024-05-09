@@ -1,4 +1,4 @@
-# Analizando datos categóricos: distribución de frecuencias y tablas de contingencia
+3# Analizando datos categóricos: distribución de frecuencias y tablas de contingencia
 
 
 # # 0. Instaladores y apertura base -------------------------------------------------------
