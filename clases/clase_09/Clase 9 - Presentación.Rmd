@@ -1,7 +1,7 @@
 ---
 title: "Análisis de Variables Cuantitativas"
 subtitle: "Medidas de dispersión y tendencia central"
-author: "Sebastián Muñoz-Tapia"
+author: "Sebastián Muñoz-Tapia & Gino Ocampo"
 institute: "Antropología UAH"
 date: "`r Sys.Date()`"
 output:
@@ -17,10 +17,16 @@ output:
 
 ```{r xaringan-themer, include=FALSE, warning=FALSE}
 library(xaringanthemer)
-style_duo_accent(primary_color = "#035AA6", secondary_color = "#03A696")
+style_duo_accent(primary_color = "#035AA6", secondary_color = "#FF961C")
 
 ```
 
+
+class: inverse, center, middle
+
+# Medidas de tendencia central
+
+---
 ## Medidas de tendencia central: ¿Qué valor "representa" al grupo?
 
 - Conjunto de herramientas estadísticas utilizadas para encontrar un valor representativo de un conjunto de datos,las medidas más comunes son:
@@ -48,39 +54,61 @@ style_duo_accent(primary_color = "#035AA6", secondary_color = "#03A696")
   + De las tres medidas de tendencia central es la única que funciona para variables categóricas (nominales u ordinales)
 
 ---
+## Medidas de tendencia central
+
+### ¿Media o mediana?
+
+![salario](img/salario_mediana_media.png)
+
+---
 
 class: middle, center
 
 ```{r echo=FALSE}
 
+
 library(ggplot2)
 
 # Generar datos de una distribución normal
 set.seed(123)
-datoss <- rnorm(1000, mean = 10, sd = 2)
+datos <- rnorm(1000, mean = 10, sd = 2)
 
 # Calcular la media y la mediana
-media <- mean(datoss)
-mediana <- median(datoss)
+media <- mean(datos)
+mediana <- median(datos)
 
 # Crear el gráfico
-ggplot(data = data.frame(x = datoss), aes(x = x)) +
-  geom_histogram(binwidth = 0.5, aes(y = ..density..), fill = "lightblue", color = "black") +
-  geom_density(alpha = 0.2, fill = "orange", color = "black") +
-  geom_vline(xintercept = media, linetype = "dashed", color = "red", size = 1) +
-  geom_vline(xintercept = mediana, linetype = "dotted", color = "blue", size = 1) +
+ggplot(data = data.frame(x = datos), aes(x = x)) +
+  geom_histogram(binwidth = 0.5, aes(y = after_stat(density)), fill = "#36dafa", color = "black") +
+  geom_density(alpha = 0.2, fill = "#FF961C", color = "black") +
+  geom_vline(xintercept = media, linetype = "dashed", color = "red", linewidth = 1) +
+  geom_vline(xintercept = mediana, linetype = "dotted", color = "blue", linewidth = 1) +
   labs(title = "Distribución normal con media y mediana",
        x = "Valor",
        y = "Densidad") +
   theme_minimal()
 
 
+
+
 ```
 
+---
+
+class: inverse, center, middle
+
+# Medidas de dispersión
 
 ---
 
 ## Medidas de dispersión
+
+- Estadísticos de centro se quedan cortos en capacidad descriptiva en cuanto al análisis de variables cuantitativas.
+- Grupos con igual media se diferencian mucho entre sí
+- Es necesario conocer el grado de dispersión
+- *Grado de parecido entre los datos  en el sentido de concentración o alejamiento entre ellos*.
+
+---
 
 ### Varianza
 - Medida de variabilidad de los datos, lo que nos indica cuánto se dispersan los datos de un conjunto respecto a su media. 
@@ -177,7 +205,7 @@ ggplot(data = data.frame(x = datoss), aes(x = x)) +
 ---
 class: middle, center
 
-```{r echo=FALSE}
+```{r echo=FALSE, warning=TRUE, error=FALSE, eval=TRUE}
 # Cargar la librería ggplot2
 library(ggplot2)
 
@@ -201,8 +229,8 @@ ggplot(df, aes(x = perfect_pop, y = cum_frac_income)) +
   geom_abline(intercept = 0, slope = 1, color = "red", linetype = "dashed") +
   labs(x = "Fracción acumulada de la población",
        y = "Fracción acumulada del ingreso o la riqueza",
-       title = "Curva de Lorenz con la línea de equidad")
-
+       title = "Curva de Lorenz con la línea de equidad")+
+  theme_minimal()
 
 
 ```
@@ -230,8 +258,9 @@ df <- data.frame(
 
 # Crear el gráfico de caja y bigotes
 ggplot(df, aes(x = grupo, y = valor)) +
-  geom_boxplot(fill = "grey80", color = "black") +
-  labs(x = "Grupo", y = "Valor", title = "Diagrama de caja y bigotes")
+  geom_boxplot(fill = "#FF961C", color = "black") +
+  labs(x = "Grupo", y = "Valor", title = "Diagrama de caja y bigotes")+
+  theme_minimal()
 
 ```
 ]
