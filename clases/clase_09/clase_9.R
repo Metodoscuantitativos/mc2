@@ -133,7 +133,7 @@ ingresos_por_comuna_media <- datos %>%
   summarise(media = mean(y1, na.rm = TRUE),
             mediana = median(y1, na.rm = TRUE),
             desv.est = sd(y1, na.rm = TRUE)) %>%
-  arrange(desc(media))
+  arrange(desc(media)) # ordenar de mayor a menor por la media
 
 
 ingresos_por_comuna_mediana <- datos %>%
@@ -142,7 +142,7 @@ ingresos_por_comuna_mediana <- datos %>%
   summarise(media = mean(y1, na.rm = TRUE),
             mediana = median(y1, na.rm = TRUE),
             desv.est = sd(y1, na.rm = TRUE)) %>%
-  arrange(desc(mediana))
+  arrange(desc(mediana)) # ordenar de mayor a menor por la mediana
 
 ingresos_por_desvio <- datos %>%
   filter(region == "Región Metropolitana de Santiago") %>%
@@ -218,7 +218,7 @@ datos %>%
   group_by(region) %>%
   summarise(coeficiente_gini = Gini(y1, na.rm = TRUE), 
             media = mean(y1, na.rm = TRUE)) %>% 
-  arrange(desc(coeficiente_gini))
+  arrange(desc(coeficiente_gini)) # de mayor a menor
 
 
 #Práctica casa ####
@@ -255,8 +255,8 @@ datos %>%
 # limito el gráfico: no considero desde el quinto 0.95
 
 ggplot(datos, aes(y = y1, x= "")) +
-  geom_boxplot(outlier.shape = NA, coef = 1.5, width = 0.6) +
-  scale_y_continuous(limits = c(0, quantile(datos$y1, 0.95, na.rm = TRUE))) +
+  geom_boxplot(outlier.shape = NA, coef = 1.5, width = 0.6) + 
+  scale_y_continuous(limits = c(0, quantile(datos$y1, 0.95, na.rm = TRUE))) + #elimino los outlyer
   theme_classic()
 
 #cambio el color de dentro
@@ -348,10 +348,6 @@ ggplot(datos, aes(x = y1)) +
 #práctica####
 #realice histograma con la variable edad, cambie los binwidth
 
-ggplot(datos, aes(x = edad)) +
-  geom_histogram(binwidth = 5, color = "black", fill = "gray") + #hago rangos de 100.000
-  labs(x = "Edad", y = "Frecuencia") +
-  theme_classic() 
 
 
 

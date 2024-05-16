@@ -25,9 +25,12 @@ style_duo_accent(primary_color = "#035AA6", secondary_color = "#FF961C")
 class: inverse, center, middle
 
 # Medidas de tendencia central
+### ¿Qué valor "representa" al grupo?
+
+![salario](img/salariospocos.jpg)
 
 ---
-## Medidas de tendencia central: ¿Qué valor "representa" al grupo?
+## Medidas de tendencia central 
 
 - Conjunto de herramientas estadísticas utilizadas para encontrar un valor representativo de un conjunto de datos,las medidas más comunes son:
 
@@ -39,6 +42,8 @@ class: inverse, center, middle
 - **Mediana**: 
   + Valor central de un conjunto de datos ordenados. 
   + Cálculo: se ordenan los datos de menor a mayor y se ve el valor que se encuentra en el medio. Si número de observaciones es par, la mediana es el promedio de los dos valores centrales. 
+  
+
 
 
 ---
@@ -55,6 +60,7 @@ class: inverse, center, middle
 
 ---
 ## Medidas de tendencia central
+
 
 ### ¿Media o mediana?
 
@@ -98,6 +104,9 @@ ggplot(data = data.frame(x = datos), aes(x = x)) +
 class: inverse, center, middle
 
 # Medidas de dispersión
+### ¿Cómo entender las diferencias entre los datos?
+
+![salario](img/salariostodos.jpg)
 
 ---
 
@@ -107,6 +116,7 @@ class: inverse, center, middle
 - Grupos con igual media se diferencian mucho entre sí
 - Es necesario conocer el grado de dispersión
 - *Grado de parecido entre los datos  en el sentido de concentración o alejamiento entre ellos*.
+
 
 ---
 
@@ -137,15 +147,21 @@ class: inverse, center, middle
   + 10-30 = **-20**, 20-30 = -**10**, 30-30 = **0**, 40-30 = **10**, 50-30 = **20**.
 2. Elevamos al cuadrado cada diferencia: (-20)^2 = **400**, (-10)^2 = **100**, 0^2 = **0**, 10^2 = **100**, 20^2 = **400**.
 3. Sumamos los cuadrados de las diferencias: 400 + 100 + 0 + 100 + 400 = **1000**.
-4. Dividimos entre el número de ingresos menos 1 (n-1): 1000 / 4 = **250**.]
+4. Dividimos entre la cantidad casos 5  = **200**.]
 
 .pull-rigth[
 
-<img src="img/var.png" width="380px"/> 
+<img src="img/varianza.jpg" width="380px"/> 
 
-- Interpretación: la varianza de los ingresos es 250 mil pesos **al cuadrado**, entre esas 5 personas (para sacar las diferencias respecto a la media tuvimos que elevar al cuadrado) 
+- Interpretación: la varianza de los ingresos es 200 mil pesos **al cuadrado**, entre esas 5 personas (para sacar las diferencias respecto a la media tuvimos que elevar al cuadrado) 
 ]
 
+---
+class: center, middle
+### Cuando es en una muestra es n-1
+
+
+<img src="img/varianzamuestral.jpg" width="580px"/> 
 
 ---
 ### Desviación estándar 
@@ -161,13 +177,13 @@ class: inverse, center, middle
 ---
 
 ### Continuando con ejemplo anterior: 
-  + Varianza de los ingresos fue de 250 miles de dólares **al cuadrado**. 
+  + Varianza de los ingresos fue de 200 mil dólares **al cuadrado**. 
   + Para obtener la desviación estándar, solo necesitamos calcular la raíz cuadrada de la varianza: 
-  + sqrt(250) = 15.811.
+  + sqrt(200) = 14
   + o con función sd()
   
 -  Interpretación 
-  + En promedio los ingresos se alejan en 15.811 de la media. 
+  + En promedio los ingresos se alejan en 14 de la media. 
   
 ---
 
