@@ -1,37 +1,25 @@
-<!DOCTYPE html>
-<html lang="" xml:lang="">
-  <head>
-    <title>Análisis de Variables Cuantitativas</title>
-    <meta charset="utf-8" />
-    <meta name="author" content="Sebastián Muñoz-Tapia &amp; Gino Ocampo" />
-    <meta name="date" content="2024-05-16" />
-    <script src="libs/header-attrs-2.25/header-attrs.js"></script>
-    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
-  </head>
-  <body>
-    <textarea id="source">
-class: center, middle, inverse, title-slide
-
-.title[
-# Análisis de Variables Cuantitativas
-]
-.subtitle[
-## Medidas de dispersión y tendencia central
-]
-.author[
-### Sebastián Muñoz-Tapia &amp; Gino Ocampo
-]
-.institute[
-### Antropología UAH
-]
-.date[
-### 2024-05-16
-]
+---
+title: "Análisis de Variables Cuantitativas"
+subtitle: "Medidas de dispersión y tendencia central"
+author: "Sebastián Muñoz-Tapia & Gino Ocampo"
+institute: "Antropología UAH"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
 
 ---
 
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_duo_accent(primary_color = "#035AA6", secondary_color = "#FF961C")
 
-
+```
 
 
 class: inverse, center, middle
@@ -76,12 +64,34 @@ class: inverse, center, middle
 
 class: middle, center
 
+```{r echo=FALSE}
+
+
+library(ggplot2)
+
+# Generar datos de una distribución normal
+set.seed(123)
+datos <- rnorm(1000, mean = 10, sd = 2)
+
+# Calcular la media y la mediana
+media <- mean(datos)
+mediana <- median(datos)
+
+# Crear el gráfico
+ggplot(data = data.frame(x = datos), aes(x = x)) +
+  geom_histogram(binwidth = 0.5, aes(y = after_stat(density)), fill = "#36dafa", color = "black") +
+  geom_density(alpha = 0.2, fill = "#FF961C", color = "black") +
+  geom_vline(xintercept = media, linetype = "dashed", color = "red", linewidth = 1) +
+  geom_vline(xintercept = mediana, linetype = "dotted", color = "blue", linewidth = 1) +
+  labs(title = "Distribución normal con media y mediana",
+       x = "Valor",
+       y = "Densidad") +
+  theme_minimal()
+
+
+
 
 ```
-## Warning: package 'ggplot2' was built under R version 4.3.3
-```
-
-![](clase_9_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -131,7 +141,7 @@ class: inverse, center, middle
 
 .pull-rigth[
 
-&lt;img src="img/var.png" width="380px"/&gt; 
+<img src="img/var.png" width="380px"/> 
 
 - Interpretación: la varianza de los ingresos es 250 mil pesos **al cuadrado**, entre esas 5 personas (para sacar las diferencias respecto a la media tuvimos que elevar al cuadrado) 
 ]
@@ -145,7 +155,7 @@ class: inverse, center, middle
   + Nos indica cuánto se alejan los datos de la media, en promedio. 
   + Nos permite entender la variabilidad de los datos de una manera más intuitiva que la varianza, pues tiene las mismas unidades que la variable que se está analizando.
   
-&lt;img src="img/desves.jfif" width="380px"/&gt; 
+<img src="img/desves.jfif" width="380px"/> 
 
 
 ---
@@ -195,7 +205,35 @@ class: inverse, center, middle
 ---
 class: middle, center
 
-![](clase_9_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+```{r echo=FALSE, warning=TRUE, error=FALSE, eval=TRUE}
+# Cargar la librería ggplot2
+library(ggplot2)
+
+# Crear un vector con los datos de ingresos o riqueza ordenados de manera ascendente
+x <- c(100, 150, 200, 300, 500)
+
+# Calcular la fracción acumulada de la población y del ingreso o la riqueza
+cum_frac_pop <- cumsum(rep(1, length(x))) / length(x)
+cum_frac_income <- cumsum(x) / sum(x)
+
+# Crear un data frame con las fracciones acumuladas
+df <- data.frame(cum_frac_pop, cum_frac_income)
+
+# Agregar las columnas de la fracción acumulada de la población y del ingreso o la riqueza que se distribuiría si la población tuviera una distribución perfectamente igualitaria
+df$perfect_pop <- 1:length(x) / length(x)
+df$perfect_income <- 1:length(x) / sum(x)
+
+# Crear un gráfico de la curva de Lorenz con la línea de equidad
+ggplot(df, aes(x = perfect_pop, y = cum_frac_income)) +
+  geom_line(color = "blue") +
+  geom_abline(intercept = 0, slope = 1, color = "red", linetype = "dashed") +
+  labs(x = "Fracción acumulada de la población",
+       y = "Fracción acumulada del ingreso o la riqueza",
+       title = "Curva de Lorenz con la línea de equidad")+
+  theme_minimal()
+
+
+```
 
 ---
 ### Ejemplo "riqueza de un país": 
@@ -208,7 +246,23 @@ class: middle, center
 # Graficar. Caja y bigotes o *boxplot*
 
 .pull-left[ 
-![](clase_9_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+```{r echo=FALSE}
+# Cargar la librería ggplot2
+library(ggplot2)
+
+# Crear un data frame con algunos datos de ejemplo
+df <- data.frame(
+  grupo = rep(c("Grupo 1", "Grupo 2"), each = 20),
+  valor = c(rnorm(20, 10, 3), rnorm(20, 15, 4))
+)
+
+# Crear el gráfico de caja y bigotes
+ggplot(df, aes(x = grupo, y = valor)) +
+  geom_boxplot(fill = "#FF961C", color = "black") +
+  labs(x = "Grupo", y = "Valor", title = "Diagrama de caja y bigotes")+
+  theme_minimal()
+
+```
 ]
 
 .pull-right[
@@ -217,139 +271,3 @@ class: middle, center
 - los "bigotes": representan valores fuera de la caja, sin considerar los valores atípicos. 
 - puntos:  por encima o por debajo de los bigotes se consideran valores atípicos o "outliers".
 ]
-    </textarea>
-<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
-<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
-<script>var slideshow = remark.create({
-"highlightStyle": "github",
-"highlightLines": true,
-"countIncrementalSlides": false
-});
-if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
-  window.dispatchEvent(new Event('resize'));
-});
-(function(d) {
-  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
-  if (!r) return;
-  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
-  d.head.appendChild(s);
-})(document);
-
-(function(d) {
-  var el = d.getElementsByClassName("remark-slides-area");
-  if (!el) return;
-  var slide, slides = slideshow.getSlides(), els = el[0].children;
-  for (var i = 1; i < slides.length; i++) {
-    slide = slides[i];
-    if (slide.properties.continued === "true" || slide.properties.count === "false") {
-      els[i - 1].className += ' has-continuation';
-    }
-  }
-  var s = d.createElement("style");
-  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
-  d.head.appendChild(s);
-})(document);
-// delete the temporary CSS (for displaying all slides initially) when the user
-// starts to view slides
-(function() {
-  var deleted = false;
-  slideshow.on('beforeShowSlide', function(slide) {
-    if (deleted) return;
-    var sheets = document.styleSheets, node;
-    for (var i = 0; i < sheets.length; i++) {
-      node = sheets[i].ownerNode;
-      if (node.dataset["target"] !== "print-only") continue;
-      node.parentNode.removeChild(node);
-    }
-    deleted = true;
-  });
-})();
-// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
-// screen reader (see PR #262)
-(function(d) {
-  let res = {};
-  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
-    const t = tr.querySelector('td:nth-child(2)').innerText;
-    tr.querySelectorAll('td:first-child .key').forEach(key => {
-      const k = key.innerText;
-      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
-    });
-  });
-  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
-})(document);
-(function() {
-  "use strict"
-  // Replace <script> tags in slides area to make them executable
-  var scripts = document.querySelectorAll(
-    '.remark-slides-area .remark-slide-container script'
-  );
-  if (!scripts.length) return;
-  for (var i = 0; i < scripts.length; i++) {
-    var s = document.createElement('script');
-    var code = document.createTextNode(scripts[i].textContent);
-    s.appendChild(code);
-    var scriptAttrs = scripts[i].attributes;
-    for (var j = 0; j < scriptAttrs.length; j++) {
-      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
-    }
-    scripts[i].parentElement.replaceChild(s, scripts[i]);
-  }
-})();
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
-    }
-  }
-})();
-// adds .remark-code-has-line-highlighted class to <pre> parent elements
-// of code chunks containing highlighted lines with class .remark-code-line-highlighted
-(function(d) {
-  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
-  const preParents = [];
-  const findPreParent = function(line, p = 0) {
-    if (p > 1) return null; // traverse up no further than grandparent
-    const el = line.parentElement;
-    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
-  };
-
-  for (let line of hlines) {
-    let pre = findPreParent(line);
-    if (pre && !preParents.includes(pre)) preParents.push(pre);
-  }
-  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
-})(document);</script>
-
-<script>
-slideshow._releaseMath = function(el) {
-  var i, text, code, codes = el.getElementsByTagName('code');
-  for (i = 0; i < codes.length;) {
-    code = codes[i];
-    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
-      text = code.textContent;
-      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
-          /^\$\$(.|\s)+\$\$$/.test(text) ||
-          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
-        code.outerHTML = code.innerHTML;  // remove <code></code>
-        continue;
-      }
-    }
-    i++;
-  }
-};
-slideshow._releaseMath(document);
-</script>
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-(function () {
-  var script = document.createElement('script');
-  script.type = 'text/javascript';
-  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
-  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
-    script.src  = script.src.replace(/^https?:/, '');
-  document.getElementsByTagName('head')[0].appendChild(script);
-})();
-</script>
-  </body>
-</html>
