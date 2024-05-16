@@ -25,7 +25,7 @@ style_duo_accent(primary_color = "#035AA6", secondary_color = "#FF961C")
 class: inverse, center, middle
 
 # Medidas de tendencia central
-### ¿Qué valor "representa" al grupo?
+### ¿¿¿Qué valor "representa" al grupo???
 
 ![salario](img/salariospocos.jpg)
 
