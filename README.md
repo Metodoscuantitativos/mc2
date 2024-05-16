@@ -53,7 +53,7 @@ Nota: Todas las clases son presenciales, a continuación pueden ver las presenta
 | vier mayo 17 | Análisis de datos cuantitativos                                         | 
 [`[Clase9]`](https://metodoscuantitativos.github.io/mc2/clases/clase_09/clase_9.pptx) [`[.R]`](clases/clase_09/clase_9.R) 
 [`[Base]`] (https://observatorio.ministeriodesarrollosocial.gob.cl/storage/docs/casen/2020/Casen_en_Pandemia_2020_revisada202209.sav.zip)
-[`[Capsulas]`](https://youtube.com/playlist?list=PLtMKbC0NRgrEiQkrPaX_zd_dmVmnxwQW1&si=tZxD8cVsrj6t4VK1)
+[`[Capsulas]`](https://youtube.com/playlist?list=PLtMKbC0NRgrEiQkrPaX_zd_dmVmnxwQW1&si=tZxD8cVsrj6t4VK1) |
 |
 | vier mayo 31 | Prueba de hipótesis: T de Student y ANOVA                               | Pendiente |
 | vier jun 07  | Correlación y regresión                                                 | Pendiente |
