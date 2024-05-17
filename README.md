@@ -124,12 +124,12 @@ Acá podrán viendo la encuesta que realizamos, encontrando el trabajo que estam
 [`GitHub de Encuesta Antropología 2024`](https://github.com/sebastianmunozt/encuesta_antropologia_2024)
 
 
-Esto le servirá de guía para su trabajo, donde ustedes deberán realizar lo siguiente:
-    - Procesamiento: limpieza y transformación de variables (codificaciones y recodificaciones)
-    - Análisis de frecuencias de todas las variables de su grupo
-    - Tablas de Contingencia: con al menos 3 cruces interesantes (puede cruzar una variable de su grupo con cualquier otra. Por ejemplo, con las variables sociodemográficas)
+- Esto le servirá de guía para su trabajo, donde ustedes deberán realizar lo siguiente:
+    - Procesamiento: limpieza y transformación de variables (codificaciones y recodificaciones).
+    - Análisis de frecuencias de todas las variables de su grupo.
+    - Tablas de Contingencia: con al menos 3 cruces interesantes: puede cruzar una variable de su grupo con cualquier otra. Por ejemplo, con las variables sociodemográficas.
     - Gráficos univariados: de todas las variables de su grupo. 
-    - Gráficos bivariados: con al menos 3 cruces interesantes (los mismos de las tablas de contingencia)
+    - Gráficos bivariados: con al menos 3 cruces interesantes (los mismos de las tablas de contingencia).
 
 
 ---
