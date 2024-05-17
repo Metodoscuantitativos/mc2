@@ -106,6 +106,32 @@ Nota: En general las ayundantías son online, a excepción de algunas con Matía
 | Entrega final de notas          |  -  | Julio 19 |
 
 
+
+---
+
+## Encuesta de antropología 2024
+
+Acá podrán viendo la encuesta que realizamos, encontrando el trabajo que estamos haciendo con Samanta, Noel, Joaquín y Matías. Lo que contine: 
+
+- Excel con la base de datos
+- Un scrip de R con lo que estamos haciendo, esto es: 
+    - Procesamiento: limpieza y transformación de variables (codificaciones y recodificaciones)
+    - Análisis de frecuencias
+    - Tablas de Contingencia
+    - Gráficos univariados
+    - Gráficos bivariados 
+
+[`GitHub de Encuesta Antropología 2024`](https://github.com/sebastianmunozt/encuesta_antropologia_2024)
+
+
+Esto le servirá de guía para su trabajo, donde ustedes deberán realizar lo siguiente:
+    - Procesamiento: limpieza y transformación de variables (codificaciones y recodificaciones)
+    - Análisis de frecuencias de todas las variables de su grupo
+    - Tablas de Contingencia: con al menos 3 cruces interesantes (puede cruzar una variable de su grupo con cualquier otra. Por ejemplo, con las variables sociodemográficas)
+    - Gráficos univariados: de todas las variables de su grupo. 
+    - Gráficos bivariados: con al menos 3 cruces interesantes (los mismos de las tablas de contingencia)
+
+
 ---
 ## Asistencia
 
