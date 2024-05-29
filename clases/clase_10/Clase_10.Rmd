@@ -71,9 +71,9 @@ donde $\sigma$ es la desviación estándar de la población y  $n$ es el tamaño
 
 ---
 
-# Error Muestral
+### Error Muestral
 
-Considera una muestra con media muestral (\(\bar{x}\)) y desviación estándar muestral (\(s\)). El error muestral se calcula como:
+Considera una muestra con media muestral $\bar{x}$ y desviación estándar muestral $s$. El error muestral se calcula como:
 
 $$
 SE = \frac{s}{\sqrt{n}}
