@@ -4,7 +4,7 @@
     <title>Pruebas de hipótesis</title>
     <meta charset="utf-8" />
     <meta name="author" content="Sebastián Muñoz-Tapia &amp; Gino Ocampo" />
-    <meta name="date" content="2024-05-22" />
+    <meta name="date" content="2024-05-31" />
     <script src="libs/header-attrs-2.26/header-attrs.js"></script>
     <script src="libs/kePrint-0.0.1/kePrint.js"></script>
     <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
@@ -27,7 +27,7 @@ class: center, middle, inverse, title-slide
 ### Antropología UAH
 ]
 .date[
-### 2024-05-22
+### 2024-05-31
 ]
 
 ---
@@ -85,9 +85,9 @@ donde `\(\sigma\)` es la desviación estándar de la población y  `\(n\)` es el
 
 ---
 
-# Error Muestral
+### Error Muestral
 
-Considera una muestra con media muestral (\(\bar{x}\)) y desviación estándar muestral (\(s\)). El error muestral se calcula como:
+Considera una muestra con media muestral `\(\bar{x}\)` y desviación estándar muestral `\(s\)`. El error muestral se calcula como:
 
 $$
 SE = \frac{s}{\sqrt{n}}
@@ -138,11 +138,15 @@ Es una prueba de hipótesis utilizada cuando contamos con:
 
 ![Tstudent](tablas/pruebas_t.png)
 ---
+### Intervalos de Confianza
 
 
 
+![IC](tablas/intervalos_confianza.png)
 
 ---
+### Ejemplo de prueba T para diferencia de medias
+
 &lt;table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;"&gt;
 &lt;caption&gt;Table 2. Balance between treatment and control group at baseline&lt;/caption&gt;
  &lt;thead&gt;
@@ -371,8 +375,51 @@ Es una prueba de hipótesis utilizada cuando contamos con:
 &lt;sup&gt;&lt;/sup&gt;  &lt;/td&gt;&lt;/tr&gt;
 &lt;/tfoot&gt;
 &lt;/table&gt;
+---
+class: inverse, center, middle
+
+# ANOVA
+### Analysis of Variance
+---
+### ANOVA
+
+• El procedimiento ANOVA de un factor genera un análisis de varianza de un factor para
+una variable dependiente cuantitativa respecto a una única variable de factor (la
+variable independiente). El análisis de varianza se utiliza para contrastar la hipótesis
+de que varias medias son iguales. Esta técnica es una extensión de la prueba t para
+dos muestras.
+
+• Es una prueba paramétrica
+
+• Es una prueba omnibus: no se sabe bien entre qué grupos están las diferencias (para
+eso se ocupan pruebas post-hoc)
+
+• La variable dependiente es cuantitativa u ordinal tratada como cuantitativa (ej:
+escalas likert de 1 a 7)
+
+• La variable independiente debe ser categórica de más de 2 grupos, independientes
+entre sí
 
 
+---
+### Resumen
+
+¿Cuándo usar Chi-Cuadrado?: Chi cuadrado se utiliza cuando contamos con dos variables categóricas (nominales u ordinales).
+
+¿Cuándo usar Prueba T?: Prueba T se utiliza cuando contamos con una variable cuantitativa y otra categórica (variable de agrupación). Esta última debe diferencia únicamente en dos grupos (ejemplo: variable sexo con categorías de respuesta hombre y mujer).
+
+¿Cuándo usar Anova?: Anova se utiliza cuando contamos con una variable cuantitativa y otra categórica (variable de agrupación). Esta última debe diferencia desde tres grupos (ejemplo: variable posición política con categorías de respuesta derecha, centro e izquierda).
+
+---
+### Resumen
+
+
+![IC](tablas/Pruebas_hipotesis.png)
+---
+
+class: inverse, center, middle
+
+# Vamos al código
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
