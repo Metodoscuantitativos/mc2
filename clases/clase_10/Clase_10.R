@@ -93,7 +93,7 @@ actividad_ocio <- freq(respuestas, prop=TRUE, order = "freq", report.nas = FALSE
 
 
 
-# Distribución de frecuencias --------------------------------------------
+# 04 Distribución de frecuencias --------------------------------------------
 #identidad de género recodificada
 base %>% 
   freq(identidad_genero_r, prop = TRUE, order = "freq", report.nas =  FALSE)%>% 
@@ -113,7 +113,7 @@ base %>%
 
 
 
-# Gráficos categóricos univariados ----------------------------------------
+# 05 Gráficos categóricos univariados ----------------------------------------
 #opción 1
 ggplot(actividad_ocio, aes(x = pct, y = fct_reorder(respuestas, pct), fill=respuestas)) +
   geom_col() +
@@ -157,7 +157,7 @@ ggplot(actividad_ocio, aes(x = "", y = pct, fill = respuestas)) +
 #Práctica: realice dos gráficos de torta.
 
 
-# Análisis bivariados  (entre una variable numérica y una categórica)--------------------------------------------------
+# 06 Análisis bivariados  (entre una variable numérica y una categórica)--------------------------------------------------
 
 names(libro)
 names(base)
@@ -201,7 +201,7 @@ ggplot(base, aes(x=comuna_r1, y=interes_participar_ma, fill=comuna_r1)) +
   theme(legend.position="none")
 
 
-#Prueba T de student-----------------------(sirve sólo con un variable dicotómica)-------------------------------------
+# 07 Prueba T de student-----------------------(sirve sólo con un variable dicotómica)-------------------------------------
 
 #usaré género dicotómico (sólo para efectos de la explicación)
 
@@ -224,7 +224,7 @@ t_test_result$p.value #p-value es mayor a 0.05 por lo que no hay evidencia que p
 
 #y si quiero hacer la misma prueba de hipótesis con otra variable que tenga más de dos grupos?
 
-#Prueba anova-------------------------------------------------------------------
+# 08 Prueba anova-------------------------------------------------------------------
 
 # analysis of variance
  
