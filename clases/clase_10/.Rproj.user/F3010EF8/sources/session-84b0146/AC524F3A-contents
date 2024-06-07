@@ -1,0 +1,842 @@
+---
+title: "Tarea 1<br> Econometría Aplicada"
+subtitle: 
+  - "Profesores: Valentina Paredes & Esteban Puentes<br>"
+  - "Ayudante: Matías Méndez Montenegro"
+author: "Gino Ocampo"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    css: style.css
+    toc: true
+    toc-title: "Tabla de Contenidos"
+---
+
+
+#### Parte I: Preguntas de Análisis (25 puntos)
+
+##### 1. (5 puntos) Considere una regresión simple para estimar el impacto de un programa sobre una variable $y_{i}$,utilizando una variable dicotómica ($D_{i}$) que toma el valor 1 para denotar la participación en el programa, y 0 si no. Explique y demuestre por qué si existe una autoselección en el tratamiento, esta regresión no estima el efecto causal del impacto del programa sobre la variable de resultado.
+
+El modelo de regresión lineal simple estaría dado por $y_{i}=\beta_{0}+\beta_{1}D_{i}+ e_{i}$ 
+
+Donde $\beta_{1}$ corresponde a la diferencia promedio en la variable dependiente $y_{i}$. Si hay autoselección en el tratamiento, es decir, si las características no observadas que afectan la decisión de participar en el programa también influyen en $y_i$, entonces $\beta_{1}$ puede estar sesgado y no reflejará de manera necesaria el  efecto causal puro del programa sobre $y_i$. 
+En presencia de autoselección, el tratamiento no se aplica de manera aleatoria, lo que implica que la correlación entre $D_i$ y el error difiere de cero debido a estas características no observadas. Esto conlleva a que $E⌈e_i | D_i ⌉≠0$.Existiendo sesgo de selección al estimar $\beta_{1}$.
+
+Podemos reescribir esta regresión de la siguiente forma potencial $y_{i}=y_{0i}+(y_{1i}-y_{0i})D_{i}$ donde $(y_{1i}-y_{0i})$ es el efecto causal del tratamiento para el individuio i.
+
+Existen dos grupos: quienes tomaron el tratamiento $E[y_{i} |D_{i} = 1]$ $=$ $E[y_{0i} |D_{i} = 1] + E[y_{1i} − y_{0i} |D_{i} = 1]$ que corresponde al valor esperado de quienes tomaron el tratamiento.Es decir, en promedio el efecto causal de recibir el tratamiento.  El problema es que no podemos observar ambos resultados, tomar y no tomar el tratamiento, ya que no existe el contrafactual (Si $D=1$ no vamos a observar $y_{0i}$).
+
+En el segundo grupo tenemos a quienes no tomaron el tratamiento $E[y_{i} |D_{i} = 0]$
+
+Al tomar la diferencia entre ambos grupos:
+
+$E[y_{i} |D_{i} = 1] − E[y_{i} |D_{i} = 0]$ Corresponde al efecto causal entre recibir y no recibir el tratamiento $D_{i}$. 
+Al reescribir el primer termino y restar el segundo:
+$$ E[y_{0i} |D_{i} = 1] + E[y_{1i}|D_{i} = 1] − E[y_{0i} |D_{i} = 1] - E[y_{0i} |D_{i} = 0]$$
+Al reagrupar terminos, nos queda:
+$$(E[y_{1i} |D_{i} = 1] − E[y_{0i} |D_{i} = 1]) + (E[y_{0i} |D_{i} = 1] − E[y_{0i} |D_{i} = 0])$$
+Donde el primer termino corresponde al efecto promedio sobre los tratados, y el segundo termino corresponde al sesgo de selección.
+Por lo tanto, la diferencia entre ambos grupos $E[y_{1i} |D_{i} = 1] − E[y_{0i} |D_{i} = 0]$ $=$ ATT + Sesgo de selección.
+
+En el caso de que exista autoselección, el segundo termino es distinto de cero,$(E[y_{0i} |D_{i} = 1] − E[y_{0i} |D_{i} = 0])$ $≠ 0$. Por lo tanto, la diferencia entre los promedios de ambos grupos no nos reporta el efecto causal del impacto del programa sobre la variable de resultado. En su lugar, nos reporta el promedio del efecto del tratamiento en los tratados más el sesgo de selección, el cual es distinto de cero.
+
+
+##### 2. (5 puntos) Demuestre que bajo asignación aleatoria del tratamiento, el parámetro que acompaña a D_{i} corresponde al efecto promedio del tratamiento.
+
+$$y_{i}=y_{0i}+(y_{1i}-y_{0i})D_{i}$$
+En este caso el termino que acompaña a $D_{i}$ es $(y_{1i}-y_{0i})$, por lo que queremos ver si $E[y_{1i}-y_{0i}]$ corresponde al efecto promedio del tratamiento (ATE).
+
+De la pregunta 1 teníamos 
+$$(E[y_{1i} |D_{i} = 1] − E[y_{0i} |D_{i} = 1]) + (E[y_{0i} |D_{i} = 1] − E[y_{0i} |D_{i} = 0])$$
+ $$ATT + \text{Sesgo de selección}$$
+Bajo asignación aleatoria del tratamiento tenemos que $D_{i}$ es independiente de los resultados potenciales ($y_{i}$), por lo que  $E[y_{i} |D_{i} = 1] = E[y_{i} |D_{i} = 0]$ y el sesgo de selección desaparece. Al reescribir la diferencia entre grupos  $E[y_{1i} |D_{i} = 1] − E[y_{0i} |D_{i} = 0]$, nos queda:
+$$ E[y_{1i} |D_{i} = 1] − E[y_{0i} |D_{i} = 0] = E[y_{1i} |D_{i} = 1] − E[y_{0i} |D_{i} = 1]$$
+Con aleatorización del tratamiento eliminamos el sesgo de selección y el ATT corresponde a Efecto Promedio del tratamiento ATE. Por lo tanto, tomando el termino de la derecha  de esta última ecuación $$E[y_{1i} |D_{i} = 1] − E[y_{0i} |D_{i} = 1] = E[y_{1i}-y_{0i}]$$
+que corresponde al Efecto Promedio del Tratamiento (ATE). Por lo tanto, se cumple que:
+$$E[y_{1i}-y_{0i}] = \text{Efecto Promedio del Tratamiento}$$
+
+##### 3. (5 puntos) Existiendo asignación aleatoria, ¿qué otro(s) supuesto(s) son necesarios para que se obtenga un estimador insesgado del efecto promedio del tratamiento?
+
+La población muestral debe corresponder a la población de interés:
+Para ver cómo, en primer lugar se supone que los sujetos son
+seleccionados al azar a partir de la población de interés. Debido a que los sujetos son seleccionados por
+muestreo aleatorio simple, sus variables respuesta (resultados potenciales), y por lo tanto sus efectos causales, se han extraído de la misma distribución, por lo que el valor esperado del efecto causal muestral es el efecto causal promedio de la población.
+
+Restricción de exclusión: El outcome depende de tomar o no tomar el programa pero no de pertenecer al grupo de tratamiento o de control.
+
+Prueba de balance:
+Despues de asignar aleatoriamente los grupos de tratamiento y control,se debe chequear que ambos grupos no tienen diferencias sistemáticas en variables observables. Este supuesto implica que, condicional a la asignación aleatoria, las características observadas y no observadas de las unidades de tratamiento y control son similares. Esto asegura que los grupos (Tratados y controles) sean comparables en términos de las variables relevantes. Para ellos se realiza una prueba de balance de las características antes del tratamiento y se espera que ambos grupos sean balanceados (en promedio).
+
+Abandono o deserción del estudio:
+Aunque los grupos de control y tratamiento estén balanceados en promedio, la prueba de balance se realiza antes del experimento, si existe deserción o abandono del estudio, el problema surge
+cuando quienes abandonan tienen características distintas a los que no
+abandonan (cov(Di , ui ) ̸= 0). Por lo que hay que chequear que dicha perdida (atrición) sea aleatoria. 
+
+Efecto Hawthorne: participantes cambian su comportamiento al saber que son parte de un estudio (más valorados, observados, etc.) Que el comportamiento de los sujetos observables no cambien su comportamiento al saber que están siendo parte de un experimento. 
+
+Por otro lado una muestra pequeña puede sesgar el estimador del efecto promedio, ya que con tamaños de muestra pequeños, hay una mayor probabilidad de que la muestra no represente completamente la variabilidad de la población. Esto puede llevar a que el estimador esté sesgado, ya que la muestra puede contener características particulares que no sean representativas del conjunto más amplio de casos. Además, es más probable que se seleccionen casos extremos o no representativos, los valores atípicos o extremos pueden tener un impacto desproporcionadamente grande en las estimaciones. Además, con una muestra pequeña el error estándar del estimador del efecto promedio suele ser más grande.
+
+##### 4. (10 puntos) Para la siguiente pregunta, debe leer las secciones 13.1, 13.2 y 13.3 del capítulo 13 del libro Introducción a la Econometría de Stock y Watson (2012). Los investigadores que estudian los datos STAR presentan una evidencia anecdótica de que los directores de las escuela fueron presionados por algunos padres a ubicar a sus hijos en las clases pequeñas. Supóngase que algunos directores sucumbieron a esta presión y transfirieron a algunos niños a las clases pequeñas. ¿Cómo podrían comprometer estas transferencias la validez interna del estudio? Supóngase que se dispone de datos sobre la asignación aleatoria original de cada estudiante antes de la intervención del director. ¿Cómo podría utilizarse esta información para restaurar la validez interna del estudio?
+
+Las amenazas a la validez interna de los experimentos incluyen la ausencia de aleatoriedad, que aumenta el riesgo de sesgos debido a la correlación entre covariables y errores. El incumplimiento del protocolo del tratamiento puede afectar la validez interna, siendo abordado mediante la estimación con variables instrumentales. La deserción de participantes representa una amenaza si está correlacionada con el tratamiento, requiriendo asegurar la falta de relación con la variable de interés. Los efectos experimentales pueden ser influenciados por el comportamiento de los participantes, destacando la importancia de controlar y comprender estos efectos. Las muestras pequeñas, al limitar la generalización y aumentar la variabilidad, también constituyen una amenaza para la validez interna de los hallazgos.
+
+El hecho de que directores hayan sucumbido a esta presión afecta la validez interna pues se incumple el protocolo del tratamiento,donde la intervención del programa de reducir el tamaño de clases  no se implementa según lo planificado debido a la presión de los padres. Al no seguir el diseño experimental original, se crea una discrepancia entre el tratamiento asignado (grupo de tratamiento/control) y el tratamiento realmente recibido.
+
+Para solucionar esto, se podrían eliminar los casos en que se incumple la asignación tratamiento con la real aplicación del tratamiento, garantizando que los casos eliminados no sea una cantidad significativamente grande ni que se trate de una pérdida sistemática.
+
+#### Parte II: Efecto del cuidado de hijas en el Mercado Laboral Femenino (25 puntos)
+
+##### 1. (5 puntos) ¿Qué es attrition (desgaste)? Discuta por qué en este caso es importante estudiar la aleatorización del desgaste y por qué sería problemático que no fuese aleatorio. ¿Qué soluciones plantea la literatura en caso de desgaste diferenciado?
+
+La atrición refiere a la existencia de deserción o abandono del experimento por parte de los sujetos de estudio, es común en estudios longitudinales, por lo que se requiere de una gran muestra al principio. Existe un problema cuando quienes abandonan tienen características distintas a los sujetos que permanecen  (cov(D_{i} , u_{i} )≠   0), es decir, es problemático que la atrición esté correlacionada con alguna variable observada de los participantes en el estudio.Si la atrición no es sistemática (aleatoria) no hay problema. Esto se puede corroborar haciendo una regresión de la atrición sobre las variables observadas del estudio, si los coeficientes no son significativos quiere decir que la atrición no está correlacionada con alguna característica de los sujetos de estudio y el análisis es pertinente.
+
+En este caso es importante estudiar la aleatorización de la atrición ya que el diseño de investigación consiste en levantar información en 2 momentos diferentes a lo largo del tiempo, una línea de base al principio del programa de intervención y una encuesta de seguimiento después de finalizado el programa. 
+
+Además, es menester destacar que cómo se trataba de un programa donde hay criterios de elegibilidad para participar del programa, era posible que las preguntas del proceso de solicitud de línea de base (marzo a mayo de 2012) hayan sido respondidas estratégicamente (efecto Hawthorne) por parte de las madres que participaron del estudio. Para sortear este problema se realizó una encuesta de seguimiento por una empresa externa desde enero a marzo de 2013. Por lo tanto, es necesario que la atrición no haya estado relacionada con alguna característica de las sujetas del estudio.
+
+En este caso, las autoras corroboran que la variable dummy que indica la participación en el tratamiento no predice la observación en la encuesta de seguimiento. 
+
+
+##### 2. (5 puntos) Utilizando la base de datos entregada, replique la Tabla 2 del paper. ¿Cuál es la importancia de este balance check?
+
+```{r,  echo=FALSE, eval=TRUE, warning=FALSE, error=FALSE}
+#Cargar paquetes
+pacman::p_load(haven, tidyverse, janitor,sjmisc,kableExtra,plm, stargazer)
+#cargar datos
+bbdd<-read_dta("data_analysis.dta")
+
+bbdd <- janitor::clean_names(bbdd) #minusculas
+
+#seleccionar variables para tabla 2
+bbdd <- bbdd %>%  select("lb_edad_post",
+                         "lb_ingpercap_post",
+                         "lb_ing_laboral",
+                         "lb_participa",
+                         "lb_desempleo",
+                         "lb_ocupadas",
+                         "lb_hrs_trabaja",
+                         "lb_mes_trabaja",
+                         "lb_contrato",
+                         "lb_edu_anos",
+                         "lb_edu_max1",
+                         "lb_edu_max2",
+                         "lb_edu_max3",
+                         "lb_edu_max4",
+                         "lb_asiste_post",
+                         "stress",
+                         "lb_bebe",
+                         "lb_n_kids",
+                         "lb_cuida_infantil",
+                         "est1",
+                         "est2",
+                         "est3",
+                         "est4",
+                         "treatment",
+                         "seg")
+
+#filtrar por seguimiento (seg)
+bbdd <- bbdd %>% filter( seg==1 )
+
+
+## Cálculo de la diferencia de medias y estadístico t por cada variable de interés
+  
+#crear un vector con los nombres de las variables
+variables_interes <- names(bbdd)
+
+
+# quitar nombres de variables del tratamiento
+nombres_tratamiento <- c("treatment","seg")
+variables_interes <- variables_interes[!(variables_interes %in% nombres_tratamiento)]
+
+
+#Creo una grilla vacía (formato dataframe) que luego se llenará con los valores del loop
+resultados <- data.frame(Variable = character(),
+                         Media_Tratado = numeric(),
+                         Media_Control = numeric(),
+                         Estadistico_t = numeric(),
+                         stringsAsFactors = FALSE)
+
+#loop
+for (var in variables_interes) {
+  #creo 2 subconjuntos con las categorías de treatment
+  subset_tratado <- subset(bbdd, treatment == 1, select = var)
+  subset_tratado <- subset_tratado[complete.cases(subset_tratado), ]
+  subset_control <- subset(bbdd, treatment == 0, select = var)
+  subset_control <- subset_control[complete.cases(subset_control), ]
+
+  #Cálculo de las medias y el valor p del estadístico t de igualdad de medias.
+  mean_tratado <- mean(subset_tratado[[var]], na.rm = T)#media de tratado
+  mean_control <- mean(subset_control[[var]], na.rm = T)#media de control
+  t_test_result <- t.test(subset_tratado[[var]], subset_control[[var]])#t
+  p_valor <- t_test_result$p.value#p-value
+  
+  #Se almacenan los resultados en la grilla formato dataframe
+  resultados <- rbind(resultados, data.frame(Variable = var,
+                                             Tratado = round(mean_tratado,2),
+                                             Control = round(mean_control,2),
+                                             p = round(p_valor,3)))#valor p está con 3 decimales
+}
+
+# tabla cruzada de todas las variables con treatment (tratado y control) y su valor p
+resultados <- resultados %>% select(-Variable)
+
+#Tabla descriptivos
+bbdd<-bbdd %>% select(-c("treatment","seg"))
+descriptivos<-sjmisc::descr(bbdd,
+      show = c("mean","sd","n"))
+descriptivos <- descriptivos %>% select(c("mean", "sd", "n"))
+descriptivos<-round(descriptivos,2)
+
+#Fusión de ambas tablas
+tabla2 <-cbind(descriptivos,resultados)
+
+#Poner nombre a las filas 
+rownames(tabla2)<- c("Applicant age",
+         "Household per capita income",
+         "Applicant monthly income",
+         "Labor force participation rate",
+         "Unemployment Rate",
+         "Occupation Rate",
+         "Hours of work (daily)",
+         "Months Worked in 2011",
+         "Have employment contract",
+         "Years of Education",
+         "Proportion without education",
+         "Primary school proportion",
+         "Secondary school proportion",
+         "College (and/or further) education proportion",
+         "Attending an educational institution",
+         "Stress Index",
+         "Applicants with children less than 5 years old",
+         "Children signed up to the program by applicants",
+         "Proportion that receives childcare support",
+         "Strata 1: works and has children < 5 (N=369)",
+         "Strata 2: does not work and has children < 5 (N=109)",
+         "Strata 3: works and has children > 5 (N=1141)",
+         "Strata 4: does not work and has children > 5 (N=215)")
+
+
+
+#tabla2
+
+#ahora con Kable, queda una tabla fancy
+
+kable(tabla2,
+      caption = "Table 2. Balance between treatment and control group at baseline",
+      col.names = c("Average", "SD", "N°", "Treatment", "Control", "P-value T=C"),
+      position = "center") %>% 
+  kable_classic(full_width = F,
+                html_font = "Cambria") %>% #Definimos fuente
+  footnote(" ",#Especificamos la nota al pie
+           general_title = "Fuente: Elaboración propia en base a Martinez y Perticará (2017): Childcare effects on maternal
+employment: Evidence from Chile. ")
+
+
+```
+
+Este balance de las variables observadas entre el grupo de control y tratamiento  asegura que los grupos (Tratados y controles) sean comparables en términos de las variables relevantes en la línea de base. La idea del balance es corroborar que, después de la aleatorización, no exista una relación sistemática del tratamiento con alguna de estas características, porque se comprometería el poder causal de la regresión al tener estimadores sesgados. Entonces, se espera que ambos grupos sean en todas las características, en promedio, similares.
+En este caso, la tabla 2 nos demuestra que no existían diferencias estadísticamente significativas entre tratados y controles antes del inicio del programa.
+
+##### 3. (5 puntos) ¿Por qué las autoras presentan los resultados como ITT? ¿Qué debería ocurrir para que los resultados estimados puedan corresponder al ATT?
+
+En el estudio, las autoras optan por presentar los resultados bajo la perspectiva del Intention to Treat (ITT) debido a que buscan estimar el efecto de la oferta del programa de cuidados en los resultados laborales femeninos, en lugar de evaluar el impacto real del uso efectivo del programa. Esta elección se basa en la preocupación de evitar sesgos de selección posterior que podrían surgir entre quienes deciden utilizar o no el programa.
+
+La decisión de las autoras de centrarse en el ITT implica mostrar el efecto de la simple oferta del programa por parte del gobierno, independientemente de si las usuarias lo utilizan o en qué medida lo hacen. Este enfoque se considera más conservador desde el punto de vista científico, ya que renuncia al Average Treatment Effect (ATT), ofreciendo conclusiones sobre el efecto de la intención del programa en lugar del efecto real del programa en las familias.
+
+Además, las autoras señalan la dificultad de definir el uso del programa, ya que la frecuencia varía considerablemente entre las familias. Por tanto, enfocarse en el efecto del uso del programa o en un promedio podría resultar inadecuado.
+
+Para obtener resultados que correspondan al ATT hay que lograr un take-up perfecto, para ello sería necesario realizar un análisis exclusivamente con las usuarias efectivas del programa de cuidados. Esto podría lograrse utilizando datos administrativos de quienes proveen el programa en lugar de depender de encuestas de seguimiento. Otra alternativa sería examinar el efecto del tratamiento en las usuarias que participaron en el programa y luego se retiraron, realizando un seguimiento exhaustivo de todas las participantes para asegurar una muestra efectiva que represente a todas las usuarias.
+
+##### 4. (10 puntos) Replique la tabla 5 del paper y comente los resultados de las autoras. Sea enfático/a en si está de acuerdo en que se cumplen los supuestos necesarios para que los resultados sean válidos.
+
+
+```{r, echo=FALSE, eval=TRUE, warning=FALSE, error=FALSE,message=FALSE,results='asis'}
+pacman::p_load(haven, tidyverse, janitor,sjmisc,kableExtra,plm)
+
+#cargar datos
+bbdd<-read_dta("data_analysis.dta")
+bbdd <- janitor::clean_names(bbdd) #minusculas
+bbdd <- bbdd %>% filter(seg==1)
+#Limpiar datos 
+bbdd <- bbdd %>% select(participa_unmes_mp,
+                        participasiempre_mp,
+                        mp_meses_activ,
+                        trabaja_unmes_mp,
+                        trabajasiempre_mp,
+                        mes_trabaja,
+                        treatment,
+                        est_rbd,
+                        lb_jefa_hog,
+                        lb_edad_post,
+                        lb_edu_anos,
+                        lb_cant_nino)
+bbdd <- na.omit(bbdd)#1767
+
+
+# Preparar datos para incluir sólo efectos fijos por estrato de colegio:
+# De esta manera se controla por las variables de si es jefa de hogar, cantidad de niños, edad y años de educación.
+fe_bbdd <- with(bbdd,data.frame(participa_unmes_mp = participa_unmes_mp - ave(participa_unmes_mp, est_rbd),
+                                participasiempre_mp =participasiempre_mp - ave (participasiempre_mp, est_rbd),
+                                mp_meses_activ = mp_meses_activ -ave (mp_meses_activ, est_rbd),
+                                trabaja_unmes_mp = trabaja_unmes_mp - ave (trabaja_unmes_mp, est_rbd),
+                                trabajasiempre_mp = trabajasiempre_mp - ave(trabajasiempre_mp, est_rbd),
+                                mes_trabaja = mes_trabaja-ave (mes_trabaja, est_rbd),
+                                treatment = treatment ,
+                                est_rbd= est_rbd,
+                                lb_jefa_hog = lb_jefa_hog ,
+                                lb_edad_post = lb_edad_post ,
+                                lb_edu_anos = lb_edu_anos ,
+                                lb_cant_nino = lb_cant_nino ))
+#Borrar perdidos
+fe_bbdd<-na.omit(fe_bbdd)#N=1767
+
+# Extraer coeficientes y errores estándar Panel A
+
+lm1<-lm(participa_unmes_mp ~ treatment , data = fe_bbdd)
+summary_lm1 <- summary(lm1)
+coef_treatment_lm1 <- lm1$coefficients[2]
+se_treatment_lm1 <- summary_lm1$coefficients["treatment", "Std. Error"]
+
+lm2<-lm(participasiempre_mp ~ treatment, data = fe_bbdd)
+summary_lm2 <- summary(lm2)
+coef_treatment_lm2 <- lm2$coefficients[2]
+se_treatment_lm2 <- summary_lm2$coefficients["treatment", "Std. Error"]
+
+lm3<-lm(mp_meses_activ ~ treatment , data = fe_bbdd)
+summary_lm3 <- summary(lm3)
+coef_treatment_lm3 <- lm3$coefficients[2]
+se_treatment_lm3 <- summary_lm3$coefficients["treatment", "Std. Error"]
+
+lm4<-lm(trabaja_unmes_mp ~ treatment, data = fe_bbdd)
+summary_lm4 <- summary(lm4)
+coef_treatment_lm4 <- lm4$coefficients[2]
+se_treatment_lm4 <- summary_lm4$coefficients["treatment", "Std. Error"]
+
+lm5<-lm(trabajasiempre_mp ~ treatment, data = fe_bbdd)
+summary_lm5 <- summary(lm5)
+coef_treatment_lm5 <- lm5$coefficients[2]
+se_treatment_lm5 <- summary_lm5$coefficients["treatment", "Std. Error"]
+
+lm6 <-lm(mes_trabaja ~ treatment, data = fe_bbdd)
+summary_lm6 <- summary(lm6)
+coef_treatment_lm6 <- lm6$coefficients[2]
+se_treatment_lm6 <- summary_lm6$coefficients["treatment", "Std. Error"]
+
+#Extraer r cuadrado
+
+r1<-lm(participa_unmes_mp ~ treatment + lb_jefa_hog + lb_edu_anos + lb_cant_nino + lb_edad_post+ factor(est_rbd),
+       data = bbdd)
+summary_r1 <- summary(r1)
+r_cuadrado_1 <- summary_r1$r.squared
+
+r2<-lm(participasiempre_mp ~ treatment + lb_jefa_hog + lb_edu_anos + lb_cant_nino + lb_edad_post+ factor(est_rbd),
+       data = bbdd)
+summary_r2 <- summary(r2)
+r_cuadrado_2 <- summary_r2$r.squared
+
+r3<-lm(mp_meses_activ ~ treatment + lb_jefa_hog + lb_edu_anos + lb_cant_nino + lb_edad_post+ factor(est_rbd),
+       data = bbdd)
+summary_r3 <- summary(r3)
+r_cuadrado_3 <- summary_r3$r.squared
+
+r4<-lm(trabaja_unmes_mp ~ treatment + lb_jefa_hog + lb_edu_anos + lb_cant_nino + lb_edad_post+ factor(est_rbd),
+       data = bbdd)
+summary_r4 <- summary(r4)
+r_cuadrado_4 <- summary_r4$r.squared
+
+r5<-lm(trabajasiempre_mp ~ treatment + lb_jefa_hog + lb_edu_anos + lb_cant_nino + lb_edad_post+ factor(est_rbd),
+       data = bbdd)
+summary_r5 <- summary(r5)
+r_cuadrado_5 <- summary_r5$r.squared
+
+r6<-lm(mes_trabaja ~ treatment + lb_jefa_hog + lb_edu_anos + lb_cant_nino + lb_edad_post+ factor(est_rbd),
+       data = bbdd)
+summary_r6 <- summary(r6)
+r_cuadrado_6 <- summary_r6$r.squared
+
+# Control group means Panel A
+
+control_lm1<-lm(participa_unmes_mp ~ treatment , data = bbdd)
+cm_1<- coef(control_lm1)[1]
+control_lm2<-lm(participasiempre_mp ~ treatment, data = bbdd)
+cm_2<- coef(control_lm2)[1]
+control_lm3<-lm(mp_meses_activ ~ treatment , data = bbdd)
+cm_3<- coef(control_lm3)[1]
+control_lm4<-lm(trabaja_unmes_mp ~ treatment, data = bbdd)
+cm_4<- coef(control_lm4)[1]
+control_lm5<-lm(trabajasiempre_mp ~ treatment, data = bbdd)
+cm_5<- coef(control_lm5)[1]
+control_lm6 <-lm(mes_trabaja ~ treatment, data = bbdd)
+cm_6<- coef(control_lm6)[1]
+
+
+#Dejar todo en un data frame
+
+panel_A <- data.frame(
+  Treatment = c(coef_treatment_lm1, se_treatment_lm1,dim(bbdd)[1],r_cuadrado_1, cm_1),
+  Columna2 = c(coef_treatment_lm2, se_treatment_lm2,dim(bbdd)[1],r_cuadrado_2, cm_2),
+  Columna3 = c(coef_treatment_lm3, se_treatment_lm3,dim(bbdd)[1],r_cuadrado_3, cm_3),
+  Columna4 = c(coef_treatment_lm4, se_treatment_lm4,dim(bbdd)[1],r_cuadrado_4, cm_4),
+  Columna5 = c(coef_treatment_lm5, se_treatment_lm5,dim(bbdd)[1],r_cuadrado_5, cm_5),
+  Columna6 = c(coef_treatment_lm6, se_treatment_lm6,dim(bbdd)[1],r_cuadrado_6, cm_6)
+)
+
+# Asignar nombres a las filas
+
+rownames(panel_A) <- c("Treatment", " ","Observations","R-squared","Control group mean")
+panel_A<-round(panel_A, 3)
+
+
+
+kable(panel_A,
+      caption = "Tabla 5. Labor force participation and employment",
+      col.names = c("Participates (at least one month during May- Dec)", "Participate (always)", "Month participatings (May - Dec)", "Works (at least one month during May- Dec)", "Works (always)", "Worked Months"),
+      position = "center") %>% 
+  kable_classic(full_width = F,
+                html_font = "Cambria") %>% #Definimos fuente
+  footnote(" ",#Especificamos la nota al pie
+           general_title = "Fuente: Elaboración propia en base a Martinez y Perticará (2017): Childcare effects on maternal
+employment: Evidence from Chile. ")
+
+  
+
+```
+En la tabla 5 podemos ver que todos los coeficientes del impacto de ofrecer el programa son positivos tanto en la participación de la fuerza laboral como sobre los indicadores de empleo. El ofrecimiento del programa posee un impacto estadísticamente significativo sobre quienes participan siempre en la fuerza laboral, el estimador del tratamiento indica un aumento en un 4,3% en la probabilidad de participar en la fuerza laboral. Además, la cantidad de meses que se participa de la fuerza laboral aumenta en 0.3 meses al ser ofrecido el programa. También se observa un efecto significativo de ofrecer el programa sobre la probabilidad de trabajar al menos un mes entre Mayo- Diciembre.
+
+Se deben cumplir una serie de supuestos y requisitos, pero partiendopor el hecho de que el pertenecer a un o otro grupo no afecte los outcomes laborales, sino que sea efectivamente el hecho de ofertar el programa de cuidado a las usuarias lo que afecte los outcomes del mercado laboral. Las autoras sostienen que la cantidad de personas desmotivadas por buscar trabajo son muy pocas en ambos grupos,por lo que el hecho de pertenecer al grupo de control no afecta los outcomes de  fuerza laboral ni del empleo en cuanto a desmotivación. 
+
+Esta y otras características pueden afectar la relación entre pertenecer a un u otro grupo y los outcomes laborales ya que el grupo que fue seleccionado a participar del programa va en el mismo colegio que el grupo que no fue seleccionado, entonces el ser o no ser seleccionado para el programa puede tener efectos sobre los outcomes laborales, pero por temas ajenos a la participación del programa en si. Por ejemplo, el hecho de observar a quienes participan del programa constantemente por parte de quienes no participan puede desencadenar ciertas disposiciones hacia el mercado laboral. Lo más probable es que los resultados no sean del todo impolutos en cuanto al efecto de ofrecer el programa sobre los outcomes laborales.
+
+#### Parte III: Evaluando un RCT (45 puntos)
+
+##### a) (5 puntos) ¿Qué porcentaje de las mujeres fueron expuestas a al menos un tratamiento? Presente una tabla donde cuantifique las personas que están en cada uno de los grupos de tratamiento y el grupo de control.
+
+```{r, echo=FALSE, eval=TRUE, warning=FALSE, error=FALSE,message=FALSE,results='asis'}
+
+j_data<-read_dta("Janzen-et-al_data.dta")
+
+j_data$treat_status<-as.numeric(j_data$treat_status)
+
+t1<-table (j_data$T1)
+t2<-table (j_data$T2)
+t3<-table (j_data$T3)
+
+t1<-prop.table(t1)*100
+t2<-prop.table(t2)*100
+t3<-prop.table(t3)*100
+
+t1 <- as.data.frame(t1)
+t2 <- as.data.frame(t2)
+t3 <- as.data.frame(t3)
+
+a<-cbind(t1,t2,t3)
+
+a <- a[, -c(1,3,5)]
+
+a1<-table (j_data$T1)
+a2<-table (j_data$T2)
+a3<-table (j_data$T3)
+
+a1 <- as.data.frame(a1)
+a2 <- as.data.frame(a2)
+a3 <- as.data.frame(a3)
+
+a1$Freq<-as.integer(a1$Freq)
+a2$Freq<-as.integer(a2$Freq)
+a3$Freq<-as.integer(a3$Freq)
+
+a_<-cbind(a1,a2,a3)
+a_ <- a_[, -c(1,3,5)]
+
+b<-rbind(a,a_)
+
+b <- b[c(3, 1, 4, 2), ]
+
+
+rownames(b) <- c("Control", " %","Treatment","%")
+colnames(b) <- c ("FT","NG","NVT")
+
+kable(b,
+      caption = "Table 3.Mujeres expuestas a tratamiento",
+      col.names = c("FT","NG","NVT"),
+      position = "center") %>% 
+  kable_classic(full_width = F,
+                html_font = "Cambria") %>% #Definimos fuente
+  footnote(" ",#Especificamos la nota al pie
+           general_title = "Fuente: Elaboración propia en base a Martinez y Perticará (2017): Childcare effects on maternal
+employment: Evidence from Chile. ")
+
+```
+El total de mujeres expuestas a al menos un tratamiento corresponde a 1473 mujeres, lo que equivale a un 74,32 %, mientras que el grupo de control es igual a 509 (25,68%). De las que fueron seleccionadas en al menos uno de los programas de capacitación, el 23,5% pertenece a Full Treatment (FT): intervención básica, formación basad en valores y transferencia de un bien productivo, un 24,4% participa del tratamiento No Goats (NG): identico a FT, pero sin la transferencia de bienes productivos y un 26,3% pertenece al grupo de tratamiento No Values-based Training (NVT): Identico a FT pero sin formación basada en valores.
+
+##### b) (5 puntos) Los índices utilizados por los autores para medir cada aspecto están definidos como valores positivos, sin embargo, en la base de datos se pueden ver valores negativo. Según lo leído en el texto y a lo que pueda analizar con los datos, ¿a que se debe esto? ¿Qué transformación estadística aplicaron los autores a estas variables y con qué objetivo?
+
+
+Con pocas excepciones, las variables se han codificado de manera que los valores más altos son 'mejores', por lo tanto, los coeficientes de regresión positivos representan mejoras.
+
+Si bien las variables suelen codificarse de manera que los coeficientes de regresión positivos representen resultados deseables, los autores indican en el PAP que algunos indices corresponden a una media ponderada estandarizada de variables, lo que deriva en que los valores negativos del índice corresponde a casos que está por debajo de la media, pero que su valor original era positivo. El objetivo de esta transformación en media ponderada estandarizada es para sintetizar información en un índice, lo que sirve para homogeneizar las magnitudes de las diferentes variables. A su vez, esto puede facilitar la interpretación de los resultados donde se cuantifican las desviaciones estándar (en cuánto un caso se desvía de la media).
+
+Por otro lado, algunos índices parece que corresponden a transformaciones de logaritmos naturales, esta técnica se utiliza para datos que tienen magnitudes de variaciones muy grandes, para normalizar la distribución de los datos o para linealizar relaciones que no son lineales. En el caso de una disminución en este tipo de índices puede que valores que se encuentren entre 0 y 1 al aplicar transformaciones logaritmicas terminen con un valor negativo. 
+
+Además, como se trata de un RCT, existe un cambio en el tiempo (diferencia antes y después del tratamiento) por lo que algunos índices pueden representar un cambio o una diferencia temporal, donde un valor negativo indicaría una disminución en dicho indice.
+
+
+
+##### c) (10 puntos) ¿Existen diferencias significativas en las mediciones de la linea base entre el grupo de control puro y las personas que se le asignó algún tratamiento? Presente una tabla con los promedios de cada variable y un test de diferencia de medias entre el grupo tratado y de control. Nota: Considere un único grupo de tratado que incluya todos los tratamientos.
+
+```{r, echo=FALSE, eval=TRUE, warning=FALSE, error=FALSE,message=FALSE,results='asis'}
+j_data<-read_dta("Janzen-et-al_data.dta")
+
+#Creo una grilla vacía (formato dataframe) que luego se llenará con los valores del loop
+resultados <- data.frame(Indice = character(),
+                         Media_Tratado = numeric(),
+                         Media_Control = numeric(),
+                         Estadistico_t = numeric(),
+                         stringsAsFactors = FALSE)
+
+
+datos<-j_data %>% select(asset_dimension_idx, ln_tot_inc_hh, ln_expenditure_idx, finance_idx, hh_health_idx, mental_health_idx, asp_idx, emp, food_idx)
+variables_interes <- names(datos)
+
+#loop
+for (var in variables_interes) {
+  #creo 2 subconjuntos con las categorías de treatment
+  subset_tratado <- subset(j_data, treat_status == 1, select = var)
+  subset_tratado <- subset_tratado[complete.cases(subset_tratado), ]
+  subset_control <- subset(j_data, treat_status == 4, select = var)
+  subset_control <- subset_control[complete.cases(subset_control), ]
+
+  #Cálculo de las medias y el valor p del estadístico t de igualdad de medias.
+  mean_tratado <- mean(subset_tratado[[var]], na.rm = T)#media de tratado
+  mean_control <- mean(subset_control[[var]], na.rm = T)#media de control
+  t_test_result <- t.test(subset_tratado[[var]], subset_control[[var]])#t
+  p_valor <- t_test_result$p.value#p-value
+  
+  #Se almacenan los resultados en la grilla formato dataframe
+  resultados <- rbind(resultados, data.frame(Indice = var,
+                                             Tratado = round(mean_tratado,2),
+                                             Control = round(mean_control,2),
+                                             p = round(p_valor,3)))#valor p está con 3 decimales
+}
+
+#Poner nombre a las filas 
+rownames(resultados)<- c("Assets",
+         "Income",
+         "Expenses (non-food)",
+         "Financial inclusion",
+         "Physical health",
+         "Mental health",
+         "Aspirations",
+         "Empowerment",
+         "Food index")
+
+
+
+#tabla4
+
+#ahora con Kable, queda una tabla fancy
+
+kable(resultados,
+      caption = "Table 4. Balance between treatment and control group at baseline",
+      col.names = c("Indice", "Treatment", "Control", "p-value T=C"),
+      position = "center") %>% 
+  kable_classic(full_width = F,
+                html_font = "Cambria") %>% #Definimos fuente
+  footnote(" ",#Especificamos la nota al pie
+           general_title = "Fuente: Elaboración propia en base a Martinez y Perticará (2017): Childcare effects on maternal
+employment: Evidence from Chile. ")
+
+```
+Acorde a los p-values menores a 0.05 (5% de significancia), podemos decir que existen diferencias estadísticamente significativas entre el grupo de control y tratamiento en los indices de gasto (no comida), de inclusión financiera y en el índice de aspiraciones con un 5% de significancia.
+
+Este desbalance en la asignación de los grupos en la línea de base puede afectar las conclusiones que se deriven del tratamiento, por lo que estos tres índices hay que interpretarlos con cautela, ya que al estar desbalanceados de manera previa sus estimadores pueden estar sesgados, lo más correcto sería utilizar estas variables como controles en los análisis de regresión.
+A pesar de estas diferencias, ambos grupos no son estadísticamente distintos en el resto de indices de resumen. 
+
+
+
+Desde ahora, usted busca evaluar los resultados directos del programa. Para esto, debe quedarse en la base de datos sólo con las observaciones que toman el valor 1 en la variable OG, que identifica a las personas. Además, debe considerar los efectos en las variables de resultado posterior a la intervención, las cuales tiene el sufijo m en la base de datos.
+
+##### d) (10 puntos) Estime el efecto de cada uno de los tratamientos en los índices señalados anteriormente, en una regresión distinta para cada variable de resultado, utilizando como regresores las variables que le permiten identificar el efecto de cada tipo de tratamiento. Comente sus resultados.
+
+
+```{r, echo=FALSE, eval=TRUE, warning=FALSE, error=FALSE,message=FALSE,results='asis'}
+j_data<-read_dta("Janzen-et-al_data.dta")
+
+#Filtro
+data_filtrada<-j_data %>% filter(OG==1)
+
+#Regresiones
+asset_dimension_idx_m <-lm( asset_dimension_idx_m  ~ T1 + T2 + T3, data= data_filtrada)
+ln_tot_inc_hh <-lm( ln_tot_inc_hh_m  ~ T1 + T2 + T3, data= data_filtrada)
+ln_expenditure_idx <-lm( ln_expenditure_idx_m  ~ T1 + T2 + T3, data= data_filtrada)
+finance_idx <-lm( finance_idx_m  ~ T1 + T2 + T3, data= data_filtrada)
+hh_health_idx <-lm( hh_health_idx_m  ~ T1 + T2 + T3, data= data_filtrada)
+mental_health_idx <-lm( mental_health_idx_m  ~ T1 + T2 + T3, data= data_filtrada)
+asp_idx <-lm( asp_idx_m  ~ T1 + T2 + T3, data= data_filtrada)
+emp <-lm( emp_m  ~ T1 + T2 + T3, data= data_filtrada)
+food_idx <-lm( food_idx_m  ~ T1 + T2 + T3, data= data_filtrada)
+
+
+#Tabla fancy con stargazer
+
+models_list <- list(asset_dimension_idx_m,
+                    ln_tot_inc_hh,
+                    ln_expenditure_idx,
+                    finance_idx,
+                    hh_health_idx,
+                    mental_health_idx,
+                    asp_idx,
+                    emp,
+                    food_idx)
+
+stargazer(models_list,
+          type = "html",
+          intercept.bottom = TRUE,
+          intercept.top = FALSE,
+          ci = FALSE,
+          digits = 3,
+          notes = "*** p < 0.001; ** p < 0.01; * p < 0.05",
+          model.names = FALSE,
+          single.row = TRUE,
+          dep.var.labels = c("Assets", "Income", "Expenses (non-food)", "Financial inclusion",
+                             "Physical health", "Mental health", "Aspirations", "Empowerment", "Food index"),
+          covariate.labels = c("Full Treatment (FT)", "No Goats (NG)", "No Values-based Training (NVT)"))
+
+
+```
+Con respecto a los dos primeros modelos, donde las variables explicadas son los indices de bienes e ingresos,  los coeficientes son negativos pero no significativos. Cuando la variable a explicar pasa a ser el indice de gastos (sin considerar la comida) el tratamiento completo (FT) tiene un efecto significativamente negativo, lo que es intuitivo ya que nos indica que el ofrecimiento del tratamiento completo disminuye el gasto en bienes no comestibles.
+
+El cuarto modelo muestra que los 3 tipos de tratamiento tienen un efecto positivo y estadísticamente significativo sobre la inclusión financiera. Podemos decir que el efecto de ofrecer el tratamiento completo aumenta en promedio un 22%  el indice de inclusión financiera en comparación con el grupo de control, mientras que ofrecer el tratamiento sin transferencias de bienes productivos (cabras pequeñas) aumenta en un 32% en promedio el indice de inclusión financiera con respecto a quienes no se les ofrece el programa. Por su parte el programa sin formación basada en valores aumenta el indice de inclusión financiera en en un 29% en comparación con el grupo de control.
+Ninguno de los tipos de tratamiento tiene efectos en los índices de salud física y mental.
+Existe un efecto positivo y estadísticamente significativo del tratamiento sin transferencias de bienes productivos en el índice de aspiraciones para mujeres que se les ofreció el programa en comparación con quienes no se les ofreció.
+En cuanto al empoderamiento, se observa un efecto positivo y estadísticamente significativo de los 3 tipos de tratamiento, en donde cada uno aumenta por sobre el 20% en promedio el índice de empoderamiento con respecto al grupo de control.
+Por útlimo, con respecto al índice de comida, existe un efecto estadísticamente de un 18% de aumento en el índice de comida del ofrecimiento del programa sin transferencia de bienes productivos (cabras pequeñas)  con respecto a quienes no se les ofreció el programa.
+
+
+
+
+##### e) (5 puntos) Incluya como control la variable que controla por la casta/etnia(caste ethnic), el grupo geográfico de la estratificación (vdc), y el nivel base del índice que está analizando. Comente sus resultados y como se diferencian del apartado anterior.
+
+```{r, echo=FALSE, eval=TRUE, warning=FALSE, error=FALSE,message=FALSE,results='asis'}
+
+j_data<-read_dta("Janzen-et-al_data.dta")
+
+#Filtro
+data_filtrada<-j_data %>% filter(OG==1)
+
+#Regresiones 2
+asset_dimension_idx_2 <-lm( asset_dimension_idx_m  ~ T1 + T2 + T3+ c_2+ asset_dimension_idx + factor(vdc), data= data_filtrada)
+ln_tot_inc_hh_2 <-lm( ln_tot_inc_hh_m  ~ T1 + T2 + T3 + c_2+ ln_tot_inc_hh + factor(vdc), data= data_filtrada)
+ln_expenditure_idx_2 <-lm( ln_expenditure_idx_m  ~ T1 + T2 + T3+ c_2+ ln_expenditure_idx + factor(vdc), data= data_filtrada)
+finance_idx_2 <-lm( finance_idx_m  ~ T1 + T2 + T3+ c_2+ finance_idx + factor(vdc), data= data_filtrada)
+hh_health_idx_2 <-lm( hh_health_idx_m  ~ T1 + T2 + T3+ c_2+ hh_health_idx + factor(vdc), data= data_filtrada)
+mental_health_idx_2 <-lm( mental_health_idx_m  ~ T1 + T2 + T3+ c_2+ mental_health_idx + factor(vdc), data= data_filtrada)
+asp_idx_2 <-lm( asp_idx_m  ~ T1 + T2 + T3+ c_2+ asp_idx + factor(vdc), data= data_filtrada)
+emp_2 <-lm( emp_m  ~ T1 + T2 + T3+ c_2+ emp + factor(vdc), data= data_filtrada)
+food_idx_2 <-lm( food_idx_m  ~ T1 + T2 + T3+ c_2+ food_idx + factor(vdc), data= data_filtrada)
+
+
+#Tabla fancy con stargazer
+
+models_list2 <- list(asset_dimension_idx_2,
+                    ln_tot_inc_hh_2,
+                    ln_expenditure_idx_2,
+                    finance_idx_2,
+                    hh_health_idx_2,
+                    mental_health_idx_2,
+                    asp_idx_2,
+                    emp_2,
+                    food_idx_2)
+
+stargazer(models_list2,
+          type = "html",
+          intercept.bottom = TRUE,
+          intercept.top = FALSE,
+          ci = FALSE,
+          digits = 3,
+          notes = "*** p < 0.001; ** p < 0.01; * p < 0.05",
+          model.names = FALSE,
+          single.row = TRUE,
+          dep.var.labels = c("Assets", "Income", "Expenses (non-food)", "Financial inclusion",
+                             "Physical health", "Mental health", "Aspirations", "Empowerment", "Food index"),
+          covariate.labels = c("Full Treatment (FT)", "No Goats (NG)", "No Values-based Training (NVT)","caste ethnic","base level of the index",
+        "Dhorfirdi",
+           "Raipur",
+        "Bhanumati",
+            "Kihun",
+          "Thrapek" , 
+          "Shyamga",
+           "Kaymin",
+        "Satiswora" , 
+       "Tanahunsur"  ,
+          "Majakot"  ,
+        "Kotdarbar"  ,
+"Rishingranipokari"  ,
+         "Ramjakot"  ,
+         "Gajarkot"  ,
+        "Bakamalng"  ,
+          "Darchha"  ,
+           "Rampur"  ,
+         "Khaliban"  ,
+          "Heklang"  ,
+            "Tahun"  ,
+            "Jalpa"  ,
+          "Jahdewa"  ,
+            "Rupse"  ,
+           "Kaseni"  ,
+      "Nyarmatales"  ,
+      "Darlamdanda"  ,
+        "Khanigaun"  ,
+        "Chapapani"  ,
+         "Barangdi"  ,
+          "Paurahi"  ,
+         "Judibela"  ,
+   "Chandranigapur"  ,
+         "Dumariya"  ,
+        "Bisrampur"  ,
+            "Simra"  ,
+         "Dhamaura"  ,
+         "Kanakpur"  ,
+         "Atarauli"  ,
+        "Patharkot"  ,
+          "Sasapur"  ,
+        "Netraganj"  ,
+       "Parbanipur"  ,
+         "Raniganj"  ,
+         "Kalinjor"  ,
+     "Narayankhola"  ,
+            "Kisan"  ,
+          "Hatilet" ,
+        "Bharatpur"  ,
+         "Laxminya"))
+
+```
+Al incluir los controles especificados se observa un gran aumento en la varianza explicada de los distintos índices, el r2 ajustado sube bastante en todos los modelos. 
+
+Al controlar por etnia y grupo geográfico los coeficientes de los tratamientos aumentan en magnitud y cambian de signo cuando la variable dependiente son los índices de bienes e ingresos. De estos pasa a ser estadísticamente significativo el coeficiente estimado del efecto de promocionar el programa No Values-based Training (NVT). Además se observan diferencias significativas entre grupos geográficos por lo que agregar estos controles contribuye notablemente a mejorar el poder explicativo de los modelos.
+
+El coeficiente del tratamiento completo deja de ser estadísticamente significativo cuando se trata de explicar el indice de gastos no alimenticios al controlar por grupo geográfico, por etnia, y por el nivel base del indice.
+
+Al controlar por grupo geográfico, por etnia, y por el nivel base del indice los coeficientes de los tratamientos dejan de ser estadísticamente significativos sobre el indice inclusión financiera, por lo que dichos controles son relevantes a la hora de explicar la inclusión financiera y depende bastante del grupo geográfico.
+
+Con respecto al indice de salud física, al incluir estos controles el estimador del tratamiento NG (sin transferencia de bienes productivos) pasa a ser estadísticamente significativo. Es clave este estimador ya que el ofrecimiento de este programa aumenta en un 90% en promedio el índice de salud física en comparación a quienes no se les ofreció el tratamiento.
+
+Con respecto al índice de salud mental es donde se observan mayores diferencias sustantivas, pues los tres tipos de tratamiento poseen estimadores significativos, positivos y bastante altos en el aumento del indice de salud mental. El ofrecimiento del tratamiento FT aumenta en cerca de un 120% en promedio el índice de salud mental con respecto al grupo de control. El tratamiento NG aumenta en un 148% en promedio el índice de salud mental en quienes se ofrece el tratamiento en comparación con quienes no se les ofrece. Y el ofrecimiento del tratamiento NVT aumenta en más de un 150% el índice de salud mental en comparación a quienes no se les ofreció dicho tratamiento. Es necesario aclarar que el r cuadrado ajustado es de sólo un 9%, pero la mayoría de los estimadores tienen un efecto causal sobre el índice de salud mental.
+
+
+
+
+##### f) (5 puntos) Vuelva a estimar la ecuación del apartado anterior, pero esta vez considerando a todos los tratados como un grupo independiente del tratamiento que recibió. ¿Cómo se comparan sus resultados con respecto a los del apartado anterior?
+
+```{r, echo=FALSE, eval=TRUE, warning=FALSE, error=FALSE,message=FALSE,results='asis'}
+
+
+j_data<-read_dta("Janzen-et-al_data.dta")
+
+#Filtro
+data_filtrada<-j_data %>% filter(OG==1)
+
+# Crear la variable dummy para el tratamiento
+data_filtrada$treatmet <- ifelse(data_filtrada$T1 == 1 | data_filtrada$T2 == 1 | data_filtrada$T3 == 1, 1, 0)
+
+#Regresiones 2
+asset_dimension_idx_3 <-lm( asset_dimension_idx_m  ~ treatmet+ c_2+ asset_dimension_idx + factor(vdc), data= data_filtrada)
+ln_tot_inc_hh_3 <-lm( ln_tot_inc_hh_m  ~ treatmet + c_2+ ln_tot_inc_hh + factor(vdc), data= data_filtrada)
+ln_expenditure_idx_3 <-lm( ln_expenditure_idx_m  ~ treatmet+ c_2+ ln_expenditure_idx + factor(vdc), data= data_filtrada)
+finance_idx_3 <-lm( finance_idx_m  ~ treatmet+ c_2+ finance_idx + factor(vdc), data= data_filtrada)
+hh_health_idx_3 <-lm( hh_health_idx_m  ~ treatmet+ c_2+ hh_health_idx + factor(vdc), data= data_filtrada)
+mental_health_idx_3 <-lm( mental_health_idx_m  ~ treatmet+ c_2+ mental_health_idx + factor(vdc), data= data_filtrada)
+asp_idx_3 <-lm( asp_idx_m  ~ treatmet+ c_2+ asp_idx + factor(vdc), data= data_filtrada)
+emp_3 <-lm( emp_m  ~ treatmet+ c_2+ emp + factor(vdc), data= data_filtrada)
+food_idx_3 <-lm( food_idx_m  ~ treatmet+ c_2+ food_idx + factor(vdc), data= data_filtrada)
+
+
+#Tabla fancy con stargazer
+
+models_list3 <- list(asset_dimension_idx_3,
+                    ln_tot_inc_hh_3,
+                    ln_expenditure_idx_3,
+                    finance_idx_3,
+                    hh_health_idx_3,
+                    mental_health_idx_3,
+                    asp_idx_3,
+                    emp_3,
+                    food_idx_3)
+
+stargazer(models_list3,
+          type = "html",
+          intercept.bottom = TRUE,
+          intercept.top = FALSE,
+          ci = FALSE,
+          digits = 3,
+          notes = "*** p < 0.001; ** p < 0.01; * p < 0.05",
+          model.names = FALSE,
+          single.row = TRUE,
+          dep.var.labels = c("Assets", "Income", "Expenses (non-food)", "Financial inclusion",
+                             "Physical health", "Mental health", "Aspirations", "Empowerment", "Food index"),
+          covariate.labels = c("Treatment","caste ethnic","base level of the index",
+        "Dhorfirdi",
+           "Raipur",
+        "Bhanumati",
+            "Kihun",
+          "Thrapek" , 
+          "Shyamga",
+           "Kaymin",
+        "Satiswora" , 
+       "Tanahunsur"  ,
+          "Majakot"  ,
+        "Kotdarbar"  ,
+"Rishingranipokari"  ,
+         "Ramjakot"  ,
+         "Gajarkot"  ,
+        "Bakamalng"  ,
+          "Darchha"  ,
+           "Rampur"  ,
+         "Khaliban"  ,
+          "Heklang"  ,
+            "Tahun"  ,
+            "Jalpa"  ,
+          "Jahdewa"  ,
+            "Rupse"  ,
+           "Kaseni"  ,
+      "Nyarmatales"  ,
+      "Darlamdanda"  ,
+        "Khanigaun"  ,
+        "Chapapani"  ,
+         "Barangdi"  ,
+          "Paurahi"  ,
+         "Judibela"  ,
+   "Chandranigapur"  ,
+         "Dumariya"  ,
+        "Bisrampur"  ,
+            "Simra"  ,
+         "Dhamaura"  ,
+         "Kanakpur"  ,
+         "Atarauli"  ,
+        "Patharkot"  ,
+          "Sasapur"  ,
+        "Netraganj"  ,
+       "Parbanipur"  ,
+         "Raniganj"  ,
+         "Kalinjor"  ,
+     "Narayankhola"  ,
+            "Kisan"  ,
+          "Hatilet" ,
+        "Bharatpur"  ,
+         "Laxminya"))
+```
+Todos los coeficientes mantienen su significancia, y el coeficiente de tratamiento se lleva todo el peso explicativo de los antiguos coeficientes de tipos de tratamientos excepto en el octavo modelo, donde antes teníamos que 2 de los 3 tipos de tratamiento poseían un efecto estadísticamente significativo sobre el índice de empoderamiento. En cambio al no diferenciar por tipo de modelo, el nuevo estimador de tratamiento pierde su poder explicativo, manteniendo el mismo valor del r-cuadrado ajustado, es decir, la varianza explicada es la misma, pero es explicada por el resto de controles y no por el tratamiento en sí, lo más probable es que el tipo de tratamiento poseía algún tipo de efecto de interacción con otros controles, explicación que se disipa al tomar sólo el hecho de ofrecer cuaquier de los 3 tipos de tratamiento.
+
+##### g) (5 puntos) Según lo leído, ¿los efectos encontrados corresponden a el efecto del tratamiento o al efecto de ser asignado a un tratamiento? Comente las principales diferencias entre un ITT y un LATE, y señale cuales de estos dos efectos recuperan sus estimaciones.
+
+Los efectos encontrados en el estudio corresponden al efecto del la intención del tratamiento (ITT) en lugar del efecto local promedio del tratamiento (LATE). 
+
+ITT (Intent-to-Treat): Mide el efecto de ser asignado a un tratamiento, independientemente de si el participante recibe o cumple con el tratamiento. Se enfoca más en la asignación al tratamiento y no en la consumación del tratamiento, capturando el efecto promedio de la asignación, incluso aquellas donde el tratamiento no se implementó completamente. Es útil para evaluar la eficacia en escenarios del mundo real donde la adhesión al tratamiento no siempre es perfecta.
+
+LATE (Local Average Treatment Effect): Mide el efecto del tratamiento en aquellos que efectivamente lo recibieron, centrándose en los participantes que se adhieren al tratamiento asignado. Este efecto se centra en los compliers y permite una medida más precisa del efecto real del tratamiento, pero puede ser menos representativo de una población más amplia.
+
+En esta investigación los estimadores corresponden al efecto de ITT, midiendo el efecto de ser asignado al tratamiento, no necesariamente de recibirlo. En este caso vale la pena enfocarse en el ITT ya que en los  los programas de política pública la ejecución o formar parte del tratamiento no puede darse por hecho.
+
+Es necesario entender cabalmente la diferentcia entre ITT y LATE para comprender las conclusiones del estudio. Pues el ITT compara grupos de tratamiento y control con respecto al ofrecimiento del programa, mientras que LATE se enfoca en quienes cumplen con el tratamiento asignado y permite realizar conclusiones sobre los compliers.
+
+Como se explica en la pregunta 3 de la parte 1, el efecto ITT proporciona una estimación más conservadora del efecto del tratamiento. En donde las estimaciones reflejan el efecto de la oferta del tratamiento (ITT) y no el efecto local promedio del tratamiento sobre quienes lo recibieron (LATE), lo que es crucial para la interpretación debido a problemas potenciales de un take-up imperfecto.

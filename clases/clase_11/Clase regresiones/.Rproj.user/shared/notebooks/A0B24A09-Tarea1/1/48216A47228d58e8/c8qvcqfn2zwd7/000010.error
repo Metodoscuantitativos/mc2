@@ -1,1 +1,0 @@
-{"frames":[],"message":"Error in stargazer(lm1, type = \"html\", intercept.bottom = T, intercept.top = F,  : \n  could not find function \"stargazer\"\n"}

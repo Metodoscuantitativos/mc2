@@ -1,0 +1,294 @@
+
+# 00 Paquetes --------------------------------------------------------
+pacman::p_load(tidyverse, openxlsx, summarytools, kableExtra,webshot2,chromote)
+
+
+# 01 Cargar datos--------------------------------------------------------
+base <- read.xlsx("base/base_antropologia_limpia.xlsx")
+
+# 02 explorar base--------------------------------------------------------
+
+
+str(base)
+summary(base)
+view(base)
+
+
+# 03 Renombrar variables--------------------------------------------------------
+
+
+base <- base %>% dplyr::rename(interes_participar_ma = ma_02,  
+                               nivel_info_basura = ma_01, 
+                               actividad_ocio = to_04,#TO_04. ¿Cuáles de estas actividades prefiere realizar en su tiempo de ocio? 
+                               lugar_musica= cm_05)#CM_05.  ¿Dónde suele escuchar música habitualmente? Seleccione más de una alternativa si corresponde. 
+
+
+
+# Separar las respuestas de actividad_ocio porque es de respuesta múltiple
+
+# Cómo lo hago para ver rápidamente la variable que me interesa?
+# (por 0.2 décimas) 
+
+table(base$actividad_ocio)
+
+respuestas <- strsplit(base$actividad_ocio, ",") # separar las respuestas que tienen coma (,)
+
+# Convertimos la lista en un vector
+respuestas <- unlist(respuestas) # sacar de una lista y convertir en un vector
+
+# observo las respuestas
+freq(respuestas, prop=TRUE, order = "freq", report.nas = FALSE) %>% 
+  tb()
+
+# Elimino caracteres invisibles y espacios adicionales
+respuestas <- gsub("[·]", "", respuestas) # eliminar el carácter "·"
+respuestas <- trimws(respuestas) # eliminar espacios en blanco al inicio y al final
+
+# Normalizar respuestas para eliminar diferencias menores 
+respuestas <- tolower(respuestas) # convierto todo a minúsculas (opcional)
+respuestas <- gsub("[[:space:]]+", " ", respuestas) # reemplazo múltiples espacios con un solo espacio
+
+#Vuelvo a revisar como quedaron las respuestas
+freq(respuestas, prop=TRUE, order = "freq", report.nas = FALSE) %>% 
+  tb()
+
+#Necesito cambiar categorías de respuesta pero
+#No puedo Recodificar directamente en distintas categorías porque no es una variable!
+#Utilizo gsub
+
+
+#cambio categorías parecidas y reduzco categorías de respuestas
+
+
+respuestas <- gsub("costura y diseño de ropa", "Artesanía y vestuario", respuestas)
+respuestas <- gsub("tejer", "Artesanía y vestuario", respuestas)
+
+respuestas <- gsub("ver videos en youtube de temas variados.", "Ver contenido audiovisual", respuestas)
+respuestas <- gsub("ver programas de humor", "Ver contenido audiovisual", respuestas)
+respuestas <- gsub("ver series y / o películas.", "Ver contenido audiovisual", respuestas)
+
+respuestas <- gsub("escuchar podcast", "Socializar", respuestas)
+respuestas <- gsub("salir con amigos / familia.", "Socializar", respuestas)
+
+respuestas <- gsub("Música.", "Música", respuestas)
+respuestas <- gsub("tocar música", "Música", respuestas)
+respuestas <- gsub("escuchar música", "Música", respuestas)
+respuestas <- gsub("bailar y/o cantar", "Música", respuestas)
+
+
+#Reviso nuevamente
+freq(respuestas, prop=TRUE, order = "freq", report.nas = FALSE) %>% 
+  tb()
+
+
+#Guardo para graficar
+actividad_ocio <- freq(respuestas, prop=TRUE, order = "freq", report.nas = FALSE) %>% 
+  tb()
+
+
+
+# Distribución de frecuencias --------------------------------------------
+#identidad de género recodificada
+base %>% 
+  freq(identidad_genero_r, prop = TRUE, order = "freq", report.nas =  FALSE)%>% 
+  tb()
+
+#Tabla fancy
+base %>% 
+  freq(identidad_genero_r, prop = TRUE, order = "freq", report.nas =  FALSE)%>% 
+  tb() %>%
+  kable(col.names = c("Género", "Frecuencia", "%", "% Acumulado"),
+        caption = "Distribución de frecuencias de Género", 
+        digits = c(0, 0, 2, 2))%>%  #decimales por columna
+  kable_classic(full_width = F, html_font = "Cambria") 
+
+
+#para guardarla
+if(!dir.exists("tablas")) dir.create("tablas") #si no existe la carpeta "tablas" la creo
+
+#Tabla fancy
+base %>% 
+  freq(identidad_genero_r, prop = TRUE, order = "freq", report.nas = FALSE) %>% 
+  tb() %>%
+  kable(col.names = c("Género", "Frecuencia", "%", "% Acumulado"),
+        caption = "Distribución de frecuencias de Género", 
+        digits = c(0, 0, 2, 2)) %>%  # Decimales por columna
+  kable_classic(full_width = F, html_font = "Cambria") %>% 
+  save_kable(file = "tablas/dfgenero1.png", zoom = 3)
+
+
+
+
+#Práctica: realice dos distribuciones de frecuencias
+names(base)
+names(libro)
+
+
+
+# Gráficos categóricos univariados ----------------------------------------
+
+dfgenero <- base %>% 
+  mutate(genero = if_else(genero =="Prefiero no responder", as.character(NA), genero)) %>%
+  freq(genero, prop = TRUE, order = "freq", report.nas =  FALSE)%>% 
+  tb() 
+
+names(dfgenero)
+
+#opción 1
+ggplot(dfgenero, aes(x = pct, y = fct_reorder(genero, pct), fill=genero)) +
+  geom_col() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  xlab("") + ylab("") +
+  labs(title = "Género Antropología UAH", 
+       subtitle = "Encuesta Estudiantes 2023",
+       caption = "fuente: Encuesta Estudiantes Antropología 2023")+
+  geom_text(aes(label = paste0(round(pct, 1), "%")), #concatena porcentaje con un decimal y "%".
+            hjust = -0.1, size = 3, nudge_x = -.9, fontface= "bold")+
+  theme_ipsum()+
+  scale_fill_viridis_d(option = "C", guide = "none")
+
+#opción 2
+ggplot(dfgenero, aes(x =fct_reorder(genero, pct), y = pct, fill=genero)) +
+  geom_col() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  xlab("") + ylab("") +
+  labs(title = "Género Antropología UAH", 
+       caption = "fuente: Encuesta Estudiantes Antropología 2023")+
+  theme_ipsum()+
+  scale_fill_viridis_d(option = "C", guide = "none")
+
+
+#Práctica: realice dos gráficos de barras, con dos variables distintas
+
+
+# gráfico de tortas
+ggplot(dfgenero, aes(x = "", y = pct, fill = genero)) +
+  geom_bar(stat = "identity") + 
+  coord_polar(theta = "y") + # esto permite hacer gráfico de torta
+  labs(title = "Género Estudiantes UAH", 
+       caption = "fuente: Encuesta de Estudiantes UAH 2023",
+       fill = "Religión") +
+  theme_ipsum() +
+  scale_fill_viridis_d( guide = "legend", limits = dfgenero$genero)
+
+#por default: geom_bar cuenta las frecuencias, esto sería geom_bar(stat = "count")
+#stat = "identity": cada barra representa el porcentaje de la categoría.
+
+#Práctica: realice dos gráficos de torta.
+
+
+# Análisis bivariados  --------------------------------------------------
+
+names(libro)
+names(base)
+
+#¿La preferencia de ficción o no ficción dependerá del género?
+
+names(base)
+names(libro)
+unique(base$le06)
+
+
+#acorto los nombres para que aparezcan bien en la tabla
+base <- base %>% 
+  mutate(le06 = fct_recode(le06,
+                           "Ficción" = "Ficción (novelas de romance, acción, suspenso, fanfics, ciencia ficción, policiales, poesía, etc)",
+                           "No ficción" = "No ficción (documentos científicos, académicos, revistas, biografías, etc)"))
+
+
+#Realizo tabla de contingencia
+ct_lecgenero <- base %>%
+  filter(genero != "Prefiero no responder") %>%
+  select(le06, genero) %>%
+  droplevels() %>%
+  table(.) %>% 
+  addmargins(.,2) %>% #primero addmargins
+  prop.table(.,2) %>% #segundo prop.table
+  round(4)*100 
+
+
+#graficar
+
+#elijo ciertos colores
+colors <- c("#440154", "#b2df8a", "#365A8C", "#277E8E", "#1FA088", "#44A96C", "#7FBC41", 
+                     "#B3CC2A", "#FDE725", "#46337E", "#b07aa1", "#ff9da7", "#9c755f", 
+                     "#bab0ac", "#5c5c5c") 
+
+
+#realizo un gráfico de barras 
+ggplot(data = subset(base, genero != "Prefiero no responder"), aes(x = genero, fill = le06)) +
+  geom_bar(position = "fill") +
+  ylab("Proporciones") +
+  theme_classic() +
+  scale_fill_manual(values = colors)
+
+
+#¿Por qué los hombres leerán más ficción que las mujeres?
+
+
+# Realice lo mismo para actividad física: hs08
+unique(base$hs08)
+table(base$hs08)
+
+base %>%
+  filter(genero != "Prefiero no responder") %>%
+  select(hs08, genero) %>%
+  droplevels() %>%
+  table(.) %>% 
+  addmargins(.,2) %>% #primero addmargins
+  prop.table(.,2) %>% #segundo prop.table
+  round(4)*100 
+
+#recodifico para tener menos categorías 
+base <- base %>% 
+  mutate(hs08 = fct_recode(hs08,
+                           "Entre 1 y 4 horas" = "Entre 1 y 4 horas",
+                           "Más de 5" = "Entre 5 y 8 horas", 
+                           "Más de 5" = "Más de 8 horas", 
+                           "No realizo actividad física o deportiva" = "No realizo ninguna actividad física o deportiva durante la semana"))
+
+
+#lo guardo
+ct_acfisgenero <- base %>%
+  filter(genero != "Prefiero no responder") %>%
+  select(hs08, genero) %>%
+  droplevels() %>%
+  table(.) %>% 
+  addmargins(.,2) %>% #primero addmargins
+  prop.table(.,2) %>% #segundo prop.table
+  round(4)*100 
+
+
+
+# para la realización de actividad física 
+
+#graficar
+ggplot(data = subset(base, genero != "Prefiero no responder"), aes(x = genero, fill = hs08)) +
+  geom_bar(position = "fill") +
+  ylab("Proporciones") +
+  theme_classic() +
+  scale_fill_manual(values = colors)
+
+
+base <- base %>% 
+  mutate(hs08 = case_when(
+    hs07 == "No realicé ninguna actividad física o deportiva" ~ "No realizo actividad física o deportiva",
+    TRUE ~ hs08
+  ))
+
+ggplot(data = subset(base, genero != "Prefiero no responder"), aes(x = genero, fill = hs08)) +
+  geom_bar(position = "fill") +
+  ylab("Proporciones") +
+  theme_classic() +
+  scale_fill_manual(values = colors)
+
+
+ggplot(data = subset(base, genero != "Prefiero no responder" & complete.cases(hs08)), aes(x = genero, fill = hs08)) + #solo utilizo filas completas
+  geom_bar(position = "fill") +
+  ylab("Proporciones") +
+  theme_classic() +
+  scale_fill_manual(values = colors)
+
+
+
+
