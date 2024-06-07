@@ -69,7 +69,9 @@ class: inverse, center, middle
 
 # Inferencia Estadística
 
-![](inferencia1.png)
+<img src="inferencia1.png" width="700px" />
+
+
 
 ---
 
@@ -102,7 +104,7 @@ población?
 ---
 ### Probabilidad vs estadística
 
-![](probabilidad_estadistica1.png)
+<img src="probabilidad_estadistica1.png" width="700px" />
 
 ---
 ### Distribución poblacional y muestral
@@ -130,7 +132,9 @@ Si se extrae una **muestra aleatoria** de la población, se puede calcular su me
 --
     Distribuciones de las muestras
 
-![](distribucion_muestral1.png)
+
+<img src="distribucion_muestral1.png" width="700px" />
+
 Se pueden extraer continuamente muestras del mismo tamaño (e.g. n=100) y calcular su media
 
 ---
