@@ -74,7 +74,7 @@ Nota: En general las ayundantías son online, a excepción de algunas con Matía
 | 17-04  | Repaso Prueba 1 |  | Sin discusión | [`[Ayudantía 4]`](https://uahurtadocl.sharepoint.com/sites/Section_22411893031/_layouts/15/stream.aspx?id=%2Fsites%2FSection%5F22411893031%2FDocumentos%20compartidos%2FGeneral%2FRecordings%2FAyudant%C3%ADa%20Repaso%2D20240417%5F181417%2DGrabaci%C3%B3n%20de%20la%20reuni%C3%B3n%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview)  |
 | 09-05  | Recodificación y Análisis de datos Categóricos | [`[.R]`](https://metodoscuantitativos.github.io/mc2/ayudantias/ayudantia_05/ayudantia_05.R),[`[PPT]`](https://metodoscuantitativos.github.io/mc2/ayudantias/ayudantia_05/Ayudantía5.pdf) | Sin discusión |  [`Cápsula`](https://youtu.be/LiEsrfpA4mE) |
 | 16-06  | Crear, formatear y guardar Tablas y Gráficos | [`[.R]`](https://metodoscuantitativos.github.io/mc2/ayudantias/ayudantia_06/Capsula_ayudantia06.R) | Sin discusión |  [`Cápsula`](https://www.youtube.com/watch?v=LxC-9A2glBs&ab_channel=Cuanti_Datos) |
-| 20-06  | Repaso Prueba 2 | [`[.R]`](https://metodoscuantitativos.github.io/mc2/ayudantias/ayudantia_06/Capsula_ayudantia06.R) | Sin discusión |   |
+| 20-06  | Repaso Prueba 2 | [`[.R]`](https://metodoscuantitativos.github.io/mc2/ayudantias/ayudantia_06/Capsula_ayudantia06.R), [`[.R]`](https://metodoscuantitativos.github.io/mc2/ayudantias/ayudantia_07/ayudantia_07.R) | Sin discusión |  [`Ayudantía 7`](https://www.youtube.com/watch?v=rkz2XZVEgjA&ab_channel=Cuanti_Datos) |
 
 
 ---
