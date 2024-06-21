@@ -275,12 +275,3 @@ ggplot(_____, aes(x = pct, y = fct_reorder(respuestas, pct), fill=respuestas)) +
             hjust = -0.1, size = 3, nudge_x = -.9, fontface= "bold")+
   theme_ipsum()+
   scale_fill_viridis_d(option = "C", guide = "none")
-
-
-
-
-
-
-
-
-
