@@ -2,22 +2,27 @@
 
 #                                       ***********Instrucciones************
 
-# a. Ir a File y crear un Rproject denominelo: apellido_prueba2.Rproj, por ejemplo: "Ocampo_prueba2.Rproj"
+
+# a. Ir a File y crear un Rproject denominelo: apellido_prueba2.Rproj, por ejemplo: "Ocampo_prueba2.Rproj" 
+
 # b. Guardar este script (prueba_2.R) y base de datos de la encuesta del curso (base_antropologia_limpia.xlsx) en la carpeta en que se encuentra su proyecto apellido_prueba2.Rproj
-# c. Comenzar y desarrollar la prueba en este script
-# d. Al finalizar debe guardar este script en la carpeta del proyecto denominada apellido_prueba2.Rproj, el script se debe denominar igual que el archivo del proyecto, es decir, apellido_prueba2.R  
-# comprimir la carpeta del proyecto (esta carpeta debe contener al menos 3 archivos: apellido_prueba2.Rproj,apellido_prueba2.R y base_antropologia_limpia.xlsx) 
+
+# c. Comenzar y desarrollar la prueba en este script.
+
+# d. Al finalizar debe guardar este script en la carpeta donde se encuentra el proyecto denominado apellido_prueba2.Rproj,
+# el script se debe denominar igual que el archivo del proyecto, es decir, apellido_prueba2.R (sólo cambia su extensión de .Rproject a .R) 
+# comprimir la carpeta del proyecto (esta carpeta debe contener al menos 3 archivos: apellido_prueba2.Rproj, apellido_prueba2.R y base_antropologia_limpia.xlsx) 
 # y enviarla a ginowrs@gmail.com y semunoz@uahurtado.cl Con el asunto: apellido prueba 2
 
 # La prueba consta de 2 partes, la primera de desarrollo.
 # Y la segunda de código en R. 
 
-#Suerte!!
+# Mucha Suerte, que les vaya bien!!
 
 #                                                 Primera parte
 
-#Seleccione 3 de las 8 preguntas y responda debajo de la pregunta correspondiente,
-# su respuesta debe ser clara y responder específicamente lo que se consulta, (mínimo un párrafo por respuesta). (3 ptos) 
+# Seleccione 3 de las siguientes 8 preguntas y responda debajo de la pregunta correspondiente,
+# su respuesta debe ser clara y responder específicamente lo que se consulta, (mínimo un párrafo por respuesta, máximo 2). (6 ptos en total) cada pregunta tiene 2 ptos.
 
 # 1. Describa la diferencia entre la hipótesis nula y la hipótesis alternativa en un contraste de hipótesis.
 # 
@@ -47,11 +52,12 @@ pacman::p_load(tidyverse,
                kableExtra,#Tablas elegantes
                webshot2,#exportar tablas
                chromote,
+               viridis, #temas de gráficos
                hrbrthemes)#temas de gráficos
 
 
 # 01. Cargar datos-------------------------------------------------------- 
-base <- read.xlsx("base/base_antropologia_limpia.xlsx")
+base <- read.xlsx("base_antropologia_limpia.xlsx")
 
 
   
@@ -62,8 +68,9 @@ base <- read.xlsx("base/base_antropologia_limpia.xlsx")
 
 #02. Renombrar variables
 #02.01: observe las variables de la base de datos con names(0.5)
+
 #02.02: renombre 4 variables pertenecientes al grupo del cual usted participa(2 ptos)
-#Para designar nuevos nombres a sus variables apoyese en las siguientes etiquetas de las preguntas (de su grupo):
+# Para designar nuevos nombres a sus variables se puede apoyar en las siguientes etiquetas de las preguntas (use sólo las de su grupo):
 
 # "EA_01 ¿Cuántas horas dedica aproximadamente al estudio y a la realización de trabajos universitarios fuera del aula por cada día una semana hábil? (esto es: de lunes a viernes) Por ejemplo, si lunes y martes suelo estudiar más o menos 3 horas, miércoles 5 horas y, finalmente jueves y viernes suelo estudiar 2 horas, el total de horas es 15 Dividido por 15 por 5, me da 3 Debería marcar la alternativa b (3 o 4 horas)"                                         
 # "EA_02 ¿Cuántas horas dedica aproximadamente al estudio cada día, a lo largo del fin de semana? (sábado y domingo)"
@@ -104,7 +111,7 @@ base <- read.xlsx("base/base_antropologia_limpia.xlsx")
 # "CM_05 ¿Dónde suele escuchar música habitualmente?"
 # "CM_06 ¿Qué tan importante es la música para ti en su día a día?" 
 
-#Puede utilizar el siguiente formato
+# Puede utilizar el siguiente formato
 
 # base <- base %>% ______::_____(Nombre nuevo = nombre antiguo,  
 #                                ______ = ______,
@@ -114,47 +121,166 @@ base <- read.xlsx("base/base_antropologia_limpia.xlsx")
 
 # 03. Suponga que está trabajando para una investigación interesada en los habitos de escucha y consumo de música.
 # Su jefe le solicita un gráfico que indique la frecuencia de los lugares donde los estudiantes de antropología escuchan música.
-#Para lo cual debe realizar las siguientes acciones
+# Para lo cual debe realizar las siguientes acciones
 
 # 03.1 Cambie el  nombre de la variable cm_05 por lugar_musica (0.5 ptos) en la misma base de datos
 
-base <- base %>% rename(lugar_musica=cm_05)
+base <- ____ %>% rename(_____=cm_05)
 
 
-# 03.2 observe las categorías de la variable, puede utilizar funciones con freq
+# 03.2 observe las categorías de la variable lugar_musica, puede utilizar funciones como freq, table, unique, etc. (0.5 ptos)
 
-freq(base$lugar_musica, prop = TRUE, order = "freq", report.nas =  FALSE)
+
 
 
 # 03.3 Dado que la respuesta viene en una variable que a su vez contiene respuestas múltiples usted se da cuenta de que debe separar las respuestas.
 
 # Para ello separe las respuestas de la variable lugar_musica por coma (,). 
-#Utilice la función strsplit() (1 pto) y guardelo en un objeto llamado "respuestas" (0.5 ptos)
+# Utilice la función strsplit() y guardelo en un objeto llamado "respuestas" (1.5 ptos)
 
-respuestas <- strsplit(base$lugar_musica, ",")
+_____ <- strsplit(base$_____, ",")
 
-# Transforme el objeto respuestas a un vector con la función unlist (1 pto)
+# 03.4 Transforme el objeto respuestas a un vector con la función unlist (0.5 pto)
 
-respuestas <- unlist(respuestas) 
+respuestas <- _____ (respuestas) 
 
-#observe las respuestas con freq (1 pto)
+# 03.5 observe las respuestas con freq (1 pto)
 ____(____, prop=TRUE, order = "freq", report.nas = FALSE) %>% 
   tb()
 
 # Hay respuestas que se contabilizan 2 veces como "En el transporte público" y "En otros lugares", 
-#homologue ambas categorías de respuesta eliminando el espacio que antecede utilizando el siguiente código
-
- respuestas <- gsub(" En el transporte público", "En el transporte público",  respuestas) #(1 pto)
-
- respuestas <- gsub(" En otros lugares", "En otros lugares",  respuestas ) #(1 pto)
+# 03.6 homologue ambas categorías de respuesta eliminando el espacio que antecede utilizando la función gsub
 
 
+ respuestas <- ____(" En el transporte público", "En el transporte público",  _____ ) #(1 pto)
 
-#vuelva a observar sus respuestas con freq (1 pto)
- freq(respuestas, prop=TRUE, order = "freq", report.nas = FALSE) %>% 
+ respuestas <- ____(" En otros lugares", "En otros lugares", ______ ) #(1 pto)
+
+
+
+# 03.7 vuelva a observar sus respuestas con freq (1 pto)
+ ____(____, prop=TRUE, order = "freq", report.nas = FALSE) %>% 
    tb()
 
  
-#Guarde el objeto con la misma función que utilizó en la útlima pregunta "respuestas" para después graficar
-____ <- freq(respuestas, prop=TRUE, order = "freq", report.nas = FALSE) %>% 
-   tb()
+# 03.8 Ahora, utilizando la misma función de la última pregunta (03.7) guarde el resultado en un objeto
+# el nombre del objeto debe ser su "nombre_apellido", (0.5 pto)
+ 
+ 
+______ <-  _____(____, prop=____, order = "freq", report.nas = FALSE) %>% 
+  tb()
+
+# 04. Ahora recodifique la variable re_02 (¿Cuál es su afiliación religiosa o creencia espiritual?)
+# 04.1 observe las categorías de respuesta de esta variable (0.5 pto)
+
+# 04.2 recodifique las categorías de esta variable en una nueva variable denominada "religion_rec" de la siguiente forma (3 ptos)
+# Hint:  debe utilizar la función case_when()
+
+# Las nuevas 3 categorías
+
+# 1. Espiritualidad sin afiliación religiosa:
+  
+- "No tengo una afiliación religiosa, pero si me considero una persona espiritual (por ejemplo, creo en las energías)."
+- "seria en creer en alguien superior un tipo de energía que se interpreta de diversas formas en la religión pero no es alguien al cual se le pueda poner un nombre"
+- "deísmo"
+
+# 2. Religión específica:
+
+- "Catolico"
+- "Cristianismo Protestante (Evangélico, anglicano, etcétera)"
+- "Grecorromana "
+- "Yoruba "
+- "Ortodoxo"
+
+# 3. Sin religión:
+
+- "Pagana"    
+- "Ateo"
+- "Agnóstico"
+- "No tengo afiliaciones religiosas y tampoco me adscribo a ningún tipo de corriente de pensamiento de tipo clasificatoria"
+- "Ninguno "
+
+# Utilice la siguiente estructura de código 
+
+_____ <- _____ %>%  mutate(religion_rec= _____(____ %in% c("No tengo una afiliación religiosa, pero si me considero una persona espiritual (por ejemplo, creo en las energías).","seria en creer en alguien superior un tipo de energía que se interpreta de diversas formas en la religión pero no es alguien al cual se le pueda poner un nombre", "deísmo") ~"_ _ _ _",
+                                               ____ %in% c("Catolico","Cristianismo Protestante (Evangélico, anglicano, etcétera)","Grecorromana ","Yoruba ","Ortodoxo") ~"_ _ _ _",
+                                               ____ %in% c("Pagana","Ateo","Agnóstico","No tengo afiliaciones religiosas y tampoco me adscribo a ningún tipo de corriente de pensamiento de tipo clasificatoria","Ninguno ") ~"_ _ _ _",
+                                               TRUE~____))
+
+
+# 04.3 observe la nueva variable "religion_rec" con la función table (0.5 ptos)
+
+
+
+
+# 05.1 Ahora recodifique la variable to_01  (tiempo libre) en 2 categorías en la misma variable (2 ptos) 
+# "Tiempo disponible": Bastante tiempo.
+#                      Suficiente tiempo.
+
+# "Tiempo limitado": No tengo tiempo.
+#                    Poco tiempo.
+
+
+_____ <- _____ %>% mutate(to_01=case_when(_____ %in% c("Bastante tiempo.", "Suficiente tiempo.")~"_ _ _ _ _",
+                                        _____ %in% c("No tengo tiempo.", "Poco tiempo.")~ "_ _ _ _ _",
+                                        TRUE~_____))
+
+# 06. Obtenga los siguientes estadísticos descriptivos de la variable "ea_04_notas_ultimo_semestre"
+
+# Media (0.5 ptos)
+
+# Mediana (0.5 ptos)
+
+# desviación estándar (0.5 ptos)
+
+# varianza (0.5 ptos)
+
+# 07. Grafique los cruces de la variable  "ea_04_notas_ultimo_semestre" con las siguientes variables:
+
+# Hint: La variable "ea_04_notas_ultimo_semestre" es la variable dependiente.
+
+# 07.1 ea_04_notas_ultimo_semestre vs religion_rec (3 ptos)
+
+ggplot(base, aes(x=____, y=____, fill=____)) + 
+  geom_boxplot(alpha=0.3) +
+  labs(title = "Promedio de notas según tipo de religión", 
+       caption = "Fuente: Encuesta de Estudiantes UAH 2024",
+       y= "__________",
+       fill = "__________")+
+  theme(legend.position="none")
+
+# 07.2 ea_04_notas_ultimo_semestre vs to_01 (3 ptos)
+
+ggplot(base, aes(x=____, y=____, fill=____)) + 
+  geom_boxplot(alpha=0.3) +
+  labs(title = "Notas último semestre según tiempo", 
+       caption = "Fuente: Encuesta de Estudiantes UAH 2024",
+       y= "__________",
+       fill = "__________")+
+  theme(legend.position="none")
+
+
+# 07.3 ahora grafique la distribución de los resultados guardados en el punto 03.8 con el siguiente código (3 ptos)
+# recuerde que el nombre era su "nombre_apellido"
+
+
+ggplot(_____, aes(x = pct, y = fct_reorder(respuestas, pct), fill=respuestas)) +
+  geom_col() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  xlab("") + ylab("") +
+  labs(title = "Lugares donde escuchan música", 
+       subtitle = "Estudiantes de antropología", 
+       caption = "Fuente: Encuesta Estudiantes Antropología 2024")+
+  geom_text(aes(label = paste0(round(pct, 1), "%")), #concatena porcentaje con un decimal y "%".
+            hjust = -0.1, size = 3, nudge_x = -.9, fontface= "bold")+
+  theme_ipsum()+
+  scale_fill_viridis_d(option = "C", guide = "none")
+
+
+
+
+
+
+
+
+
