@@ -1,0 +1,130 @@
+#   1. Instalación de paquetes
+install.packages("pacman")
+pacman::p_load(tidyverse,# Universo de paquetes : tidyr, dplyr, ggplot2,readr,purrr,tibble, stringr, forcats
+               openxlsx,#leer archivos xlsx
+               readxl,# leer archivos xl      #dos formatos de excel xlsx y xl
+               janitor,#limpieza de datos
+               writexl,#Guardar tablas formato excel
+               DataExplorer) #Exploración rápida
+
+pacman::p_load(tidyverse, openxlsx, readxl,readr,janitor, forcats, writexl, DataExplorer, 
+               datos,  knitr, gt, summarytools, ggthemes, hrbrthemes, foreign, DescTools, ineq)
+
+# 2. Importo archivo y lo asigno a environment ---------------------------
+base_antropologia <- read.xlsx("base_antropologia_limpia.xlsx")
+libro_codigos<- read.xlsx("base_antropologia_limpia.xlsx")
+
+glimpse(base_antropologia)
+names(base_antropologia)
+
+# 3. Data Wrangling -------------------------------------------------------
+
+#3.1. Limpieza inicial ####
+base_antropologia <- janitor::clean_names(base_antropologia)
+names(base_antropologia) 
+
+#3.2. Observación de general de base ####
+nrow(base_antropologia) 
+ncol(base_antropologia) 
+sapply(base_antropologia, FUN = class) 
+str(base_antropologia) 
+
+#3.2.Cambio nombre de variables ####
+#extraigo el nombre de todas las variables
+names (base_antropologia)
+
+# Lista completa de nombres de variables
+nombres_de_variables <- c([1] "marca"                                      "direc"                                     
+                          [3] "n_encuestador"                              "sd_01"                                     
+                          [5] "identidad_genero"                           "edad"                                      
+                          [7] "ano_ingreso_carrera"                        "comuna"                                    
+                          [9] "clase_social"                               "nivel_educacion_padre"                     
+                          [11] "nivel_educacion_madre"                      "ultimo_colegio"                            
+                          [13] "ea_01_horas_estudio_semana"                 "ea_02_horas_estudio_fin_semana"            
+                          [15] "ea_03_descripcion_carga_academica"          "ea_04_notas_ultimo_semestre"               
+                          [17] "ea_05_satisfaccion_rendimiento_academico"   "ea_06_nivel_estres_ultimo_semestre"        
+                          [19] "ea_07_efecto_estres_rendimiento"            "ea_08"                                     
+                          [21] "ea_09"                                      "ea_10"                                     
+                          [23] "re_01"                                      "re_02"                                     
+                          [25] "re_03"                                      "re_04"                                     
+                          [27] "re_05"                                      "rs_01"                                     
+                          [29] "rs_02"                                      "rs_03"                                     
+                          [31] "rs_04"                                      "rs_05"                                     
+                          [33] "rs_06"                                      "to_01"                                     
+                          [35] "to_02"                                      "to_03"                                     
+                          [37] "to_04"                                      "to_05"                                     
+                          [39] "to_06"                                      "ma_01"                                     
+                          [41] "ma_02"                                      "ma_03"                                     
+                          [43] "ma_04"                                      "ma_05"                                     
+                          [45] "cm_01"                                      "cm_02"                                     
+                          [47] "cm_03"                                      "cm_04"                                     
+                          [49] "cm_05"                                      "cm_06"                                     
+                          [51] "identidad_genero_r"                         "edad_r"                                    
+                          [53] "ano_ingreso_carrera_r"                      "comuna_r1"                                 
+                          [55] "comuna_distancia"                           "horas_estudio_semana"                      
+                          [57] "notas_ultimo_semestre_intervalo"            "ea_05_satisfaccion_rendimiento_academico_r"
+                          [59] "ea_06_nivel_estres_ultimo_semestre_r"       "ea_07_efecto_estres_rendimiento_r"
+        
+                      #Limpieza rs_01
+unique(base_antropologia$rs_01)       
+class(base_antropologia$rs_01)                        
+base_antropologia <-base_antropologia %>% dplyr::rename(horas_rrss = rs_01)                     
+base_antropologia<-base_antropologia %>% mutate(horas_rrss=as.factor(horas_rrss)) 
+
+                      #Limpieza rs_02 REVISAR PREGUNTAR!!!!!!!!!
+unique(base_antropologia$rs_02) 
+table(base_antropologia$rs_02)
+base_antropologia <-base_antropologia %>% dplyr::rename(razones_rrss = rs_02)                     
+base_antropologia<-base_antropologia %>% mutate(razones_rrss=as.factor(razones_rrss))
+
+                     #Limpieza rs_03
+unique(base_antropologia$rs_03)       
+class(base_antropologia$rs_03)                        
+base_antropologia <-base_antropologia %>% dplyr::rename(presencia_en_rrss = rs_03)                     
+base_antropologia<-base_antropologia %>% mutate(presencia_en_rrss=as.factor(presencia_en_rrss)) 
+
+                    #Limpieza rs_04
+unique(base_antropologia$rs_04)       
+class(base_antropologia$rs_04)                       
+base_antropologia <-base_antropologia %>% dplyr::rename(gestion_estres_rrss = rs_04)   
+
+                    #Limpieza rs_05
+unique(base_antropologia$rs_05)     
+table(base_antropologia$rs_05)                        
+base_antropologia <-base_antropologia %>% dplyr::rename(rrss_preferida = rs_05)
+base_antropologia<-base_antropologia %>%  
+  mutate(rrss_preferida=case_when(rrss_preferida=="Instagram"~"Entretenimiento",
+                                  rrss_preferida=="TikTok"~"Entretenimiento",
+                                  rrss_preferida=="Youtube"~ "Entretenimiento",
+                                  rrss_preferida=="YouTube"~ "Entretenimiento",
+                                  rrss_preferida== "Discord"~"Entretenimiento",
+                                  rrss_preferida=="Twitch"~"Entretenimiento",
+                                  rrss_preferida=="Twitter/X"~"Entretenimiento",
+                                  rrss_preferida=="WhatsApp"~"Comunicacion"))
+table(base_antropologia$rrss_preferida)
+
+
+                    #Limpieza rs_06
+unique(base_antropologia$rs_06)     
+table(base_antropologia$rs_06)                        
+base_antropologia <-base_antropologia %>% dplyr::rename(segunda_rrss_preferida = rs_06)
+base_antropologia <- base_antropologia %>% dplyr::rename(segunda_rrss_preferida = rs_06)
+base_antropologia<-base_antropologia %>%  
+  mutate(segunda_rrss_preferida=case_when(segunda_rrss_preferida=="Instagram"~"Entretenimiento",
+                                  segunda_rrss_preferida=="TikTok"~"Entretenimiento",
+                                  segunda_rrss_preferida=="Youtube"~ "Entretenimiento",
+                                  segunda_rrss_preferida=="YouTube"~ "Entretenimiento",
+                                  segunda_rrss_preferida=="Twitter/X"~"Entretenimiento",
+                                  segunda_rrss_preferida=="WhatsApp"~"Comunicacion",
+                                  segunda_rrss_preferida=="Facebook"~"Entretenimiento",
+                                  segunda_rrss_preferida=="rateyourmusic.com"~ "Entretenimiento",
+                                  segunda_rrss_preferida=="Reddit"~ "Entretenimiento",
+                                  segunda_rrss_preferida=="Pinterest"~ "Fotografia",
+                                  segunda_rrss_preferida=="Tumblr"~ "Fotografia",))
+table(base_antropologia$segunda_rrss_preferida)
+
+# 4.1.Sociodemográficas y de identificación -----------------------------------
+names(base_antropologia)
+
+
+

@@ -1,0 +1,28 @@
+{
+    "id": "9A70C671",
+    "path": null,
+    "project_path": null,
+    "type": "object_explorer",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1718975903667.0,
+    "source_on_save": false,
+    "relative_order": 4,
+    "properties": {
+        "id": "27cab641a4b544ce85a8ad707268fba6",
+        "name": "respuestas",
+        "title": "respuestas",
+        "language": "R",
+        "source_window_id": "",
+        "Source": "Source"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 3834871369227723881,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1718975903667,
+    "read_only": false,
+    "read_only_alternatives": []
+}

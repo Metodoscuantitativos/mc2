@@ -1,0 +1,32 @@
+aqui escribir la materia teoria 
+
+la correlación de variables numericas se cuenta 
+
+ejemplo:  correlación entre las variables Y y X
+
+* se busca observar cuanto se relacionan dos variables
+* se realiza a traves de graficos de dispersión, que nos van a mostrar tendencias 
+* se existe correlación positiva, ambas variables se relacionan. si los puntos estan muy unidos, las variables se relacionan fuertemente 
+
+variables numericas : regresión 
+
+en la regresión, la linea recta describe como la variable dependiente cambia en la medida que 
+la variable independiente cambia 
+
+* es una extensión de analisis de correlación
+* en este caso, se va a definir una variable dependiente (x) y una variable independiente (y)
+
+¡¡ de que manera cambia x medida que cambia y?
+  
+variables categoricas : test de hipoetesis 
+
+* utilizamos el estadistico chi cuadrado para evaluar la exiastencia de asociación/ relación entre dos variables categoricas
+tragbaja a partir de frecuencias dentro de tablas de contigencia 
+* nos permite saber si el nivel de asociación entre las variables es estadisticamente significativo 
+*trabajamos a partir de la formulación de hipotesis estadisticas que se testean 
+* formulamos dos hipoetsis 
+H0 : "las vartiables son independientes"
+H1 "las variables son dependientes" 
+
+
+

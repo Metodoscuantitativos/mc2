@@ -1,0 +1,268 @@
+#### materia escencial para la prueba ####
+
+
+### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
+# COMANDOS GENERALES ------------------------------------------------------
+### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
+
+
+install.packages("pacman")
+library()
+
+
+
+# Importar ---------------------------------------------------------------
+
+base_antropologia <- read.xlsx("base_antropologia_limpia.xlsx")
+
+#Exportar ----------------------------------------------------------------
+  names(base_antropologia)
+
+write.xlsx(x = base_antropologia,file = "base_antropologia_limpia.xlsx")
+
+
+# Funciones de manipulación de datos ----------------------------------------------------------
+  c() #combina múltiples vectores o matrices en un solo vector.
+
+length() #Determina la longitud de un vector o matriz.
+
+dim() #Devuelve las dimensiones de una matriz o matriz.
+
+is.numeric() #comprueba si un valor es numérico.
+
+is.character()# comprueba si un valor es una cadena de caracteres.
+
+as.numeric() # convierte un valor a formato numérico.
+
+as.character() #convierte un valor al formato de cadena de caracteres.
+
+subset() # extrae un subconjunto de datos de un marco de datos según condiciones específicas.
+
+head() #muestra las primeras filas de un marco de datos.
+
+tail() #muestra las últimas filas de un marco de datos.
+
+sample() # Genera muestras aleatorias a partir de una fuente determinada (vector, marco de datos, etc.).
+
+sqrt() #Calcular la raíz cuadrada de un número.
+
+class() # Determinar la clase de un objeto. Conocer la clase de un objeto es crucial para realizar operaciones apropiadas en R.
+        #Diferentes funciones y operadores trabajan con tipos de datos específicos.
+
+unique() # Identificar y eliminar elementos duplicados de un vector, marco de datos o matriz. 
+          # Le ayuda a mantener solo valores distintos en sus datos.
+          
+str() #Estructura
+
+nrow() #Número de fila. 
+
+ncol() #Número de columnas. 
+
+view() #Abrir la base de datos. 
+
+
+# Funciones estadísticas:----------------
+
+  mean()# Calcula la media (promedio) de un vector numérico.
+mediana()# Calcula la mediana (valor medio) de un vector numérico.
+var() #Calcula la varianza de un vector numérico.
+sd() #Calcula la desviación estándar de un vector numérico.
+sum() #Calcula la suma de todos los valores en un vector numérico.
+min(): #Encuentra el valor mínimo en un vector numérico.
+wich.min() #donde está el menor elemento, la posicion. 
+wich.max() #donde está el menor elemento, la posicion. 
+max() #encuentra el valor máximo en un vector numérico.
+hist() #Crea un histograma para visualizar la distribución de un vector numérico.
+boxplot() #Crea un diagrama de caja para visualizar la distribución de un vector numérico.
+cor() #Calcula el coeficiente de correlación entre dos vectores numéricos.
+
+
+
+### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
+# LIMPIEZA INICIAL VARIABLE -----------------------------------------------
+### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
+
+
+
+base_antropologia <- janitor::clean_names(base_antropologia) 
+#con esto transformo todo a minúscula, quito tildes, saco signos, borro espacios
+
+
+
+
+### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
+# RECODIFICAR VARIABLES ---------------------------------------------------
+### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
+
+#Renombrar -------------
+base_antropologia <- base_antropologia %>% dplyr::rename(satisfaccion_rendimiento_academico = ea_05)
+names(base_antropologia) 
+
+# Ver valores unicos -----------------------
+unique(base_antropologia$satisfaccion_rendimiento_academico)
+
+table(base_antropologia$satisfaccion_rendimiento_academico)
+
+# Tipo de variable -------------
+class(base_antropologia$satisfaccion_rendimiento_academico)
+
+# Cambiar el tipo de variable ----------------
+base_antropologia <- base_antropologia %>% 
+  mutate(satisfaccion_rendimiento_academico = as.factor(satisfaccion_rendimiento_academico))
+
+# Recodificar las respuesta de la variable --------------
+base_antropologia <- base_antropologia %>% 
+  mutate(satisfaccion_rendimiento_academico = case_when(satisfaccion_rendimiento_academico== "Insatisfecho" ~ "Insatisfecho",
+                                                        satisfaccion_rendimiento_academico== "Muy insatisfecho" ~ "Insatisfecho",
+                                                        satisfaccion_rendimiento_academico== "Muy Satisfecho" ~ "Satisfecho",
+                                                        satisfaccion_rendimiento_academico== "Satisfecho" ~ "Satisfecho",
+                                                        TRUE ~ satisfaccion_rendimiento_academico)) 
+
+table(base_antropologia$satisfaccion_rendimiento_academico)
+
+
+# En caso de numeros no enteros
+ase_antropologia <- base_antropologia %>% 
+  mutate (notas_ultimo_semestre_intervalo= case_when (ea_04_notas_ultimo_semestre >= 4 & ea_04_notas_ultimo_semestre < 5 ~ "4.0 a 4.9", 
+                                                      ea_04_notas_ultimo_semestre >= 5 & ea_04_notas_ultimo_semestre < 6  ~ "5.0 a 5.9", 
+                                                      ea_04_notas_ultimo_semestre >= 6 & ea_04_notas_ultimo_semestre < 7 ~ "6.0 a 7.0", 
+  ))
+
+
+
+
+
+
+
+### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
+# TABLA DE FRECUENCIAS ----------------------------------------------------
+### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
+
+
+# TABLA DE FRECUENCIA
+edad_t <- freq(base_antropologia$edad, prop=TRUE, order = "freq", report.nas = FALSE) %>% 
+  tb()
+
+freq(base_antropologia$edad, prop=TRUE, order = "freq", report.nas = FALSE) %>% 
+  tb() %>%
+  kable(col.names = c("Edad", "Frecuencia", "%", "% Acumulado"),
+        caption = "Edades", 
+        format = "html", digits = 2) %>%  #le doy formate con kable
+  kable_classic(full_width = F, html_font = "Cambria") %>% 
+  save_kable(file = "outputs/edades.png", zoom = 3)
+
+# PARA GUARDARLAS save_kable(file = "outputs/nivel_educacional_madre.png", zoom = 3)
+
+
+
+
+
+
+### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
+# TABLA DE CONTINGENCIA ---------------------------------------------------
+### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
+
+
+# tabla de contingencia
+base_antropologia <- base_antropologia %>%
+  mutate(
+    ea_06_nivel_estres_ultimo_semestre_r = as.character(ea_01_horas_estudio_semana),
+    identidad_genero_r = as.character(nivel_educacion_padre)
+  )
+
+# Crear tabla de contingencia y calcular porcentajes
+
+summarytools::ctable( x = base_antropologia$ea_01_horas_estudio_semana, y = base_antropologia$nivel_educacion_padre)
+
+base_antropologia$nivel_educacion_padre <- base_antropologia$nivel_educacion_padre %>% 
+  fct_relevel(c("Educación Básica", "Educación Media Educación Profesional", "Educación Técnica" )) %>% 
+  fct_drop("No aplica") #ordeno los resultados según raza y elimino la categoría no aplica
+
+table(base_antropologia$nivel_educacion_padre)
+
+base_antropologia$ea_01_horas_estudio_semana <- base_antropologia$ea_01_horas_estudio_semana %>% 
+  fct_relevel(c("1 o 2 horas al día", "3 o 4 horas al día",  "5 o 6 horas por días Más de 7 horas por día" )) %>% 
+  fct_drop("No aplica") #ordeno los resultados según raza y elimino la categoría no aplica
+
+table(base_antropologia$ea_01_horas_estudio_semana)
+
+ctable( x = base_antropologia$ea_01_horas_estudio_semana, y = base_antropologia$nivel_educacion_padre, prop = "t", justify = "l")
+
+#guardarlo
+
+contingencia_h_estudio_ed_padre <- ctable(
+  x = base_antropologia$ea_01_horas_estudio_semana,
+  y = base_antropologia$nivel_educacion_padre,
+  prop = "t",  # Proporciones sobre el total
+  justify = "l"  # Justificación de las celdas a la izquierda
+)
+
+contingencia_h_estudio_ed_padre  <- 
+  base_antropologia %>%
+  filter(nivel_educacion_padre != "Sin respuesta") %>%
+  select(nivel_educacion_padre, ea_01_horas_estudio_semana) %>%
+  droplevels() %>%
+  table(.) %>% 
+  addmargins(.,2) %>% 
+  prop.table(.,2) %>% 
+  round(4)*100
+
+
+
+
+
+
+### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
+# GRAFICOS UNIVARIADOS ----------------------------------------------------
+### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
+
+VARIABLE_EN_LA_QUE_SE_GUARDAN <- ggplot(DATOS_A_RAFICAR, aes(x = Frecuencia, y = fct_reorder(Nombre, Frecuencia), fill= Nombre)) +
+  geom_col() +
+  labs(title = "Encuestas por Encuestador/a",
+       subtitle = "según datos de Encuestas Estudiantes Antropología 2024",
+       x = "%",  # Esto establece el título del eje x, pero no afecta las etiquetas dentro del gráfico
+       y = "Nombre del Encuestador/a") +
+  geom_text(aes(label = round(Frecuencia, 1)),  # Ahora esto añade etiquetas a todas las barras
+            hjust = 1, size = 3, nudge_x = -0.9, fontface= "bold", color = "white") +
+  scale_fill_viridis_d(option = "C", guide = "none") +
+  theme_ipsum()
+
+
+# guardo gráfico
+
+ggsave("outputs/n_encuestador_g.png", plot = VARIABLE_EN_LA_QUE_SE_GUARDAN, width = 10, height = 7, dpi = 300)
+
+
+
+
+### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
+
+# GRAFICOS BIVARIADOS -----------------------------------------------------
+
+
+### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
+
+
+h_estudio_ed_padre_g <- ggplot(data = base_antropologia %>%
+                                 filter(!is.na(ea_01_horas_estudio_semana)) %>%
+                                 filter(!is.na(nivel_educacion_padre)),  # Filtrar filas con NA en ea_06_nivel_estres_ultimo_semestre_r
+                               aes(x = nivel_educacion_padre, fill = ea_01_horas_estudio_semana)) +
+  geom_bar(position = "stack") +
+  labs(
+    title = "Horas de estudio según la educación del padre",
+    x = "Nivel de educación del padre",
+    y = "Frecuencia",
+    fill = "" 
+  ) +
+  scale_fill_brewer(palette = "Set3") +  # Paleta de colores
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+
+ggsave("outputs/horas_estudio_ed_padre_g.png", plot = h_estudio_ed_padre_g, width = 10, height = 7, dpi = 300)
+
+
+
+
+

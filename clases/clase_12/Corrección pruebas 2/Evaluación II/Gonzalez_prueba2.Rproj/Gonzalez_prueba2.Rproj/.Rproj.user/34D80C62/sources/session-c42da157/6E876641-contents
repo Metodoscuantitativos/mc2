@@ -1,0 +1,145 @@
+############################# Prueba 2 R #########################################
+
+#La prueba consta de 2 partes: Data Wrangling y Análisis descriptivos.
+#Es necesario que exporte su tabla en la primera parte para realizar la segunda.
+#Se considerará en la nota final el orden de la script y el correcto envío de información.
+
+#Al terminar su prueba debe quedar guardado este script como Apellido_Nombre_Prueba2.R
+#por ejemplo Ocampo_Gino_Prueba2.R y debe enviar:
+#script, base inicial, base limpia y proyecto 
+#se recomienda de forma comprimida. 
+
+#Recuerde que la ruta en la que está trabajando corresponde a la carpeta donde 
+# se encuentra la carpeta con el archivo .Rproj, por lo que no se hace necesario indicar una ruta.
+
+# Sólo puede utilizar el script de apuntes. Si se sorprende comunicando o utilizando 
+# alguna red social o celular, o copiando se calificará inmediatamente con la nota mínima.
+
+#Por último, recuerde cargar los paquetes necesarios para responder las preguntas. 
+#Suerte!!
+
+
+### Primera parte:Data Wrangling: importación, limpieza y exportación----------
+
+#1. Importar base 
+
+#1.1. instale (si es necesario) y abra las librerías openxlsx y tidyverse (1 punto)
+library(openxlsx)
+library(tidyverse)
+#1.2. importe la base "antropologia_2023.xlsx" (1,5 puntos)
+#asígnela a un objeto llamado antropo_2023
+antropo_2023 <-  read.xlsx(xlsxFile = "antropologia_2023.xlsx", startRow = 2, sheet = 1)
+
+
+# 2. Renombre las siguientes variables específicas, y guarde los cambios en la base de datos 
+# antropo_2023 
+
+# Pista: utilice la función rename del paquete dplyr (2 puntos)
+antropo_2023 <- antropo_2023 %>% dplyr::rename(
+    edad = p02,
+    genero = p03,
+    annio = p04,
+    comuna_actual = p05,
+    comuna_pre= p06,
+    tipo_colegio = p07,
+    puntaje = p08,
+    estudio_trabajo = p09,
+    educacion_madre = p10,
+    trabaja_madre =p11,
+    empleo_madre =p12,
+    educacion_padre =p13,
+    trabaja_padre =p14,
+    empleo_padre = p15,
+    psdhogar = p17,
+    clase_social_subjetiva = p18)
+  
+
+#   edad = p02,
+#   genero = p03,
+#   annio = p04,
+#   comuna_actual = p05,
+#   comuna_pre= p06,
+#   tipo_colegio = p07,
+#   puntaje = p08,
+#   estudio_trabajo = p09,
+#   educacion_madre = p10,
+#   trabaja_madre =p11,
+#   empleo_madre =p12,
+#   educacion_padre =p13,
+#   trabaja_padre =p14,
+#   empleo_padre = p15,
+#   psdhogar = p17,
+#   clase_social_subjetiva = p18
+
+
+#2.1 Observe como quedaron las categorías de su base de datos con names () (0,5 puntos)
+names(antropo_2023)
+
+#3. Exporte su base de datos
+# Guarde la base antropo_2023 como antropo_2023_limpia en formato xlsx (1 punto)
+write.xlsx(antropo_2023, "antropo_2023_limpia.xlsx")
+
+# Ejecute el siguiente código para borrar los objetos de su environment (0,2 puntos)
+rm(list=ls())
+
+
+#####  Segunda parte: tidyverse  ---------------------------
+# 1) Importe su base creada en la parte 1 "antropo_2023_limpia.xlsx" nombrela base como antropo_limpia (0,5 puntos)
+antropo_limpia <-read.xlsx("antropo_2023_limpia.xlsx")
+# 2) cree una base en donde realice una selección considerando los nombres de las variables
+# genero, edad, tipo de colegio, educación de la madre y clase social subjetiva
+# denomine al objeto base_nombres (2 puntos)
+
+base_nombres <-antropo_limpia %>% 
+  select("edad","genero", "estudio_trabajo")
+#2.1) Compruebe si está bien realizada mediante names(base_nombres) (0,5 puntos)
+names(antropo_limpia)
+
+#3) cree una base en donde realice un filtro, que permita quedarse sólo con los estudiantes que se perciben como clase media
+# esto es contestaron: "Al grupo de clase social media" en la variable "clase_social_subjetiva" (2 puntos)
+
+#Pista: recuerde usar unique() para ver el nombre de las categorías de las variables y
+# tenga cuidado con las mayúsculas, recuerde que R es case sensitivo a esas diferencias.
+unique(antropo_limpia$estudio_trabajo)
+base_filtrada<- antropo_limpia %>% 
+  filter(estudio_trabajo %in% c("Estudia y trabaja de manera remunerada a tiempo parcial o hace trabajos ocasionales", 
+                                "Estudia y trabaja de manera remunerada con jornada completa", 
+                                "Estudia, trabaja de manera remunerada a tiempo parcial y realiza tareas no remuneradas"))
+
+# 3.1 Compruebe lo realizado, mediante una tabla: ¿Cuántos casos tiene base_filtrada? (0,5 puntos)
+# Siga formato: table(base$variable)
+table(base_filtrada$estudio_trabajo)
+
+# A continuación: Realizará los pasos para construir un gráfico -----------
+# 4. Utilizando la base de datos "antropo_2023_limpia" realice una tabla  de frecuencias con la variable clase_social_subjetiva
+# Guarde la tabla en un objeto llamado frecuencia_clase_social (1 punto)
+frecuencia_estudio_trabajo <- table(antropo_limpia$estudio_trabajo)
+# 5. con esa tabla de frecuencias cree una tabla en porcentajes con el siguiente código:
+#   prop.table(frecuencia_clase_social) * 100 y asignela a un objeto denominado "porcentajes_clases" (1 punto)
+porcentajes_estudio_trabajo <- prop.table(frecuencia_estudio_trabajo) * 100
+
+# 6. transforme esta tabla a data frame con la función as.data.frame(), el dataframe se debe seguir llamando porcentaje_clases
+#es necesario convertir la tabla en dataframe para el gráfico. (1 punto)
+porcentajes_estudio_trabajo <- as.data.frame(porcentajes_estudio_trabajo)
+
+porcentajes_estudio_trabajo$Var1 <- factor(porcentajes_estudio_trabajo$Var1, 
+                                           labels = c("Estudia y no remuneradas", "Estudia y remunerada parcial/ocasiona", 
+                                                      "Estudia y remunerada completa",
+                                                      "Estudia, remunerada parcial y no remunerada",
+                                                      "Solo estudia"))
+# 7. realice un gráfico de barras usando el data frame porcentaje_clases (3 puntos)
+#rellenando el siguiente código según corresponda:
+
+
+ggplot(data =porcentajes_estudio_trabajo, aes(x = Var1, y =Freq, fill = Var1)) +
+  geom_bar(stat = "identity", fill = "pink") +
+  theme(axis.text.x = element_text(angle = 70, hjust = 1)) +
+  labs(title = "Gráfico de Barras de Clase social subjetiva", x = "Clase Social Subjetiva", y = "porcentaje (%)" ) +
+  scale_y_continuous(labels = scales::percent_format(scale = 1))
+
+
+# 8.0: Observe el orden de su script dejando sólo lo necesario. Dejelo limpio y completo (1 punto)
+# 8.1: guarde su script y pongale su apellido y luego nombre (1 punto)
+# 8.2: envie su script, la base inicial, la base limpia y el proyecto a (1 punto): 
+# a) semunoz@uahurtado.cl; ginowrs@gmail.com 
+# envielo como tarea por teams 

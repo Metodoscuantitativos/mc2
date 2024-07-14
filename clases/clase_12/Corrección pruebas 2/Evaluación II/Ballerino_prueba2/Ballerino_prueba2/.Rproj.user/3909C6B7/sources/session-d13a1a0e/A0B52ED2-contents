@@ -1,0 +1,423 @@
+#### Evaluación Métodos Cuantitativos II ####
+
+pacman::p_load(tidyverse,
+               openxlsx,
+               summarytools,
+               kableExtra,
+               webshot2,
+               chromote,
+               hrbrthemes)
+   
+base_antropo <- read.xlsx("base_antropologia_limpia.xlsx")
+
+glimpse(base_antropo)
+str(base_antropo)
+
+
+base_antropo <- base_antropo %>% dplyr::rename(tiempo_libre_semanal= to_01,#¿Cuánto tiempo libre considera que ha tenido por semana para dedicarse a actividades fuera del ámbito universitario?
+                                               dias_x_semana_activ_ocio= to_02,#¿Cuántos días a la semana (incluyendo semana y fin de semana) realiza actividades de ocio?
+                                               administracion_tiempo= to_03,#¿Administra su tiempo de forma óptima para equilibrar sus obligaciones académicas con las actividades de ocio?
+                                               actividades_de_ocio=to_04,#¿Cuáles de estas actividades prefiere realizar en su tiempo de ocio?
+                                               participacion_act_en_colectivos= to_05,#¿Forma parte de un club, colectivo o taller donde se realicen las actividades previamente mencionadas?
+                                               importancia_del_ocio= to_06) #¿Qué tan importante es para usted el tiempo dedicado a actividades de ocio?
+
+
+
+#### 01 Tiempo libre semanal
+table(base_antropo$tiempo_libre_semanal)
+
+tiempo_libre <- (base_antropo$tiempo_libre_semanal)
+tiempo_libre <- freq(tiempo_libre, prop=TRUE, order = "freq", report.nas = FALSE) %>% 
+  tb()
+
+ggplot(tiempo_libre, aes(x = tiempo_libre, y = freq, fil=tiempo_libre)) +
+  geom_col(fill="#27A4B7") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  xlab("") + ylab("") +
+  labs(title = "Tiempo libre semanal", 
+       subtitle = "¿Cuánto tiempo libre consideras que tienes?",
+       caption = "Fuente: Encuesta Estudiantes Antropología 2024")+
+  geom_text(aes(label = paste0(round(pct, 1), "%")),
+            hjust = -0.6, size = 5.5, nudge_x = -.6, fontface= "bold")+
+  theme_minimal()+
+  scale_fill_viridis_d(option = "C", guide = "none")
+
+
+
+
+#### 02 Tiempo semanal de ocio
+table(base_antropo$dias_x_semana_activ_ocio)
+
+base_antropo %>% 
+  freq(dias_x_semana_activ_ocio, prop=TRUE, order = "freq", report.nas = FALSE) %>% 
+  tb()
+
+activ_ocio_semanal <- (base_antropo$dias_x_semana_activ_ocio)
+activ_ocio_semanal <- freq(activ_ocio_semanal, prop=TRUE, order = "freq", report.nas = FALSE) %>% 
+  tb()
+
+ggplot(activ_ocio_semanal, aes(x = value, y = freq)) +
+  geom_col(fill="#27A4B7") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  xlab("") + ylab("") +
+  labs(title = "Tiempo semanal para actividades de Ocio", 
+       subtitle = "¿Cuántas veces a la semana destinas al ocio?",
+       caption = "Fuente: Encuesta Estudiantes Antropología 2024") +
+  geom_text(aes(label = paste0(round(pct, 1), "%")),
+            hjust = -1.5, size = 5.5, nudge_x = -0.8, fontface = "bold") +
+  theme_minimal() +
+  scale_fill_viridis_d(option = "C", guide = "none")
+
+
+
+
+#### 03 Administración equilibrada del tiempo ocio-universidad
+table(base_antropo$administracion_tiempo)
+
+base_antropo <- base_antropo %>% mutate(administracion_tiempo=case_when(administracion_tiempo=="A veces, intento encontrar un equilibrio, pero no siempre lo logro."~"A veces",
+                                                                        administracion_tiempo=="No, no administro mi tiempo de manera óptima cuando tengo muchas obligaciones académicas."~"No",
+                                                                        administracion_tiempo=="Sí, suelo planificar mi tiempo cuidadosamente para equilibrar mis obligaciones académicas y actividades de ocio."~"Sí"))
+table(base_antropo$administracion_tiempo)
+
+base_antropo %>% 
+  mutate(administracion_tiempo = as.character(administracion_tiempo)) %>%
+  mutate(administracion_tiempo = if_else(administracion_tiempo %in% c("Sin respuesta", "No estoy seguro(a) / No aplica a mi situación."), as.character(NA), administracion_tiempo)) %>% 
+  freq(administracion_tiempo, prop = TRUE, order = "freq", report.nas =  FALSE)  %>% 
+  tb()
+
+admi_tiempo <- base_antropo %>% 
+  mutate(administracion_tiempo = as.character(administracion_tiempo)) %>%
+  mutate(administracion_tiempo = if_else(administracion_tiempo %in% c("Sin respuesta", "No estoy seguro(a) / No aplica a mi situación."), as.character(NA), administracion_tiempo)) %>% 
+  freq(administracion_tiempo, prop = TRUE, order = "freq", report.nas =  FALSE)  %>% 
+  tb()
+
+ggplot(admi_tiempo, aes(x =administracion_tiempo, y = freq, fill=administracion_tiempo)) +
+  geom_col(fill="#27A4B7") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  xlab("") + ylab("") +
+  labs(title = "Administración del tiempo", 
+       subtitle = "¿Tienes equilibrio entre tu uso del tiempo de estudio y tiempo de ocio?",
+       caption = "Fuente: Encuesta Estudiantes Antropología 2024")+
+  geom_text(aes(label = paste0(round(pct, 1), "%")),
+            hjust = -1.5, size = 5.5, nudge_x = -0.8, fontface = "bold") +
+  theme_ipsum()+
+  scale_fill_viridis_d(option = "C", guide = "none")
+
+
+
+
+#### 04 Actividades de Ocio
+
+table(base_antropo$actividades_de_ocio) ##(Variable de respuesta múltiple)
+
+respuestas <- strsplit(base_antropo$actividades_de_ocio, ",")
+respuestas <- unlist(respuestas)
+
+freq(respuestas, prop=TRUE, order = "freq", report.nas = FALSE) %>% 
+  tb()
+
+respuestas <- gsub("[·]", "", respuestas)
+respuestas <- trimws(respuestas)
+respuestas <- tolower(respuestas) 
+respuestas <- gsub("[[:space:]]+", " ", respuestas)
+respuestas <- gsub("costura y diseño de ropa", "Artesanía y vestuario", respuestas)
+respuestas <- gsub("tejer", "Artesanía y vestuario", respuestas)
+respuestas <- gsub("ver videos en youtube de temas variados.", "Ver contenido audiovisual", respuestas)
+respuestas <- gsub("ver programas de humor", "Ver contenido audiovisual", respuestas)
+respuestas <- gsub("ver series y / o películas.", "Ver contenido audiovisual", respuestas)
+respuestas <- gsub("escuchar podcast", "Socializar", respuestas)
+respuestas <- gsub("salir con amigos / familia.", "Socializar", respuestas)
+respuestas <- gsub("Música.", "Música", respuestas)
+respuestas <- gsub("tocar música", "Música", respuestas)
+respuestas <- gsub("escuchar música", "Música", respuestas)
+respuestas <- gsub("bailar y/o cantar", "Música", respuestas)
+
+actividades_ocio <- respuestas 
+actividades_ocio <- freq(respuestas, prop=TRUE, order = "freq", report.nas = FALSE) %>% 
+  tb()
+
+ggplot(actividades_ocio, aes(x =fct_reorder(respuestas, pct), y = pct, fill=respuestas)) +
+  geom_col() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  xlab("") + ylab("") +
+  labs(title = "Actividades de Ocio estudiantes Antropología",
+       subtitle = "¿Qué te gusta hacer en tu timpo de ocio?",
+       caption = "Fuente: Encuesta Estudiantes Antropología 2024")+
+  theme_minimal()+
+  scale_fill_viridis_d(option = "C", guide = "none")
+
+
+
+
+#### 05 Participación en grupos/talleres/clubs de actividades 
+table(base_antropo$participacion_act_en_colectivos)
+
+participacion_colectivos <- (base_antropo$participacion_act_en_colectivos)
+
+participacion_colectivos <- base_antropo %>% 
+  mutate(participacion_colectivos = as.factor(participacion_act_en_colectivos)) %>%
+  freq(participacion_colectivos, prop = TRUE, order = "freq", report.nas =  FALSE)  %>% 
+  tb()
+
+ggplot(participacion_colectivos, aes(y = pct, x = participacion_colectivos, fill=participacion_colectivos)) +
+    geom_col(fill="#27A4B7") +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+    xlab("") + ylab("") +
+    labs(title = "Actividades de ocio en conjunto",
+         subtitle = "¿Realizas tus actividades con algún grupo social?",
+         caption = "Fuente: Encuesta Estudiantes Antropología 2024")+
+    geom_text(aes(label = paste0(round(pct, 1), "%")),
+              hjust = -0.7, size = 6, nudge_x = -.2, fontface= "bold")+
+    theme_minimal()+
+    scale_fill_viridis_d(option = "C", guide = "none")
+
+
+
+
+#### 06 Nivel de importancia del ocio
+table(base_antropo$importancia_del_ocio)
+
+base_antropo <- base_antropo %>% mutate(importancia_del_ocio=case_when(importancia_del_ocio=="Muy importante."~"Es importante",
+                                                                       importancia_del_ocio=="Importante."~"Es importante",
+                                                                       importancia_del_ocio=="Moderadamente importante."~"Es medianamente importante",
+                                                                       importancia_del_ocio=="Poco importante."~"No es importante",
+                                                                       importancia_del_ocio=="Muy poco importante."~"No es importante"))
+table(base_antropo$importancia_del_ocio)
+
+base_antropo %>% 
+  mutate(importancia_del_ocio = as.character(importancia_del_ocio)) %>%
+  freq(importancia_del_ocio, prop = TRUE, order = "freq", report.nas =  FALSE)  %>% 
+  tb()
+
+importancia_ocio <- base_antropo %>% 
+  mutate(importancia_del_ocio = as.character(importancia_del_ocio)) %>%
+  freq(importancia_del_ocio, prop = TRUE, order = "freq", report.nas =  FALSE)  %>% 
+  tb()
+  
+ggplot(importancia_ocio, aes(y = pct, x = importancia_del_ocio, fill=importancia_del_ocio)) +
+  geom_col(fill="#27A4B7") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  xlab("") + ylab("") +
+  labs(title = "Importancia del ocio",
+       subtitle = "¿Qué tan importante es tu tiempo de ocio?",
+       caption = "Fuente: Encuesta Estudiantes Antropología 2024")+
+  geom_text(aes(label = paste0(round(pct, 1), "%")),
+            hjust = -0.6, size = 5.5, nudge_x = -.4, fontface= "bold")+
+  theme_minimal()+
+  scale_fill_viridis_d(option = "C", guide = "none")
+
+
+
+
+#### Tablas de contingencia
+
+# Primera tabla
+base_antropo$ea_01_horas_estudio_semana
+table(base_antropo$ea_01_horas_estudio_semana)
+table(base_antropo$tiempo_libre_semanal)
+
+base_antropo$ea_01_horas_estudio_semana <- base_antropo$ea_01_horas_estudio_semana %>%
+  fct_relevel(c("1 o 2 horas al día", 
+                "3 o 4 horas al día", 
+                "5 o 6 horas por días", 
+                "Más de 7 horas por día"))
+
+base_antropo$tiempo_libre_semanal <- base_antropo$tiempo_libre_semanal %>% 
+  fct_relevel(c("Bastante tiempo.",
+                "Suficiente tiempo.",
+                "Poco tiempo.",
+                "No tengo tiempo"))
+
+ctable( x = base_antropo$tiempo_libre_semanal, y = base_antropo$ea_01_horas_estudio_semana, prop = "c", justify = "l")
+
+base_antropo %>%
+  filter(tiempo_libre_semanal != "Sin respuesta") %>%
+  select(tiempo_libre_semanal, ea_01_horas_estudio_semana) %>%
+  droplevels() %>%
+  table(.) %>% 
+  addmargins(.,2) %>% 
+  prop.table(.,2) %>% 
+  round(4)*100
+
+tabla_uno <- 
+  base_antropo %>%
+  filter(tiempo_libre_semanal != "Sin respuesta") %>%
+  select(tiempo_libre_semanal, ea_01_horas_estudio_semana) %>%
+  droplevels() %>%
+  table(.) %>% 
+  addmargins(.,2) %>%
+  prop.table(.,2) %>% 
+  round(4)*100
+
+tabla_uno %>% 
+  kable(., caption="Tabla de contingencia para Tiempo libre y Horas de estudio") %>% 
+  kable_classic(full_width = F, html_font = "Bold", font_size = 15)
+
+
+# Segunda tabla
+table(base_antropo$dias_x_semana_activ_ocio)
+table(base_antropo$ea_06_nivel_estres_ultimo_semestre)
+base_antropo$ea_06_nivel_estres_ultimo_semestre
+
+base_antropo$dias_x_semana_activ_ocio <- base_antropo$dias_x_semana_activ_ocio %>%
+  fct_relevel(c("1 a 2 veces.", 
+                "3 a 4 veces.", 
+                "Más de 6.", 
+                "No realizo actividades de ocio."))
+
+base_antropo$ea_06_nivel_estres_ultimo_semestre<- as.character(base_antropo$ea_06_nivel_estres_ultimo_semestre)
+base_antropo$ea_06_nivel_estres_ultimo_semestre <- (base_antropo$ea_06_nivel_estres_ultimo_semestre)
+
+base_antropo$ea_06_nivel_estres_ultimo_semestre <- base_antropo$ea_06_nivel_estres_ultimo_semestre %>% 
+  fct_relevel(c("1", "2", "3", "4", "5"))
+
+ctable( x = base_antropo$ea_06_nivel_estres_ultimo_semestre, y = base_antropo$dias_x_semana_activ_ocio, prop = "c", justify = "l")
+
+base_antropo %>%
+  filter(ea_06_nivel_estres_ultimo_semestre != "Sin respuesta") %>%
+  select(ea_06_nivel_estres_ultimo_semestre, dias_x_semana_activ_ocio) %>%
+  droplevels() %>%
+  table(.) %>% 
+  addmargins(.,2) %>% 
+  prop.table(.,2) %>% 
+  round(4)*100
+
+tabla_dos <- 
+  base_antropo %>%
+  filter(ea_06_nivel_estres_ultimo_semestre != "Sin respuesta") %>%
+  select(ea_06_nivel_estres_ultimo_semestre, dias_x_semana_activ_ocio) %>%
+  droplevels() %>%
+  table(.) %>% 
+  addmargins(.,2) %>% 
+  prop.table(.,2) %>% 
+  round(4)*100
+
+tabla_dos %>% 
+  kable(., caption="Tabla de contingencia para Nivel de estrés y Actividad de ocio semanal") %>% 
+  kable_classic(full_width = F, html_font = "Bold", font_size = 15)
+
+
+# Tercera tabla
+table(base_antropo$administracion_tiempo)
+table(base_antropo$ea_05_satisfaccion_rendimiento_academico)
+
+base_antropo$administracion_tiempo <- base_antropo$administracion_tiempo %>%
+  fct_relevel(c("A veces", 
+                "No", 
+                "Sí"))
+
+base_antropo$ea_05_satisfaccion_rendimiento_academico <- base_antropo$ea_05_satisfaccion_rendimiento_academico %>%
+  fct_relevel(c("Muy insatisfecho",
+                "Insatisfecho",                
+                "Satisfecho",
+                "Muy satisfecho"))
+
+ctable( x = base_antropo$ea_05_satisfaccion_rendimiento_academico, y = base_antropo$administracion_tiempo, prop = "c", justify = "l")
+
+base_antropo %>%
+  filter(ea_05_satisfaccion_rendimiento_academico != "Sin respuesta") %>%
+  select(ea_05_satisfaccion_rendimiento_academico, administracion_tiempo) %>%
+  droplevels() %>%
+  table(.) %>% 
+  addmargins(.,2) %>% 
+  prop.table(.,2) %>% 
+  round(4)*100 
+
+tabla_tres <- 
+base_antropo %>%
+  filter(ea_05_satisfaccion_rendimiento_academico != "Sin respuesta") %>%
+  select(ea_05_satisfaccion_rendimiento_academico, administracion_tiempo) %>%
+  droplevels() %>%
+  table(.) %>% 
+  addmargins(.,2) %>% 
+  prop.table(.,2) %>% 
+  round(4)*100 
+
+tabla_tres %>% 
+  kable(., caption="Tabla de contingencia para Administración del tiempo y Satisfacción académica") %>% 
+  kable_classic(full_width = F, html_font = "Bold", font_size = 15)
+
+
+
+
+
+##### Gráficos bivariados
+glimpse(base_antropo)
+names(base_antropo)
+library(ggplot2)
+
+
+# Cruce entre administración del tiempo y nivel de satisfracción académica
+base_antropo$administracion_tiempo <- base_antropo$administracion_tiempo %>%
+  fct_relevel(c("A veces", 
+                "No", 
+                "Sí"))%>% 
+  fct_drop("No aplica")
+
+base_antropo$ea_05_satisfaccion_rendimiento_academico <- base_antropo$ea_05_satisfaccion_rendimiento_academico %>%
+  fct_relevel(c("Muy insatisfecho",
+                "Insatisfecho",                
+                "Satisfecho",
+                "Muy satisfecho")) %>% 
+  fct_drop("No aplica")
+
+colores <- c("#185AB5", "#2C71D1", "#488BE7", "#70A5ED")
+
+ggplot(data = na.omit(base_antropo), aes(x = ea_05_satisfaccion_rendimiento_academico, fill = administracion_tiempo)) + 
+  geom_bar(position = "fill") +
+  ylab("") +
+  xlab("Sobre el rendimiento académico") +
+  theme_classic() +
+  scale_fill_manual(values = colores) +
+  labs(fill = "Equilibra el uso del tiempo")
+
+
+
+# Cruce entre el nivel de estrés y el nivel de actividad de ocio
+base_antropo$dias_x_semana_activ_ocio <- base_antropo$dias_x_semana_activ_ocio %>%
+  fct_relevel(c("1 a 2 veces.", 
+                "3 a 4 veces.", 
+                "Más de 6.", 
+                "No realizo actividades de ocio."))
+
+base_antropo$ea_06_nivel_estres_ultimo_semestre<- as.character(base_antropo$ea_06_nivel_estres_ultimo_semestre)
+base_antropo$ea_06_nivel_estres_ultimo_semestre <- (base_antropo$ea_06_nivel_estres_ultimo_semestre)
+
+base_antropo$ea_06_nivel_estres_ultimo_semestre <- base_antropo$ea_06_nivel_estres_ultimo_semestre %>% 
+  fct_relevel(c("1", 
+                "2", 
+                "3", 
+                "4", 
+                "5")) 
+
+ggplot(data = na.omit(base_antropo), aes(x = ea_06_nivel_estres_ultimo_semestre, fill = dias_x_semana_activ_ocio)) + 
+  geom_bar(position = "fill") +
+  ylab("") +
+  xlab("Nivel de estrés del último semestre") +
+  theme_classic() +
+  scale_fill_manual(values = colores) +
+  labs(fill = "Nivel de actividades de ocio semanal")
+
+
+
+# Cruce entre las horas de estudio durante la semana y el tiempo libre semanal
+base_antropo$ea_01_horas_estudio_semana <- base_antropo$ea_01_horas_estudio_semana %>%
+  fct_relevel(c("1 o 2 horas al día", 
+                "3 o 4 horas al día", 
+                "5 o 6 horas por días", 
+                "Más de 7 horas por día"))
+
+base_antropo$tiempo_libre_semanal <- base_antropo$tiempo_libre_semanal %>% 
+  fct_relevel(c("Bastante tiempo.",
+                "Suficiente tiempo.",
+                "Poco tiempo.",
+                "No tengo tiempo.")) 
+
+ggplot(data = na.omit(base_antropo), aes(x = ea_01_horas_estudio_semana, fill = tiempo_libre_semanal)) + 
+  geom_bar(position = "fill") +
+  ylab("") +
+  xlab("Horas de estudio durante la semana") +
+  theme_classic() +
+  scale_fill_manual(values = colores) +
+  labs(fill = "Tiempo libre semanal")
+
